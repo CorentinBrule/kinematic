@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Niveau/Avatar/items/Saut.gd" type="Script" id=1]
-[ext_resource path="res://Niveau/Avatar/items/sauter.png" type="Texture" id=2]
+[ext_resource path="res://Niveau/Avatar/items/sauter.png" type="Texture2D" id=2]
 
 [node name="Sauter" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="sauter" type="Sprite" parent="."]
+[node name="sauter" type="Sprite2D" parent="."]
 position = Vector2( 0.00753392, -0.153342 )
 scale = Vector2( 0.09, 0.09 )
 z_index = 1

@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 
 # pas vraiment script de "Jeu" 
@@ -32,7 +32,7 @@ func _on_Avatar_item_change():
 
 func _on_Niveau_var_changed():
 	if Engine.editor_hint:
-		print("event on change")
+		print("event checked change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
 

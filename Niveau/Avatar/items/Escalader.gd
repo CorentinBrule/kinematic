@@ -1,16 +1,16 @@
-tool
+@tool
 extends Item
 
-export var glue_time_max = 10
-export var glue_effect = 1000
-export var glue_delay = 1
+@export var glue_time_max = 10
+@export var glue_effect = 1000
+@export var glue_delay = 1
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("e")
+	input_keyboard = OS.find_keycode_from_string("e")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
 	
 	# noms de variables et leur valeur par défaut au reset

@@ -15,40 +15,40 @@ func fill_interactives():
 	clean_interactives()
 	var tilesize = cell_size.x
 	
-	var rouge_tiles = get_used_cells_by_id(1)
+	var rouge_tiles = get_used_cells(1)
 	var rouge = load("res://Niveau/tileMap/Rouge.tscn")
 	for t in rouge_tiles:
-		var node = rouge.instance()
+		var node = rouge.instantiate()
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
 		set_cell(t.x, t.y, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 		
-	var vert_tiles = get_used_cells_by_id(2)
+	var vert_tiles = get_used_cells(2)
 	var vert = load("res://Niveau/tileMap/Vert.tscn")
 	for t in vert_tiles:
-		var node = vert.instance()
+		var node = vert.instantiate()
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
 		set_cell(t.x, t.y, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 		
-	var bleu_tiles = get_used_cells_by_id(3)
+	var bleu_tiles = get_used_cells(3)
 	var bleu = load("res://Niveau/tileMap/Bleu.tscn")
 	for t in bleu_tiles:
-		var node = bleu.instance()
+		var node = bleu.instantiate()
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
 		set_cell(t.x, t.y, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 	
-	var trigger_tiles = get_used_cells_by_id(4)
+	var trigger_tiles = get_used_cells(4)
 	var trigger = load("res://Niveau/tileMap/Trigger.tscn")
 	for t in trigger_tiles:
-		var node = trigger.instance()
+		var node = trigger.instantiate()
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2
 		node.position.y = t.y * tilesize + tilesize/2

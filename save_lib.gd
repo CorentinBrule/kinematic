@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 
 # Declare member variables here. Examples:
@@ -17,7 +17,9 @@ static func load_file(scene, path: String):
 	var file = File.new()
 	if file.file_exists(path):
 		file.open(path, file.READ)
-		var data_dict = parse_json(file.get_as_text())
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		var data_dict = test_json_conv.get_data()
 		print(data_dict)
 		file.close()
 		set_data(scene, data_dict)
@@ -54,7 +56,7 @@ static func set_character_data(scene, character_data):
 	var properties = character_data.get("properties")
 	for property in properties.keys():
 		character[property] = properties[property]
-	character["start_position"] = str2var("Vector2" + properties["start_position"])
+	character["start_position"] = str_to_var("Vector2" + properties["start_position"])
 	
 	# hide old stuff
 	for child in character.get_children():
@@ -107,7 +109,7 @@ static func save_file(scene, path : String):
 	var file = File.new()
 	file.open(path, File.WRITE)
 
-	file.store_string(JSON.print(data_dict,"\t"))
+	file.store_string(JSON.stringify(data_dict,"\t"))
 	file.close()
 
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Niveau/niveau.gd" type="Script" id=1]
-[ext_resource path="res://Niveau/Avatar/light.png" type="Texture" id=2]
+[ext_resource path="res://Niveau/Avatar/light.png" type="Texture2D" id=2]
 [ext_resource path="res://Niveau/trigger_end.gd" type="Script" id=3]
 [ext_resource path="res://Niveau/CameraController.gd" type="Script" id=12]
 [ext_resource path="res://Niveau/GUI/GUI.tscn" type="PackedScene" id=13]
@@ -31,19 +31,19 @@ script = ExtResource( 12 )
 
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
 material = SubResource( 10 )
-margin_left = -192.0
-margin_top = -192.0
-margin_right = -192.0
-margin_bottom = 192.0
+offset_left = -192.0
+offset_top = -192.0
+offset_right = -192.0
+offset_bottom = 192.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="ClipDroite" type="ColorRect" parent="Camera2D"]
 material = SubResource( 10 )
 anchor_right = 1.0
-margin_left = 192.0
-margin_top = -192.0
-margin_right = 192.0
-margin_bottom = 192.0
+offset_left = 192.0
+offset_top = -192.0
+offset_right = 192.0
+offset_bottom = 192.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Trigger_end" type="Area2D" parent="."]
@@ -54,7 +54,7 @@ script = ExtResource( 3 )
 position = Vector2( 8, 8 )
 shape = SubResource( 8 )
 
-[node name="Sprite" type="Sprite" parent="Trigger_end"]
+[node name="Sprite2D" type="Sprite2D" parent="Trigger_end"]
 position = Vector2( 8, 8 )
 scale = Vector2( 0.015625, 0.015625 )
 z_index = 4

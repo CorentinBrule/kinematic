@@ -1,4 +1,4 @@
-tool
+@tool
 extends HBoxContainer
 
 var key_colors={
@@ -28,7 +28,7 @@ func init(_action):
 	
 	var description_label = $ActionDescription
 	var key_label = $ActionDescription/ActionKey
-	texture_progress = $ActionDescription/ActionKey/TextureProgress
+	texture_progress = $ActionDescription/ActionKey/TextureProgressBar
 	
 	description_label.text = action_name #
 	key_label.text = key_name

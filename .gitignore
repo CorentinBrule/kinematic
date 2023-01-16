@@ -5,3 +5,7 @@ old/
 export_presets.cfg
 .mono/
 wiki.md
+.godot/
+.godot/imported/
+.godot/editor/
+.godot/editor/*

@@ -2,12 +2,13 @@
 
 importer="image"
 type="Image"
-path="res://.import/diamand_texture_21x21.png-329cfb88fe3d45f5170cdde14fa4d923.image"
+uid="uid://h2x4nt7ecqfv"
+path="res://.godot/imported/diamand_texture_21x21.png-329cfb88fe3d45f5170cdde14fa4d923.image"
 
 [deps]
 
 source_file="res://assets/diamand_texture_21x21.png"
-dest_files=[ "res://.import/diamand_texture_21x21.png-329cfb88fe3d45f5170cdde14fa4d923.image" ]
+dest_files=["res://.godot/imported/diamand_texture_21x21.png-329cfb88fe3d45f5170cdde14fa4d923.image"]
 
 [params]
 

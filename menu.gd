@@ -17,8 +17,8 @@ func init(list_save_files):
 		print(save_file.meta.date)
 		var clean_date = save_file.meta.date.split("-")
 		if clean_date[3] == "00h":
-			clean_date.remove(3)
-		var clean_text = clean_date.join("/")
+			clean_date.remove_at(3)
+		var clean_text = "/".join(clean_date)
 		
 		if save_file.meta.groupe_name != "":
 			clean_text += " - " + save_file.meta.groupe_name

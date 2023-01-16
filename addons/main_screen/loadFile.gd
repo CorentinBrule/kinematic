@@ -1,4 +1,4 @@
-tool
+@tool
 extends EditorScript
 
 var fileDialog : EditorFileDialog = null
@@ -19,7 +19,7 @@ func main(_edited_scene):
 	edited_scene = _edited_scene
 	
 	fileDialog = EditorFileDialog.new()
-	fileDialog.mode = EditorFileDialog.MODE_OPEN_FILE
+	fileDialog.mode = EditorFileDialog.FILE_MODE_OPEN_FILE
 	fileDialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	fileDialog.display_mode = 1
 	fileDialog.current_file = "save.json"
@@ -27,11 +27,11 @@ func main(_edited_scene):
 	
 	fileDialog.current_dir = "save/"
 	
-	fileDialog.connect("file_selected", self, "_on_fileDialog_file_selected")
-	fileDialog.get_cancel().connect("pressed", self, "_on_fileDialog_cancel")
-	fileDialog.connect("modal_closed", self, "_on_fileDialog_modal_closed")
+	fileDialog.connect("file_selected",Callable(self,"_on_fileDialog_file_selected"))
+	fileDialog.get_cancel_button().connect("pressed",Callable(self,"_on_fileDialog_cancel"))
+	fileDialog.connect("modal_closed",Callable(self,"_on_fileDialog_modal_closed"))
 
-	var viewport = get_editor_interface().get_editor_viewport()
+	var viewport = get_editor_interface().get_editor_main_screen()
 	viewport.add_child(fileDialog)
 	fileDialog.set_meta("_created_by", self)
 

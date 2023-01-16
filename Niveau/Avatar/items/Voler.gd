@@ -1,21 +1,21 @@
-tool
+@tool
 extends Item
 
-export var infinite = true
-export var energy_max = 100
+@export var infinite = true
+@export var energy_max = 100
 var energy = energy_max
-export var energy_use = 1.5
-export var energy_regen = 5
-export var jetpack_power = 10
-export var time_to_regen = 10
-export var maximum_vertical_speed = -110
+@export var energy_use = 1.5
+@export var energy_regen = 5
+@export var jetpack_power = 10
+@export var time_to_regen = 10
+@export var maximum_vertical_speed = -110
 var regen_time = 0
 
 var progress_percent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("f")
+	input_keyboard = OS.find_keycode_from_string("f")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
 	
 	progress_percent = 0

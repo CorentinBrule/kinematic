@@ -1,8 +1,8 @@
-tool
+@tool
 extends Item
 
 #var on_air_time = 100
-export var jump_power =  200
+@export var jump_power =  200
 const JUMP_MAX_AIRBORNE_TIME = 0.2
 
 var prev_jump_pressed = false

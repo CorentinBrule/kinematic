@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node2D
 
 # Declare member variables here. Examples:
@@ -17,7 +17,7 @@ var base_size
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_tree().get_root().connect("size_changed", self, "on_resize_window")
+	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
 	base_size = get_viewport().size
 	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
 	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
@@ -38,7 +38,7 @@ func init():
 	
 	for item in avatar.get_active_items():
 		#print(item)
-		var gui_action = action_scene.instance()
+		var gui_action = action_scene.instantiate()
 		#print(gui_action)
 		gui_action.init(item)
 		actions_container.add_child(gui_action)
@@ -58,11 +58,11 @@ func adapt_interface():
 	if not Engine.editor_hint:
 		var resize_ratio = get_viewport().size.x / get_viewport().size.y
 		var out_game_interface_width = base_size.x * ((resize_ratio - 1))
-		out_game_interface_droit.rect_size.x = max(out_game_interface_width, 150)
-		out_game_interface_gauche.rect_size.x = max(out_game_interface_width, 150) 
-		out_game_interface_gauche.rect_position.x = (out_game_interface_gauche.rect_size.x*-1)
-		out_game_meta.rect_position.x = (out_game_interface_gauche.rect_size.x*-1)
-		out_game_esc.rect_position.x = out_game_interface_droit.rect_size.x + 50
+		out_game_interface_droit.size.x = max(out_game_interface_width, 150)
+		out_game_interface_gauche.size.x = max(out_game_interface_width, 150) 
+		out_game_interface_gauche.position.x = (out_game_interface_gauche.size.x*-1)
+		out_game_meta.position.x = (out_game_interface_gauche.size.x*-1)
+		out_game_esc.position.x = out_game_interface_droit.size.x + 50
 
 func on_resize_window():
 #   print("----------resize---------")

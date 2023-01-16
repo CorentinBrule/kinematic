@@ -21,10 +21,10 @@ func _ready():
 	# avatar = get_parent().get_node("Avatar")
 	zoom_val = 0.5
 	print("val: "+str(zoom_val)+" zoom: " + str(zoom))
-	clip_left_position_dest = $ClipGauche.rect_position.x
-	clip_left_width_dest = $ClipGauche.rect_size.x
-	clip_right_position_dest = $ClipDroite.rect_position.x
-	clip_right_width_dest = $ClipDroite.rect_size.x
+	clip_left_position_dest = $ClipGauche.position.x
+	clip_left_width_dest = $ClipGauche.size.x
+	clip_right_position_dest = $ClipDroite.position.x
+	clip_right_width_dest = $ClipDroite.size.x
 	
 func init():
 	zoom_val = 0.5
@@ -63,10 +63,10 @@ func _process(delta):
 	# if zooming ?
 	position = lerp(position,target_pos,0.1)
 	zoom = lerp(zoom,zoom_dest,0.05)
-	$ClipGauche.rect_position.x = lerp($ClipGauche.rect_position.x, clip_left_position_dest, 0.05)
-	$ClipGauche.rect_size.x = lerp($ClipGauche.rect_size.x, clip_left_width_dest, 0.05)
-	$ClipDroite.rect_position.x = lerp($ClipDroite.rect_position.x, clip_right_position_dest, 0.05)
-	$ClipDroite.rect_size.x = lerp($ClipDroite.rect_size.x, clip_right_width_dest, 0.05)
+	$ClipGauche.position.x = lerp($ClipGauche.position.x, clip_left_position_dest, 0.05)
+	$ClipGauche.size.x = lerp($ClipGauche.size.x, clip_left_width_dest, 0.05)
+	$ClipDroite.position.x = lerp($ClipDroite.position.x, clip_right_position_dest, 0.05)
+	$ClipDroite.size.x = lerp($ClipDroite.size.x, clip_right_width_dest, 0.05)
 
 func zoom_in(zoom_speed_changer=1):
 	zoom_val = max(zoom_val - zoom_speed/zoom_speed_changer, 0)
@@ -119,10 +119,10 @@ func adapt_clip_destination():
 		clip_right_width_dest = edge_from_center * zoom_dest.x - 192 + 5
 
 func force_update_clip():
-	$ClipGauche.rect_position.x = clip_left_position_dest
-	$ClipGauche.rect_size.x = clip_left_width_dest
-	$ClipDroite.rect_position.x = clip_right_position_dest
-	$ClipDroite.rect_size.x = clip_right_width_dest
+	$ClipGauche.position.x = clip_left_position_dest
+	$ClipGauche.size.x = clip_left_width_dest
+	$ClipDroite.position.x = clip_right_position_dest
+	$ClipDroite.size.x = clip_right_width_dest
 
 func open_clip():
 	clip_open = true

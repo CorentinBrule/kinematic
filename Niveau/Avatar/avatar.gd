@@ -1,5 +1,5 @@
-tool
-extends KinematicBody2D
+@tool
+extends CharacterBody2D
 
 # customClass
 const ItemClass = preload("res://Niveau/Avatar/Item.gd")
@@ -7,11 +7,11 @@ const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 # Color effect
 var colors_name = ["Rouge","Vert","Bleu"]
 var colors_val = [Color(1,0,0,1),Color(0,1,0,1),Color(0,0,1,1)]
-export(int, "Rouge", "Vert", "Bleu") var my_color setget change_color
+@export var my_color setget change_color # (int, "Rouge", "Vert", "Bleu")
 var color_bonus
 var color_malus
 # Member variables
-export var GRAVITY = 500.0 # pixels/second/second
+@export var GRAVITY = 500.0 # pixels/second/second
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
@@ -42,7 +42,7 @@ var physic_direction = 0
 var input_direction = 0
 var old_pos = Vector2()
 
-export var start_position = Vector2(344,344) setget change_start_position
+@export var start_position = Vector2(344,344) : set = change_start_position
 var original_start_position
 
 signal color_change
@@ -64,14 +64,14 @@ func _physics_process(delta):
 			death()
 		
 		# if stuck in walls
-		if get_slide_count() == 4:
+		if get_slide_collision_count() == 4:
 			print("stuck")
 			position = old_pos
 			get_node("AnimationDéplacement").seek(1,true)
 			get_node("AnimationDéplacement").stop()
 
 		# interaction with blocks
-		for c in range(get_slide_count()): 
+		for c in range(get_slide_collision_count()): 
 			var collision = get_slide_collision(c)
 			if collision.collider != null:
 				#print(collision.collider)
@@ -130,7 +130,10 @@ func _physics_process(delta):
 		# Integrate forces to velocity
 		velocity += force * delta
 		# Integrate velocity into motion and move
-		velocity = move_and_slide(velocity, Vector2(0, -1))
+		set_velocity(velocity)
+		set_up_direction(Vector2(0, -1))
+		move_and_slide()
+		velocity = velocity
 	
 	else:
 		start_position = position
@@ -186,7 +189,7 @@ func death(collision=false):
 	
 	if collision:
 		var death_mark_scene = load("res://Niveau/deathMark.tscn")
-		var death_mark = death_mark_scene.instance()
+		var death_mark = death_mark_scene.instantiate()
 		death_mark.position = (position + collision.collider.position)/2
 		get_parent().death_marks.append(death_mark)
 		get_parent().add_child(death_mark)
@@ -194,7 +197,7 @@ func death(collision=false):
 	get_parent().restart_level()
 
 func life():
-	yield(get_tree().create_timer(1.0), "timeout")
+	await get_tree().create_timer(1.0).timeout
 	
 	for item in get_active_items():
 		item.reset()

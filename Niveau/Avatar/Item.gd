@@ -1,11 +1,11 @@
-tool
+@tool
 extends Node2D
 class_name Item, "res://assets/diamand_texture_21x21.png"
 
 var avatar
 signal input_changed
 
-export(String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button setget change_input
+@export var xbox_button setget change_input # (String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT")
 var input_xbox_map = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var input_keyboard = 0
 var action_name
@@ -13,12 +13,12 @@ var initial_state = {}
 
 func _ready():
 	avatar = get_parent()
-	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed", self, "_on_Item_visiblity_changed")
-	connect("visibility_changed", get_parent(), "_on_item_visibility_changed")
-	connect("input_changed", get_parent(), "_on_item_input_changed")
-	connect("tree_entered", get_parent(), "_on_item_input_changed")
+	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed",Callable(self,"_on_Item_visiblity_changed"))
+	connect("visibility_changed",Callable(get_parent(),"_on_item_visibility_changed"))
+	connect("input_changed",Callable(get_parent(),"_on_item_input_changed"))
+	connect("tree_entered",Callable(get_parent(),"_on_item_input_changed"))
 	if not Engine.editor_hint:
-		assert(avatar is KinematicBody2D, "L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
+		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
 	if is_visible_in_tree() == false:
 		set_process(false)
 		set_physics_process(false)

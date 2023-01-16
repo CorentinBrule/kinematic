@@ -1,9 +1,9 @@
-tool
+@tool
 extends Item
 
-export var infinite = true
-export var plane_time_max = 100
-export var plane_effect = 2
+@export var infinite = true
+@export var plane_time_max = 100
+@export var plane_effect = 2
 
 var plane_time = 0
 
@@ -11,7 +11,7 @@ var progress_percent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("a")
+	input_keyboard = OS.find_keycode_from_string("a")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {

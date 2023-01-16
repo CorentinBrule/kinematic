@@ -1,17 +1,17 @@
-tool
+@tool
 extends Node2D
 
 signal var_changed
 # variables du niveau (meta et narrative)
-export(String) var groupe_name = "groupe" setget _change_groupe_name
-export(Dictionary) var date = {
+@export var groupe_name: String = "groupe" : set = _change_groupe_name
+@export var date: Dictionary = {
 	"year":2022,
 	"month":0,
 	"day":0,
 	"hour":0
 } setget _change_date
-export(String) var char_name = "" setget _change_char_name
-export(String, MULTILINE) var narrative = "" setget _change_narrative
+@export var char_name: String = "" : set = _change_char_name
+@export var narrative = "" setget _change_narrative # (String, MULTILINE)
 
 # variables persistantes entre les morts de l'Avatar
 var start_position
@@ -36,7 +36,7 @@ func _input(event):
 		clean_death_marks()
 		restart_level()
 	if not Global.is_menu:
-		if event is InputEventMouseButton and event.pressed == false and event.button_index == 1:
+		if event is InputEventMouseButton and event.button_pressed == false and event.button_index == 1:
 			$Avatar.position = get_local_mouse_position()
 
 func restart_level():
@@ -44,9 +44,9 @@ func restart_level():
 
 	# reload tileMap
 	var tileMap_scene = load("user://save_tileMap.tscn")
-	var new_tileMap = tileMap_scene.instance()
+	var new_tileMap = tileMap_scene.instantiate()
 	var name = $TileMap.name
-	add_child_below_node($TileMap,new_tileMap)
+	add_sibling($TileMap,new_tileMap)
 	$TileMap.free()
 	new_tileMap.set_name(name)
 	print("restart")
@@ -66,7 +66,7 @@ func _on_Avatar_ready():
 		$Camera2D.avatar = $Avatar
 		$GUI.init()
 
-# emit signal on change on editor for tools
+# emit signal checked change checked editor for tools
 func _change_groupe_name(new_value):
 	groupe_name = new_value
 	print(new_value)
