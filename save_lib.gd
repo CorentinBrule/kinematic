@@ -14,9 +14,8 @@ func _ready():
 
 # Load & Set #
 static func load_file(scene, path: String):
-	var file = File.new()
-	if file.file_exists(path):
-		file.open(path, file.READ)
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
 		var test_json_conv = JSON.new()
 		test_json_conv.parse(file.get_as_text())
 		var data_dict = test_json_conv.get_data()
@@ -106,8 +105,7 @@ static func save_file(scene, path : String):
 	data_dict.level_tilemap = get_tilemap_data(tilemap)
 
 	#print(data_dict)
-	var file = File.new()
-	file.open(path, File.WRITE)
+	var file = FileAccess.open(path, FileAccess.WRITE)
 
 	file.store_string(JSON.stringify(data_dict,"\t"))
 	file.close()
