@@ -18,7 +18,7 @@ func _ready():
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	var action = Input.is_action_pressed(name)
 
 	if avatar.is_on_floor():
 		avatar.on_air_time = 0

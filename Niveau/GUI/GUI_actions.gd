@@ -22,8 +22,9 @@ func _ready():
 
 func init(_action):
 	action = _action
+
 	var action_name = action.get_name()
-	var key_name = action.get("xbox_button")
+	var key_name = action.input_xbox_map[action["xbox_button"]]
 	var action_is_visible = action.visible
 	
 	var description_label = $ActionDescription
@@ -31,6 +32,7 @@ func init(_action):
 	texture_progress = $ActionDescription/ActionKey/TextureProgressBar
 	
 	description_label.text = action_name #
+	
 	key_label.text = key_name
 	
 	key_label.set("custom_colors/font_color", key_colors.get(key_name))

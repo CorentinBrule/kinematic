@@ -21,7 +21,7 @@ func _ready():
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	var action = Input.is_action_pressed(name)
 	
 	if action:
 		if avatar.is_on_wall():
@@ -42,6 +42,6 @@ func physics_process(delta):
 		# reset air_time so reset jump
 		avatar.on_air_time = 0
 
-	if Input.is_action_just_released(action_name):
+	if Input.is_action_just_released(name):
 		avatar.colle = false
 

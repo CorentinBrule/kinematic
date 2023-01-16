@@ -34,7 +34,7 @@ func _ready():
 	effect.connect("timeout",Callable(self,"_on_Effect_timeout"))
 	
 func physics_process(delta):
-	var action = Input.is_action_just_pressed(action_name)
+	var action = Input.is_action_just_pressed(name)
 	
 	if action and cooldown.is_stopped() and effect.is_stopped() :
 		effect.start()

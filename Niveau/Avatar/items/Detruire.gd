@@ -33,7 +33,7 @@ func _ready():
 
 func physics_process(delta):
 
-	var action = Input.is_action_just_pressed(action_name)
+	var action = Input.is_action_just_pressed(name)
 
 	if action and cooldown.is_stopped() and effect.is_stopped():
 		effect.start()
