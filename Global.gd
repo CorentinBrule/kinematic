@@ -157,7 +157,6 @@ func load_files_in_directory(path):
 				var data_dict = test_json_conv.get_data()
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
-				file.close()
 				
 	dir.list_dir_end()
 

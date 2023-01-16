@@ -20,9 +20,8 @@ static func load_file(scene, path: String):
 		test_json_conv.parse(file.get_as_text())
 		var data_dict = test_json_conv.get_data()
 		print(data_dict)
-		file.close()
 		set_data(scene, data_dict)
-		
+
 static func set_data(scene, data):
 	set_meta_data(scene, data.get("meta"))
 	set_story_data(scene, data.get("story"))
@@ -108,7 +107,6 @@ static func save_file(scene, path : String):
 	var file = FileAccess.open(path, FileAccess.WRITE)
 
 	file.store_string(JSON.stringify(data_dict,"\t"))
-	file.close()
 
 
 static func get_meta_data(niveau):
