@@ -13,7 +13,7 @@ func init():
 # convertie les tuiles interactives en instance de scène d'éléments interactifs
 func fill_interactives():
 	clean_interactives()
-	var tilesize = cell_size.x
+	var tilesize = cell_quadrant_size
 	
 	var rouge_tiles = get_used_cells(1)
 	var rouge = load("res://Niveau/tileMap/Rouge.tscn")
@@ -22,7 +22,7 @@ func fill_interactives():
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(t.x, t.y, -1)
+		set_cell(0, t, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 		
 	var vert_tiles = get_used_cells(2)
@@ -32,7 +32,7 @@ func fill_interactives():
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(t.x, t.y, -1)
+		set_cell(0, t, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 		
 	var bleu_tiles = get_used_cells(3)
@@ -42,7 +42,7 @@ func fill_interactives():
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2 
 		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(t.x, t.y, -1)
+		set_cell(0, t, -1)
 #		node.set_owner(get_tree().edited_scene_root)
 	
 	var trigger_tiles = get_used_cells(4)
@@ -52,7 +52,7 @@ func fill_interactives():
 		add_child(node)
 		node.position.x = t.x * tilesize + tilesize/2
 		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(t.x, t.y, -1)
+		set_cell(0, t, -1)
 	
 func save_tileMap():
 	var packed_scene = PackedScene.new()
