@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node2D",
+"class": &"Item",
+"language": &"GDScript",
+"path": "res://Niveau/Avatar/Item.gd"
+}]
+_global_script_class_icons={
+"Item": "res://assets/diamand_texture_21x21.png"
+}
+
 [application]
 
 config/name="Kinematic Character"

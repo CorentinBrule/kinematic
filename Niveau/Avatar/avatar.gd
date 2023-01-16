@@ -7,7 +7,7 @@ const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 # Color effect
 var colors_name = ["Rouge","Vert","Bleu"]
 var colors_val = [Color(1,0,0,1),Color(0,1,0,1),Color(0,0,1,1)]
-@export var my_color setget change_color # (int, "Rouge", "Vert", "Bleu")
+@export var my_color: Array[String] = ["Rouge", "Vert", "Bleu"]: set = change_color # (int, )
 var color_bonus
 var color_malus
 # Member variables

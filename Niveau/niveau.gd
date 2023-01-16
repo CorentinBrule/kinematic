@@ -9,9 +9,9 @@ signal var_changed
 	"month":0,
 	"day":0,
 	"hour":0
-} setget _change_date
+} : set = _change_date
 @export var char_name: String = "" : set = _change_char_name
-@export var narrative = "" setget _change_narrative # (String, MULTILINE)
+@export_multiline var narrative: String = "" : set = _change_narrative # (String, MULTILINE)
 
 # variables persistantes entre les morts de l'Avatar
 var start_position

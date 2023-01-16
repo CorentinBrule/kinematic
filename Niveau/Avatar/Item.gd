@@ -6,7 +6,7 @@ class_name Item
 var avatar
 signal input_changed
 
-@export var xbox_button setget change_input # (String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT")
+@export var xbox_button: Array[String] = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"] : set = change_input
 var input_xbox_map = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var input_keyboard = 0
 var action_name
