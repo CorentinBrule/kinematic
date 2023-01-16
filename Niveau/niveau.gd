@@ -36,7 +36,7 @@ func _input(event):
 		clean_death_marks()
 		restart_level()
 	if not Global.is_menu:
-		if event is InputEventMouseButton and event.button_pressed == false and event.button_index == 1:
+		if event is InputEventMouseButton and event.pressed == false and event.button_index == 1:
 			$Avatar.position = get_local_mouse_position()
 
 func restart_level():
