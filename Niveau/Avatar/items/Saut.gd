@@ -10,7 +10,7 @@ var prev_jump_pressed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	input_keyboard = KEY_SPACE
-	
+	avatar = get_parent()
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {

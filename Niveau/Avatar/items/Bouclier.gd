@@ -13,6 +13,7 @@ var animation
 func _ready():
 	input_keyboard = OS.find_keycode_from_string("p")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	avatar = get_parent()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 	}

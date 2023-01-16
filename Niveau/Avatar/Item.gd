@@ -24,23 +24,22 @@ func _ready():
 		set_process(false)
 		set_physics_process(false)
 	
-	action_name = name
+	action_name = get_name()
 	#init_input(action_name, input_keyboard ,input_xbox_map.find(xbox_button))
 
 
 func init_input(action_name, keyboard_key_scancode, button_index):
-	if not InputMap.has_action(action_name):
-		InputMap.add_action(action_name)
+	if not InputMap.has_action(name):
+		InputMap.add_action(name)
 	var joypad_event = InputEventJoypadButton.new()
 	joypad_event.device = 0
 	joypad_event.button_index = button_index
-	InputMap.action_add_event(action_name, joypad_event)
+	InputMap.action_add_event(name, joypad_event)
 	
 	if keyboard_key_scancode != 0:
-		print("input keyboard")
 		var keyboard_event = InputEventKey.new()
-		keyboard_event.scancode = keyboard_key_scancode
-		InputMap.action_add_event(action_name, keyboard_event)
+		keyboard_event.keycode = keyboard_key_scancode
+		InputMap.action_add_event(name, keyboard_event)
 
 func _process(delta):
 	if not Engine.is_editor_hint():
@@ -57,7 +56,6 @@ func physics_process(delta):
 	pass
 
 func change_input(new_value):
-	print(new_value)
 	xbox_button = new_value
 	emit_signal("input_changed")
 
