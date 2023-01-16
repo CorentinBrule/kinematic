@@ -1,0 +1,148 @@
+{
+	"meta": {
+		"date": "2023-01-12-12h",
+		"groupe_name": "Tuto"
+	},
+	"story": {
+		"char_name": "Avatar",
+		"narrative": "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
+	},
+	"character": {
+		"properties": {
+			"my_color": 2,
+			"GRAVITY": 500,
+			"start_position": "(344, 344)"
+		},
+		"stuff": [
+			{
+				"name": "Sauter",
+				"properties": {
+					"xbox_button": "A",
+					"jump_power": 200
+				}
+			}
+		]
+	},
+	"level_tilemap": [
+		{
+			"x": 1,
+			"y": 1,
+			"id": 1
+		},
+		{
+			"x": 2,
+			"y": 3,
+			"id": 0
+		},
+		{
+			"x": 2,
+			"y": 4,
+			"id": 0
+		},
+		{
+			"x": 3,
+			"y": 5,
+			"id": 0
+		},
+		{
+			"x": 3,
+			"y": 6,
+			"id": 0
+		},
+		{
+			"x": 4,
+			"y": 7,
+			"id": 0
+		},
+		{
+			"x": 4,
+			"y": 8,
+			"id": 0
+		},
+		{
+			"x": 5,
+			"y": 9,
+			"id": 0
+		},
+		{
+			"x": 5,
+			"y": 10,
+			"id": 0
+		},
+		{
+			"x": 6,
+			"y": 11,
+			"id": 0
+		},
+		{
+			"x": 6,
+			"y": 12,
+			"id": 0
+		},
+		{
+			"x": 7,
+			"y": 13,
+			"id": 0
+		},
+		{
+			"x": 7,
+			"y": 14,
+			"id": 0
+		},
+		{
+			"x": 8,
+			"y": 15,
+			"id": 0
+		},
+		{
+			"x": 8,
+			"y": 16,
+			"id": 0
+		},
+		{
+			"x": 9,
+			"y": 17,
+			"id": 0
+		},
+		{
+			"x": 9,
+			"y": 18,
+			"id": 0
+		},
+		{
+			"x": 10,
+			"y": 19,
+			"id": 0
+		},
+		{
+			"x": 10,
+			"y": 20,
+			"id": 0
+		},
+		{
+			"x": 11,
+			"y": 21,
+			"id": 0
+		},
+		{
+			"x": 13,
+			"y": 21,
+			"id": 4
+		},
+		{
+			"x": 15,
+			"y": 21,
+			"id": 2
+		},
+		{
+			"x": 17,
+			"y": 21,
+			"id": 1
+		},
+		{
+			"x": 19,
+			"y": 21,
+			"id": 3
+		}
+	]
+}

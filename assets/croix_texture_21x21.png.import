@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/croix_texture_21x21.png-4efdf22086df84d15a05adda4ebfeefa.image"
+
+[deps]
+
+source_file="res://assets/croix_texture_21x21.png"
+dest_files=[ "res://.import/croix_texture_21x21.png-4efdf22086df84d15a05adda4ebfeefa.image" ]
+
+[params]
+

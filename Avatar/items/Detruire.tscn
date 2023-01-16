@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Avatar/items/Detruire.gd" type="Script" id=1]
+[ext_resource path="res://Avatar/items/detruire.png" type="Texture" id=2]
+
+[node name="Detruire" type="Node2D"]
+scale = Vector2( 0.115764, 0.115764 )
+script = ExtResource( 1 )
+
+[node name="detruire" type="Sprite" parent="."]
+position = Vector2( 0.213257, -0.34198 )
+texture = ExtResource( 2 )

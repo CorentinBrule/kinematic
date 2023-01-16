@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Avatar/items/Teleporter.gd" type="Script" id=1]
+[ext_resource path="res://Avatar/items/teleporter.png" type="Texture" id=2]
+
+[node name="Teleporter" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="teleporter" type="Sprite" parent="."]
+position = Vector2( 0.0162587, 0.109893 )
+scale = Vector2( 0.09, 0.09 )
+texture = ExtResource( 2 )

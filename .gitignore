@@ -1,0 +1,7 @@
+old_save/
+old/
+.import/
+*.translation
+export_presets.cfg
+.mono/
+wiki.md
