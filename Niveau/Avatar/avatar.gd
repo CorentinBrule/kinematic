@@ -73,9 +73,9 @@ func _physics_process(delta):
 		# interaction with blocks
 		for c in range(get_slide_collision_count()): 
 			var collision = get_slide_collision(c)
-			if collision.collider != null:
-				#print(collision.collider)
-				var collision_color = collision.collider.name
+			if collision.get_collider() != null:
+				#print(collision.get_collider())
+				var collision_color = collision.get_collider().name
 
 				if collision_color == "TileMap":
 					touch_plat(collision)
@@ -151,7 +151,7 @@ func touch_same(collision):
 func touch_bonus(collision):
 	#print("bonus")
 	if eat:
-		var col = collision.collider
+		var col = collision.get_collider()
 		attack(col)
 	#bounce(collision)
 	
@@ -161,7 +161,7 @@ func touch_malus(collision):
 		bounce(collision)
 	elif attacking:
 		#print("attack")
-		var col = collision.collider
+		var col = collision.get_collider()
 		attack(col)
 #	elif safe:
 #		if pushing:
@@ -190,7 +190,7 @@ func death(collision=false):
 	if collision:
 		var death_mark_scene = load("res://Niveau/deathMark.tscn")
 		var death_mark = death_mark_scene.instantiate()
-		death_mark.position = (position + collision.collider.position)/2
+		death_mark.position = (position + collision.get_collider().position)/2
 		get_parent().death_marks.append(death_mark)
 		get_parent().add_child(death_mark)
 	
