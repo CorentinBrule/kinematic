@@ -57,7 +57,7 @@ func fill_interactives():
 func save_tileMap():
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(self)
-	ResourceSaver.save("user://save_tileMap.tscn", packed_scene)
+	ResourceSaver.save(packed_scene, "user://save_tileMap.tscn")
 
 func clean_interactives():
 	var children = get_children()
