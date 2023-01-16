@@ -87,4 +87,5 @@ maximum_vertical_speed = -110.0
 [node name="Menu" parent="." instance=ExtResource("11")]
 visible = false
 
+[connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]

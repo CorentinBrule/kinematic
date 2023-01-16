@@ -19,7 +19,7 @@ var death_marks = []
 # var persistant_active_triggers = []
 
 func _ready():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if Global.bool_start:
 			print("before start")
 			start()
@@ -62,7 +62,7 @@ func clean_death_marks():
 	death_marks = []
 
 func _on_Avatar_ready():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		$Camera2D.avatar = $Avatar
 		$GUI.init()
 

@@ -55,7 +55,7 @@ func init():
 	adapt_interface()
 
 func adapt_interface():
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		var resize_ratio = get_viewport().size.x / get_viewport().size.y
 		var out_game_interface_width = base_size.x * ((resize_ratio - 1))
 		out_game_interface_droit.size.x = max(out_game_interface_width, 150)
@@ -66,7 +66,7 @@ func adapt_interface():
 
 func on_resize_window():
 #   print("----------resize---------")
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 	#	print(get_viewport().size.x)
 	#	print(get_viewport().size.y)
 		adapt_interface()

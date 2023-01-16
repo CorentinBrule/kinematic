@@ -45,6 +45,6 @@ func init(_action):
 		hide()
 
 func _process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if has_progress:
 			texture_progress.value = action.progress_percent

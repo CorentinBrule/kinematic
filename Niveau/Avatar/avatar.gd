@@ -59,7 +59,7 @@ func init():
 	$Color.color = colors_val[my_color]
 
 func _physics_process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
@@ -262,5 +262,5 @@ func _on_item_input_changed():
 
 func change_start_position(value):
 	start_position = value
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		position = start_position
