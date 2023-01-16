@@ -1,6 +1,7 @@
 @tool
 extends Node2D
-class_name Item, "res://assets/diamand_texture_21x21.png"
+class_name Item
+@icon("res://assets/diamand_texture_21x21.png")
 
 var avatar
 signal input_changed
