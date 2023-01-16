@@ -6,7 +6,7 @@ extends Reference
 # var b = "text"
 
 # customClass
-const ItemClass = preload("res://Avatar/Item.gd")
+const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

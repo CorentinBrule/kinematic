@@ -1,15 +1,15 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Niveau.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Avatar/avatar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Avatar/items/Proteger.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Avatar/items/Teleporter.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Avatar/items/Saut.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Avatar/items/Detruire.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Avatar/items/Voler.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Avatar/items/Escalader.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Avatar/items/Plane.tscn" type="PackedScene" id=9]
-[ext_resource path="res://tileMap/TileMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Niveau/Niveau.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Niveau/Avatar/avatar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Niveau/Avatar/items/Proteger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Niveau/Avatar/items/Teleporter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Niveau/Avatar/items/Saut.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Niveau/Avatar/items/Detruire.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Niveau/Avatar/items/Voler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Niveau/Avatar/items/Escalader.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Niveau/Avatar/items/Plane.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Niveau/tileMap/TileMap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Menu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://tools.gd" type="Script" id=12]
 
@@ -56,6 +56,7 @@ xbox_button = "B"
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource( 9 )]
 visible = false
 xbox_button = "LT"
+infinite = true
 plane_time_max = 100.0
 plane_effect = 2.0
 
@@ -73,7 +74,9 @@ tp_cooldown = 50.0
 visible = false
 position = Vector2( 0, 6 )
 xbox_button = "RT"
+infinite = true
 energy_max = 100.0
+energy_use = 1.5
 energy_regen = 5.0
 jetpack_power = 10.0
 time_to_regen = 10.0
