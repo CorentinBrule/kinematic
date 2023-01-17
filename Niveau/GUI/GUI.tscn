@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=8 format=3 uid="uid://co3afijj5piwx"]
 
-[ext_resource type="FontFile" path="res://assets/FT88-regular.tres" id="1"]
-[ext_resource type="PackedScene" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
+[ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="2_fnrhm"]
 [ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
 
 [sub_resource type="Theme" id="15"]
-default_font = ExtResource("1")
+default_font = ExtResource("2_fnrhm")
+
+[sub_resource type="Theme" id="Theme_8y4km"]
 
 [sub_resource type="GDScript" id="13"]
 
@@ -66,11 +68,12 @@ layout_mode = 2
 text = "Méchants !"
 
 [node name="HBoxContainer_droit" type="HBoxContainer" parent="outGameGUI"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.5
 anchor_bottom = 1.0
-offset_right = 810.545
+offset_right = 266.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit"]
 layout_mode = 2
@@ -80,6 +83,7 @@ size_flags_vertical = 3
 [node name="TextDroite" type="RichTextLabel" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = SubResource("Theme_8y4km")
 bbcode_enabled = true
 text = "il·elle peut :"
 fit_content_height = true
@@ -101,11 +105,12 @@ text = "c'est parti !"
 fit_content_height = true
 
 [node name="VBoxContainer_meta" type="VBoxContainer" parent="outGameGUI"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.167
 offset_top = -50.0
-offset_bottom = -50.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_right = 1.87199
+offset_bottom = -34.0
 
 [node name="meta" type="Label" parent="outGameGUI/VBoxContainer_meta"]
 unique_name_in_owner = true
