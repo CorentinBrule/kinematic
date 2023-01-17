@@ -168,6 +168,7 @@ multithread/thread_rid_pool_prealloc=60
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 quality/shading/use_physical_light_attenuation=true
