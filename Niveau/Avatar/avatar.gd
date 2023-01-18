@@ -63,19 +63,22 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
+#		print(get_slide_collision_count())
+		
 		# if stuck in walls
 		if get_slide_collision_count() == 4:
 			print("stuck")
-			position = old_pos
-			get_node("AnimationDéplacement").seek(1,true)
-			get_node("AnimationDéplacement").stop()
+#			position = old_pos
+#			get_node("AnimationDéplacement").seek(1,true)
+#			get_node("AnimationDéplacement").stop()
 
 		# interaction with blocks
 		for c in range(get_slide_collision_count()): 
 			var collision = get_slide_collision(c)
 			if collision.get_collider() != null:
-				#print(collision.get_collider())
-				var collision_color = collision.get_collider().name
+				var collider = collision.get_collider()
+				#print(collision.collider)
+				var collision_color = collider.name
 
 				if collision_color == "TileMap":
 					touch_plat(collision)
@@ -88,6 +91,24 @@ func _physics_process(delta):
 				#si couleur malus
 				elif collision_color.find(colors_name[color_malus]) != -1:
 					touch_malus(collision)
+			
+#			if collision.get_collider() != null:
+#				if collision.get_collider().name == "TileMap":
+#					var tileMap_collider = collision.get_collider()
+#					var cell = tileMap_collider.local_to_map(collision.get_position() - collision.get_normal())
+#					var tile_id = tileMap_collider.get_cell_source_id(0, cell)
+#
+#					if tile_id == 0:
+#						touch_plat(collision)
+#					#si même couleur
+#					elif tile_id == my_color:
+#						touch_same(collision)
+#					#si couleur bonus
+#					elif tile_id == color_bonus:
+#						touch_bonus(collision)
+#					#si couleur malus
+#					elif tile_id == color_malus:
+#						touch_malus(collision)
 
 		last_velocity = velocity
 		
@@ -173,10 +194,10 @@ func touch_malus(collision):
 
 	
 func bounce(collision):
-	if collision.normal.x == 0:
+	if collision.get_normal().x == 0:
 		if last_velocity.y > 10 or last_velocity.y < -10:
 			velocity.y = last_velocity.y * -1
-	if collision.normal.y == 0:
+	if collision.get_normal().y == 0:
 		velocity.x = last_velocity.x * -1
 
 func death(collision=false):
@@ -190,7 +211,7 @@ func death(collision=false):
 	if collision:
 		var death_mark_scene = load("res://Niveau/deathMark.tscn")
 		var death_mark = death_mark_scene.instantiate()
-		death_mark.position = (position + collision.get_collider().position)/2
+		death_mark.position = (position + collision.get_collider().get_position())/2
 		get_parent().death_marks.append(death_mark)
 		get_parent().add_child(death_mark)
 	

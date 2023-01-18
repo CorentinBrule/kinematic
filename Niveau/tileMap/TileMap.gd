@@ -14,45 +14,23 @@ func init():
 func fill_interactives():
 	clean_interactives()
 	var tilesize = cell_quadrant_size
-	
-	var rouge_tiles = get_used_cells(1)
 	var rouge = load("res://Niveau/tileMap/Rouge.tscn")
-	for t in rouge_tiles:
-		var node = rouge.instantiate()
-		add_child(node)
-		node.position.x = t.x * tilesize + tilesize/2 
-		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(0, t, -1)
-#		node.set_owner(get_tree().edited_scene_root)
-		
-	var vert_tiles = get_used_cells(2)
 	var vert = load("res://Niveau/tileMap/Vert.tscn")
-	for t in vert_tiles:
-		var node = vert.instantiate()
-		add_child(node)
-		node.position.x = t.x * tilesize + tilesize/2 
-		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(0, t, -1)
-#		node.set_owner(get_tree().edited_scene_root)
-		
-	var bleu_tiles = get_used_cells(3)
 	var bleu = load("res://Niveau/tileMap/Bleu.tscn")
-	for t in bleu_tiles:
-		var node = bleu.instantiate()
-		add_child(node)
-		node.position.x = t.x * tilesize + tilesize/2 
-		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(0, t, -1)
-#		node.set_owner(get_tree().edited_scene_root)
-	
-	var trigger_tiles = get_used_cells(4)
 	var trigger = load("res://Niveau/tileMap/Trigger.tscn")
-	for t in trigger_tiles:
-		var node = trigger.instantiate()
-		add_child(node)
-		node.position.x = t.x * tilesize + tilesize/2
-		node.position.y = t.y * tilesize + tilesize/2
-		set_cell(0, t, -1)
+	
+	var colors = ["",rouge,vert,bleu,trigger]
+	
+	var tiles =  get_used_cells(0)
+	for t in tiles:
+		print(t)
+		var color_num = get_cell_source_id(0,t)
+		if color_num > 0:
+			var node = colors[color_num].instantiate()
+			add_child(node)
+			node.position.x = t.x * tilesize + tilesize/2
+			node.position.y = t.y * tilesize + tilesize/2
+			set_cell(0, t, -1)
 	
 func save_tileMap():
 	var packed_scene = PackedScene.new()
