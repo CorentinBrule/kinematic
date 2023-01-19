@@ -63,10 +63,10 @@ func _process(delta):
 	# if zooming ?
 	position = lerp(position,target_pos,0.1)
 	zoom = lerp(zoom,zoom_dest,0.05)
-	$ClipGauche.position.x = lerp($ClipGauche.position.x, clip_left_position_dest, 0.05)
-	$ClipGauche.size.x = lerp($ClipGauche.size.x, clip_left_width_dest, 0.05)
-	$ClipDroite.position.x = lerp($ClipDroite.position.x, clip_right_position_dest, 0.05)
-	$ClipDroite.size.x = lerp($ClipDroite.size.x, clip_right_width_dest, 0.05)
+	$ClipGauche.position.x = lerpf($ClipGauche.position.x, clip_left_position_dest, 0.05)
+	$ClipGauche.size.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
+	$ClipDroite.position.x = lerpf($ClipDroite.position.x, clip_right_position_dest, 0.05)
+	$ClipDroite.size.x = lerpf($ClipDroite.size.x, clip_right_width_dest, 0.05)
 
 func zoom_in(zoom_speed_changer=1):
 	zoom_val = max(zoom_val - zoom_speed/zoom_speed_changer, 0)
