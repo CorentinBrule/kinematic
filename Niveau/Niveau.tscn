@@ -30,7 +30,6 @@ date = {
 z_index = 20
 position = Vector2(192, 192)
 current = true
-zoom = Vector2(1.7, 1.7)
 script = ExtResource("12")
 
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]

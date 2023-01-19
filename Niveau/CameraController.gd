@@ -5,9 +5,9 @@ var middle_pos = Vector2(192, 192)
 var target_pos
 var zoom_val = 1
 var zoom_speed = 0.1
-var min_zoom = Vector2(0.8, 0.8)
+var min_zoom = Vector2(0.5, 0.5)
 var max_zoom = Vector2(4, 4)
-var mid_zoom = Vector2(1.7,1.7)
+var mid_zoom = Vector2(1,1)
 var zoom_dest = zoom
 var edge_from_center
 var clip_left_position_dest

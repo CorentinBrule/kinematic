@@ -37,8 +37,9 @@ gdscript/shading/use_physical_light_attenuation=true
 
 [display]
 
-window/size/viewport_width=648
-window/stretch/mode="viewport"
+window/size/viewport_width=384
+window/size/viewport_height=384
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/size/width=384
 window/size/height=384
