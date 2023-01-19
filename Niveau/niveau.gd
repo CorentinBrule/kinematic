@@ -46,7 +46,7 @@ func restart_level():
 	var tileMap_scene = load("user://save_tileMap.tscn")
 	var new_tileMap = tileMap_scene.instantiate()
 	var name = $TileMap.name
-	add_sibling($TileMap,new_tileMap)
+	$Trigger_end.add_sibling(new_tileMap) # add before $Avatar
 	$TileMap.free()
 	new_tileMap.set_name(name)
 	print("restart")
