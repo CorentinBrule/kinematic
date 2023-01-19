@@ -20,13 +20,16 @@ func _ready():
 	connect("tree_entered",Callable(get_parent(),"_on_item_input_changed"))
 	if not Engine.is_editor_hint():
 		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
-	if is_visible_in_tree() == false:
-		set_process(false)
-		set_physics_process(false)
 	
 	action_name = get_name()
 	#init_input(action_name, input_keyboard ,input_xbox_map.find(xbox_button))
 
+
+func init():
+	if visible == false:
+		set_process(false)
+		set_physics_process(false)
+		set_process_input(false)
 
 func init_input(action_name, keyboard_key_scancode, button_index):
 	if not InputMap.has_action(name):

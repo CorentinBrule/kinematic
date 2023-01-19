@@ -17,6 +17,7 @@ var progress_percent
 func _ready():
 	input_keyboard = OS.find_keycode_from_string("f")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	init()
 	avatar = get_parent()
 	progress_percent = 0
 	initial_state = {

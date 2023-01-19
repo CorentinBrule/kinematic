@@ -14,6 +14,7 @@ func _ready():
 	input_keyboard = OS.find_keycode_from_string("a")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
 	avatar = get_parent()
+	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"plane_time" : plane_time

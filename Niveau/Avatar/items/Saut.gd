@@ -12,6 +12,7 @@ func _ready():
 	input_keyboard = KEY_SPACE
 	avatar = get_parent()
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"prev_jump_pressed" : prev_jump_pressed
