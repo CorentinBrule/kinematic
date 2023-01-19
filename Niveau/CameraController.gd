@@ -16,6 +16,7 @@ var clip_right_width_dest
 var clip_speed = 0.1
 var clip_open = false
 var clip_open_right = false
+var zooming = false
 
 func _ready():
 	# avatar = get_parent().get_node("Avatar")
@@ -55,13 +56,15 @@ func _process(delta):
 		open_clip()
 	else:
 		clip_open = false
-#	if Input.is_action_just_released("zoom_up") or Input.is_action_just_released("zoom_down"):
-#		position = lerp(position,target_pos,0.05)
-#	else:
-#		position = target_pos
 
-	# if zooming ?
-	position = lerp(position,target_pos,0.1)
+	if zoom.distance_to(zoom_dest) > 0.005:
+		zooming = true
+		position = lerp(position, target_pos, 0.4)
+	else: 
+		print("paf")
+		zooming = false
+		position = target_pos
+		
 	zoom = lerp(zoom,zoom_dest,0.05)
 	$ClipGauche.position.x = lerpf($ClipGauche.position.x, clip_left_position_dest, 0.05)
 	$ClipGauche.size.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
