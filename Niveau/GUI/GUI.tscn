@@ -1,11 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=7 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
-[ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="2_fnrhm"]
+[ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
-
-[sub_resource type="Theme" id="15"]
-default_font = ExtResource("2_fnrhm")
 
 [sub_resource type="Theme" id="Theme_8y4km"]
 
@@ -25,7 +22,7 @@ offset_right = 384.0
 offset_bottom = 384.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("15")
+theme = ExtResource("2_aqglx")
 
 [node name="win" type="Label" parent="outGameGUI"]
 unique_name_in_owner = true
