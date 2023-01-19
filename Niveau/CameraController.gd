@@ -5,8 +5,9 @@ var middle_pos = Vector2(192, 192)
 var target_pos
 var zoom_val = 1
 var zoom_speed = 0.1
-var max_zoom = Vector2(0.2, 0.2)
-var min_zoom = Vector2(1.8, 1.8)
+var min_zoom = Vector2(0.8, 0.8)
+var max_zoom = Vector2(4, 4)
+var mid_zoom = Vector2(1.7,1.7)
 var zoom_dest = zoom
 var edge_from_center
 var clip_left_position_dest
@@ -32,7 +33,7 @@ func init():
 
 func _process(delta):
 
-	if zoom.x < 0.9: 
+	if zoom_val < 0.5: 
 		target_pos = lerp(avatar.position, middle_pos, zoom_val) 
 	else: 
 		target_pos = middle_pos
@@ -59,9 +60,8 @@ func _process(delta):
 
 	if zoom.distance_to(zoom_dest) > 0.005:
 		zooming = true
-		position = lerp(position, target_pos, 0.4)
+		position = lerp(position, target_pos, 0.1)
 	else: 
-		print("paf")
 		zooming = false
 		position = target_pos
 		
@@ -86,15 +86,15 @@ func zoom_out(zoom_speed_changer=1):
 func calc_zoom_dest(max_zoom,min_zoom,zoom_val):
 	var _zoom_dest
 	if zoom_val<0.5:
-		_zoom_dest = lerp(max_zoom,Vector2(1,1),zoom_val)
+		_zoom_dest = lerp(max_zoom,mid_zoom,zoom_val)
 	elif zoom_val>0.5:
-		_zoom_dest = lerp(Vector2(1,1),min_zoom,zoom_val)
+		_zoom_dest = lerp(mid_zoom,min_zoom,zoom_val)
 	elif zoom_val == 0.5:
-		_zoom_dest = Vector2(1,1)
+		_zoom_dest = mid_zoom
 	return _zoom_dest
 
 func reset_zoom():
-	zoom_dest = Vector2(1.0,1.0)
+	zoom_dest = mid_zoom
 	zoom_val = 0.5
 	clip_open_right = false
 	target_pos = middle_pos
