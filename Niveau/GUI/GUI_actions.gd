@@ -35,7 +35,7 @@ func init(_action):
 	
 	key_label.text = key_name
 	
-	key_label.set("custom_colors/font_color", key_colors.get(key_name))
+	key_label.set("theme_override_colors/font_color", key_colors.get(key_name))
 	
 	if not action.get("progress_percent") == null:
 		has_progress = true

@@ -29,7 +29,7 @@ func _ready():
 func init():
 	avatar = get_parent().get_node("Avatar")
 	$"%char_name".text = get_parent().char_name
-	$"%char_name".set("custom_colors/font_color", avatar.colors_val[avatar.my_color])
+	$"%char_name".set("theme_override_colors/font_color", avatar.colors_val[avatar.my_color])
 	$"%narrative".text = get_parent().narrative
 	
 	#clean actions_container
