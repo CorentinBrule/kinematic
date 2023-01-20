@@ -103,23 +103,23 @@ func reset_zoom():
 	
 
 func adapt_clip():
-	print(clip_open)
 	adapt_clip_destination()
 	if clip_open == false:
 		force_update_clip()
 
 func adapt_clip_destination():
-	var resize_ratio = get_viewport().size.x / get_viewport().size.y
+	var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)
 	if resize_ratio > 1 : # horizontal screen
-		var resize_factor = get_viewport().size.y / 384
-		var resized_edge_from_center = (get_viewport().size.x)/2
+		var resize_factor = float(get_viewport().size.y) / 384
+		var resized_edge_from_center = float(get_viewport().size.x)/2
 		edge_from_center = (resized_edge_from_center / resize_factor)
 #		print("là:")
 #		print(edge_from_center)
-		clip_left_position_dest = edge_from_center * -1 * zoom_dest.x - 5
-		clip_left_width_dest =  edge_from_center * zoom_dest.x - 192 + 5
+		var zoom_factor = 1/zoom_dest.x
+		clip_left_position_dest = edge_from_center * -1 * zoom_factor - 5
+		clip_left_width_dest =  edge_from_center * zoom_factor - 192 + 5
 		clip_right_position_dest = 192 - 5
-		clip_right_width_dest = edge_from_center * zoom_dest.x - 192 + 5
+		clip_right_width_dest = edge_from_center * zoom_factor - 192 + 5
 
 func force_update_clip():
 	$ClipGauche.position.x = clip_left_position_dest
