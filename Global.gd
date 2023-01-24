@@ -68,6 +68,7 @@ func _process(delta):
 			is_menu = true
 			stop_level()
 			current_scene.get_node("Menu").visible = true
+			current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
 
 func load_save(path):
 	level_from_save = true

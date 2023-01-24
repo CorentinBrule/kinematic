@@ -29,7 +29,7 @@ func init(list_save_files):
 		$"%save_files_list".add_item(clean_text)
 
 
-func _on_ItemList_item_selected(index):
+func _on_save_files_list_item_activated(index):
 	Global.load_save(save_files[index]["file_path"])
 	Global.start_level()
 	visible = false
