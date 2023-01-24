@@ -37,4 +37,4 @@ unique_name_in_owner = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[connection signal="item_selected" from="Control/save_files_list" to="." method="_on_ItemList_item_selected"]
+[connection signal="item_activated" from="Control/save_files_list" to="." method="_on_save_files_list_item_activated"]
