@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Escalader.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
-[ext_resource type="PackedScene" path="res://Menu.tscn" id="11"]
+[ext_resource type="PackedScene" uid="uid://ctib5rstfc51r" path="res://Menu.tscn" id="11"]
 [ext_resource type="Script" path="res://tools.gd" id="12"]
 
 [node name="Jeu" type="Node"]
