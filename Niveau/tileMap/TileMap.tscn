@@ -10,7 +10,8 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s4yc1"]
 texture = ExtResource("1")
-0:0/next_alternative_id = 8
+use_texture_padding = false
+0:0/next_alternative_id = 9
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -55,9 +56,13 @@ texture = ExtResource("1")
 0:0/7/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/7/physics_layer_0/angular_velocity = 0.0
 0:0/7/physics_layer_0/polygon_0/points = PackedVector2Array(0, 0, 16, 0, 16, 16, 0, 16)
+0:0/8 = 8
+0:0/8/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/8/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c4itq"]
 texture = ExtResource("2")
+use_texture_padding = false
 0:0/next_alternative_id = 8
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -477,7 +482,7 @@ position = Vector2(62.9634, 64.228)
 scale = Vector2(19.905, 20.0623)
 texture = ExtResource("5")
 
-[node name="Murs (pas touche)" type="TileMap" parent="."]
+[node name="Walls" type="TileMap" parent="."]
 z_index = 4
 tile_set = SubResource("14")
 format = 2

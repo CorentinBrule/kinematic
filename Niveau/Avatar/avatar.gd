@@ -63,15 +63,22 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
-#		print(get_slide_collision_count())
-		
 		# if stuck in walls
-		if get_slide_collision_count() == 4:
+		var tileMap = get_parent().get_node("TileMap")
+		var walls = tileMap.get_node("Walls")
+		if get_slide_collision_count() > 3:
 			print("stuck")
-#			position = old_pos
-#			get_node("AnimationDéplacement").seek(1,true)
-#			get_node("AnimationDéplacement").stop()
-
+			position = old_pos
+			get_node("AnimationDéplacement").seek(1,true)
+			get_node("AnimationDéplacement").stop()
+		elif tileMap.get_cell_source_id(0, tileMap.local_to_map(position)) != -1 or walls.get_cell_source_id(0, tileMap.local_to_map(position)) != -1:
+			print("inside")
+			position = old_pos 			
+			get_node("AnimationDéplacement").seek(1,true)
+			get_node("AnimationDéplacement").stop()
+		else:
+			old_pos = position
+		
 		# interaction with blocks
 		for c in range(get_slide_collision_count()): 
 			var collision = get_slide_collision(c)
@@ -155,7 +162,6 @@ func _physics_process(delta):
 		set_up_direction(Vector2(0, -1))
 		move_and_slide()
 		velocity = velocity
-	
 	else:
 		start_position = position
 	
