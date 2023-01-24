@@ -23,7 +23,7 @@ func fill_interactives():
 	
 	var tiles =  get_used_cells(0)
 	for t in tiles:
-		print(t)
+		#print(t)
 		var color_num = get_cell_source_id(0,t)
 		if color_num > 0:
 			var node = colors[color_num].instantiate()

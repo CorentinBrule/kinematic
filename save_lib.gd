@@ -46,9 +46,10 @@ static func set_story_data(scene, story_data):
 static func set_tilemap_data(scene, tilemap_data):
 	var tilemap = scene.get_node("Niveau/TileMap")
 	tilemap.clear()
+	print(tilemap)
 	for cell in tilemap_data:
-		tilemap.set_cell(cell.x,cell.y, cell.id)
-
+		tilemap.set_cell(0, Vector2(cell.x, cell.y), cell.id, Vector2i(0,0))
+	
 static func set_character_data(scene, character_data):
 	var character = scene.get_node("Niveau/Avatar")
 	var properties = character_data.get("properties")
@@ -74,6 +75,8 @@ static func set_stuff_data(scene, stuff_list):
 			var properties = obj.get("properties")
 			for property in properties.keys():
 				item_node[property] = properties[property]
+			print(properties["xbox_button"])
+			item_node.set("xbox_button", item_node.input_xbox_map.find(properties.get("xbox_button")))
 
 # Get & Save #
 
