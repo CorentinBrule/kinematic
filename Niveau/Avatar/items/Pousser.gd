@@ -8,7 +8,7 @@ var animation
 var effect_time
 var cooldown_time
 
-export(String, "LB", "A", "B", "X", "Y", "RB",  "RT", "LT") var xbox_button
+@export var xbox_button # (String, "LB", "A", "B", "X", "Y", "RB",  "RT", "LT")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

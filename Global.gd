@@ -121,9 +121,8 @@ func init_level():
 
 func list_files_in_directory(path):
 	var files = []
-	var dir = Directory.new()
-	dir.open(path)
-	dir.list_dir_begin()
+	var dir = DirAccess.open(path)
+	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 
 	while true:
 		var file = dir.get_next()
@@ -139,9 +138,8 @@ func list_files_in_directory(path):
 
 func load_files_in_directory(path):
 	var datas=[]
-	var dir = Directory.new()
-	dir.open(path)
-	dir.list_dir_begin()
+	var dir = DirAccess.open(path)
+	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
 	
 	while true:
 		#print("-------")
@@ -150,15 +148,16 @@ func load_files_in_directory(path):
 		if file_path == "":
 			break
 		elif not file_path.begins_with("."):
-			var file = File.new()
+
 			file_path = path + "/" + file_path
 			#print(file_path)
-			if file.file_exists(file_path):
-				file.open(file_path, file.READ)
-				var data_dict = parse_json(file.get_as_text())
+			if FileAccess.file_exists(file_path):
+				var file = FileAccess.open(file_path, FileAccess.READ)
+				var test_json_conv = JSON.new()
+				test_json_conv.parse(file.get_as_text())
+				var data_dict = test_json_conv.get_data()
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
-				file.close()
 				
 	dir.list_dir_end()
 

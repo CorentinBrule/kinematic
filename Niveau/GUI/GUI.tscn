@@ -1,161 +1,137 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://co3afijj5piwx"]
 
-[ext_resource path="res://assets/FT88-regular.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Niveau/GUI/GUI_actions.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Niveau/GUI/GUI.gd" type="Script" id=3]
+[ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
+[ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
+[ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
 
-[sub_resource type="Theme" id=15]
-default_font = ExtResource( 1 )
+[sub_resource type="Theme" id="Theme_8y4km"]
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id="13"]
 
-[sub_resource type="ShaderMaterial" id=14]
-script = SubResource( 13 )
+[sub_resource type="ShaderMaterial" id="14"]
+script = SubResource("13")
 
 [node name="GUI" type="Node2D"]
 z_index = 10
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="outGameGUI" type="Control" parent="."]
+layout_mode = 3
 anchor_right = 0.219
-margin_right = 384.0
-margin_bottom = 384.0
+offset_right = 384.0
+offset_bottom = 384.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource( 15 )
+theme = ExtResource("2_aqglx")
 
 [node name="win" type="Label" parent="outGameGUI"]
 unique_name_in_owner = true
 visible = false
-margin_left = 146.0
-margin_top = 42.0
-margin_right = 244.0
-margin_bottom = 67.0
+layout_mode = 0
+offset_left = 146.0
+offset_top = 42.0
+offset_right = 244.0
+offset_bottom = 67.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "BRAVO !"
-align = 1
 
 [node name="HBoxContainer_gauche" type="HBoxContainer" parent="outGameGUI"]
+layout_mode = 0
 anchor_left = -1.0
 anchor_bottom = 1.0
-margin_left = -7.0
+offset_left = -7.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_gauche"]
-margin_right = 391.0
-margin_bottom = 384.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="char_name" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
 unique_name_in_owner = true
-margin_right = 391.0
-margin_bottom = 25.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 2
 text = "Personnage"
-align = 2
-valign = 2
-autowrap = true
+horizontal_alignment = 2
 
 [node name="narrative" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 29.0
-margin_right = 391.0
-margin_bottom = 54.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-custom_fonts/font = ExtResource( 1 )
 text = "bla bla"
-align = 2
-autowrap = true
+horizontal_alignment = 2
+autowrap_mode = 2
 
 [node name="nom_ennemi" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-margin_top = 58.0
-margin_right = 283.0
-margin_bottom = 83.0
-custom_colors/font_color = Color( 0, 0, 1, 1 )
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 2
 text = "Méchants !"
-align = 2
-valign = 2
-autowrap = true
 
 [node name="HBoxContainer_droit" type="HBoxContainer" parent="outGameGUI"]
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.5
 anchor_bottom = 1.0
-margin_right = 810.545
+offset_right = 266.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit"]
-margin_right = 1002.0
-margin_bottom = 384.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TextDroite" type="RichTextLabel" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
-margin_right = 1002.0
-margin_bottom = 26.0
+layout_mode = 2
 size_flags_horizontal = 3
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_fonts/normal_font = ExtResource( 1 )
+theme = SubResource("Theme_8y4km")
 bbcode_enabled = true
-bbcode_text = "il·elle peut :"
 text = "il·elle peut :"
 fit_content_height = true
 
 [node name="ActionsContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 30.0
-margin_right = 1002.0
-margin_bottom = 55.0
+layout_mode = 2
 
-[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" instance=ExtResource( 2 )]
-material = SubResource( 14 )
-margin_right = 1002.0
-margin_bottom = 25.0
+[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" instance=ExtResource("2")]
+material = SubResource("14")
+layout_mode = 2
 
 [node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
-margin_top = 358.0
-margin_right = 1002.0
-margin_bottom = 384.0
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_fonts/normal_font = ExtResource( 1 )
 bbcode_enabled = true
-bbcode_text = "c'est parti !"
 text = "c'est parti !"
 fit_content_height = true
 
 [node name="VBoxContainer_meta" type="VBoxContainer" parent="outGameGUI"]
-margin_top = -50.0
-margin_bottom = -50.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.167
+offset_top = -50.0
+offset_right = 1.87199
+offset_bottom = -34.0
 
 [node name="meta" type="Label" parent="outGameGUI/VBoxContainer_meta"]
 unique_name_in_owner = true
-margin_right = 56.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "test"
 
 [node name="VBoxContainer_esc" type="VBoxContainer" parent="outGameGUI"]
+layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 668.545
-margin_top = 50.0
-margin_right = 1004.54
-margin_bottom = 55.0
+offset_left = 668.545
+offset_top = 50.0
+offset_right = 1004.54
+offset_bottom = 55.0
 grow_horizontal = 0
 alignment = 2
 
 [node name="esc" type="Label" parent="outGameGUI/VBoxContainer_esc"]
 unique_name_in_owner = true
 visible = false
-margin_right = 336.0
-margin_bottom = 25.0
+layout_mode = 2
 text = "ESC pour revenir au menu"

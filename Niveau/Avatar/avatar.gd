@@ -1,5 +1,5 @@
-tool
-extends KinematicBody2D
+@tool
+extends CharacterBody2D
 
 # customClass
 const ItemClass = preload("res://Niveau/Avatar/Item.gd")
@@ -7,11 +7,11 @@ const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 # Color effect
 var colors_name = ["Rouge","Vert","Bleu"]
 var colors_val = [Color(1,0,0,1),Color(0,1,0,1),Color(0,0,1,1)]
-export(int, "Rouge", "Vert", "Bleu") var my_color setget change_color
+@export_enum("Rouge", "Vert", "Bleu") var my_color: set = change_color # (int, )
 var color_bonus
 var color_malus
 # Member variables
-export var GRAVITY = 500.0 # pixels/second/second
+@export var GRAVITY = 500.0 # pixels/second/second
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
@@ -25,7 +25,7 @@ const JUMP_MAX_AIRBORNE_TIME = 0.2
 const SLIDE_STOP_VELOCITY = 1.0 # one pixel/second
 const SLIDE_STOP_MIN_TRAVEL = 1.0 # one pixel
 
-var velocity = Vector2()
+#var velocity = Vector2()
 var last_velocity = Vector2()
 
 var bouncing = false
@@ -42,7 +42,7 @@ var physic_direction = 0
 var input_direction = 0
 var old_pos = Vector2()
 
-export var start_position = Vector2(344,344) setget change_start_position
+@export var start_position = Vector2(344,344) : set = change_start_position
 var original_start_position
 
 signal color_change
@@ -59,23 +59,33 @@ func init():
 	$Color.color = colors_val[my_color]
 
 func _physics_process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
 		# if stuck in walls
-		if get_slide_count() == 4:
+		var tileMap = get_parent().get_node("TileMap")
+		var walls = tileMap.get_node("Walls")
+		if get_slide_collision_count() > 3:
 			print("stuck")
 			position = old_pos
 			get_node("AnimationDéplacement").seek(1,true)
 			get_node("AnimationDéplacement").stop()
-
+		elif tileMap.get_cell_source_id(0, tileMap.local_to_map(position)) != -1 or walls.get_cell_source_id(0, tileMap.local_to_map(position)) != -1:
+			print("inside")
+			position = old_pos 			
+			get_node("AnimationDéplacement").seek(1,true)
+			get_node("AnimationDéplacement").stop()
+		else:
+			old_pos = position
+		
 		# interaction with blocks
-		for c in range(get_slide_count()): 
+		for c in range(get_slide_collision_count()): 
 			var collision = get_slide_collision(c)
-			if collision.collider != null:
+			if collision.get_collider() != null:
+				var collider = collision.get_collider()
 				#print(collision.collider)
-				var collision_color = collision.collider.name
+				var collision_color = collider.name
 
 				if collision_color == "TileMap":
 					touch_plat(collision)
@@ -88,6 +98,24 @@ func _physics_process(delta):
 				#si couleur malus
 				elif collision_color.find(colors_name[color_malus]) != -1:
 					touch_malus(collision)
+			
+#			if collision.get_collider() != null:
+#				if collision.get_collider().name == "TileMap":
+#					var tileMap_collider = collision.get_collider()
+#					var cell = tileMap_collider.local_to_map(collision.get_position() - collision.get_normal())
+#					var tile_id = tileMap_collider.get_cell_source_id(0, cell)
+#
+#					if tile_id == 0:
+#						touch_plat(collision)
+#					#si même couleur
+#					elif tile_id == my_color:
+#						touch_same(collision)
+#					#si couleur bonus
+#					elif tile_id == color_bonus:
+#						touch_bonus(collision)
+#					#si couleur malus
+#					elif tile_id == color_malus:
+#						touch_malus(collision)
 
 		last_velocity = velocity
 		
@@ -130,8 +158,10 @@ func _physics_process(delta):
 		# Integrate forces to velocity
 		velocity += force * delta
 		# Integrate velocity into motion and move
-		velocity = move_and_slide(velocity, Vector2(0, -1))
-	
+		set_velocity(velocity)
+		set_up_direction(Vector2(0, -1))
+		move_and_slide()
+		velocity = velocity
 	else:
 		start_position = position
 	
@@ -148,7 +178,7 @@ func touch_same(collision):
 func touch_bonus(collision):
 	#print("bonus")
 	if eat:
-		var col = collision.collider
+		var col = collision.get_collider()
 		attack(col)
 	#bounce(collision)
 	
@@ -158,7 +188,7 @@ func touch_malus(collision):
 		bounce(collision)
 	elif attacking:
 		#print("attack")
-		var col = collision.collider
+		var col = collision.get_collider()
 		attack(col)
 #	elif safe:
 #		if pushing:
@@ -170,10 +200,10 @@ func touch_malus(collision):
 
 	
 func bounce(collision):
-	if collision.normal.x == 0:
+	if collision.get_normal().x == 0:
 		if last_velocity.y > 10 or last_velocity.y < -10:
 			velocity.y = last_velocity.y * -1
-	if collision.normal.y == 0:
+	if collision.get_normal().y == 0:
 		velocity.x = last_velocity.x * -1
 
 func death(collision=false):
@@ -186,15 +216,15 @@ func death(collision=false):
 	
 	if collision:
 		var death_mark_scene = load("res://Niveau/deathMark.tscn")
-		var death_mark = death_mark_scene.instance()
-		death_mark.position = (position + collision.collider.position)/2
+		var death_mark = death_mark_scene.instantiate()
+		death_mark.position = (position + collision.get_collider().get_position())/2
 		get_parent().death_marks.append(death_mark)
 		get_parent().add_child(death_mark)
 	
 	get_parent().restart_level()
 
 func life():
-	yield(get_tree().create_timer(1.0), "timeout")
+	await get_tree().create_timer(1.0).timeout
 	
 	for item in get_active_items():
 		item.reset()
@@ -259,5 +289,5 @@ func _on_item_input_changed():
 
 func change_start_position(value):
 	start_position = value
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		position = start_position

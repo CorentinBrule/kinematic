@@ -1,4 +1,4 @@
-tool
+@tool
 extends HBoxContainer
 
 var key_colors={
@@ -22,18 +22,20 @@ func _ready():
 
 func init(_action):
 	action = _action
+
 	var action_name = action.get_name()
-	var key_name = action.get("xbox_button")
+	var key_name = action.input_xbox_map[action["xbox_button"]]
 	var action_is_visible = action.visible
 	
 	var description_label = $ActionDescription
 	var key_label = $ActionDescription/ActionKey
-	texture_progress = $ActionDescription/ActionKey/TextureProgress
+	texture_progress = $ActionDescription/ActionKey/TextureProgressBar
 	
 	description_label.text = action_name #
+	
 	key_label.text = key_name
 	
-	key_label.set("custom_colors/font_color", key_colors.get(key_name))
+	key_label.set("theme_override_colors/font_color", key_colors.get(key_name))
 	
 	if not action.get("progress_percent") == null:
 		has_progress = true
@@ -45,6 +47,6 @@ func init(_action):
 		hide()
 
 func _process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		if has_progress:
 			texture_progress.value = action.progress_percent

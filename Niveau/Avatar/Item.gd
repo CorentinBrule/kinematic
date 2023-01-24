@@ -1,11 +1,12 @@
-tool
+@tool
 extends Node2D
-class_name Item, "res://assets/diamand_texture_21x21.png"
+class_name Item
+@icon("res://assets/diamand_texture_21x21.png")
 
 var avatar
 signal input_changed
 
-export(String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button setget change_input
+@export_enum("A", "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button: set = change_input
 var input_xbox_map = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var input_keyboard = 0
 var action_name
@@ -13,50 +14,51 @@ var initial_state = {}
 
 func _ready():
 	avatar = get_parent()
-	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed", self, "_on_Item_visiblity_changed")
-	connect("visibility_changed", get_parent(), "_on_item_visibility_changed")
-	connect("input_changed", get_parent(), "_on_item_input_changed")
-	connect("tree_entered", get_parent(), "_on_item_input_changed")
-	if not Engine.editor_hint:
-		assert(avatar is KinematicBody2D, "L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
-	if is_visible_in_tree() == false:
-		set_process(false)
-		set_physics_process(false)
+	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed",Callable(self,"_on_Item_visiblity_changed"))
+	connect("visibility_changed",Callable(get_parent(),"_on_item_visibility_changed"))
+	connect("input_changed",Callable(get_parent(),"_on_item_input_changed"))
+	connect("tree_entered",Callable(get_parent(),"_on_item_input_changed"))
+	if not Engine.is_editor_hint():
+		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
 	
-	action_name = name
+	action_name = get_name()
 	#init_input(action_name, input_keyboard ,input_xbox_map.find(xbox_button))
 
 
+func init():
+	if visible == false:
+		set_process(false)
+		set_physics_process(false)
+		set_process_input(false)
+
 func init_input(action_name, keyboard_key_scancode, button_index):
-	if not InputMap.has_action(action_name):
-		InputMap.add_action(action_name)
+	if not InputMap.has_action(name):
+		InputMap.add_action(name)
 	var joypad_event = InputEventJoypadButton.new()
 	joypad_event.device = 0
 	joypad_event.button_index = button_index
-	InputMap.action_add_event(action_name, joypad_event)
+	InputMap.action_add_event(name, joypad_event)
 	
 	if keyboard_key_scancode != 0:
-		print("input keyboard")
 		var keyboard_event = InputEventKey.new()
-		keyboard_event.scancode = keyboard_key_scancode
-		InputMap.action_add_event(action_name, keyboard_event)
+		keyboard_event.keycode = keyboard_key_scancode
+		InputMap.action_add_event(name, keyboard_event)
 
 func _process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		process(delta)
 
 func process(delta):
 	pass
 
 func _physics_process(delta):
-	if not Engine.editor_hint:
+	if not Engine.is_editor_hint():
 		physics_process(delta)
 
 func physics_process(delta):
 	pass
 
 func change_input(new_value):
-	print(new_value)
 	xbox_button = new_value
 	emit_signal("input_changed")
 

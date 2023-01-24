@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://4m8as5n6pjj2"]
+
+[ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="1_sygof"]
+
+[resource]
+default_font = ExtResource("1_sygof")
+default_font_size = 20

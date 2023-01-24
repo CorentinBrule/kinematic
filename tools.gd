@@ -1,4 +1,4 @@
-tool
+@tool
 extends Node
 
 # pas vraiment script de "Jeu" 
@@ -15,24 +15,24 @@ func _ready():
 	GUI.init()
 	
 func _process(delta):
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		pass
 
 func _on_Avatar_color_change():
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		avatar = get_node("Niveau/Avatar")
 		avatar.get_node("Color").color = avatar.colors_val[avatar.my_color]
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
 
 func _on_Avatar_item_change():
-	if Engine.editor_hint:
+	if Engine.is_editor_hint():
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
 
 func _on_Niveau_var_changed():
-	if Engine.editor_hint:
-		print("event on change")
+	if Engine.is_editor_hint():
+		print("event checked change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
 

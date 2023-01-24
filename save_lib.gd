@@ -1,4 +1,4 @@
-extends Reference
+extends RefCounted
 
 
 # Declare member variables here. Examples:
@@ -14,14 +14,14 @@ func _ready():
 
 # Load & Set #
 static func load_file(scene, path: String):
-	var file = File.new()
-	if file.file_exists(path):
-		file.open(path, file.READ)
-		var data_dict = parse_json(file.get_as_text())
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.READ)
+		var test_json_conv = JSON.new()
+		test_json_conv.parse(file.get_as_text())
+		var data_dict = test_json_conv.get_data()
 		print(data_dict)
-		file.close()
 		set_data(scene, data_dict)
-		
+
 static func set_data(scene, data):
 	set_meta_data(scene, data.get("meta"))
 	set_story_data(scene, data.get("story"))
@@ -46,15 +46,16 @@ static func set_story_data(scene, story_data):
 static func set_tilemap_data(scene, tilemap_data):
 	var tilemap = scene.get_node("Niveau/TileMap")
 	tilemap.clear()
+	print(tilemap)
 	for cell in tilemap_data:
-		tilemap.set_cell(cell.x,cell.y, cell.id)
-
+		tilemap.set_cell(0, Vector2(cell.x, cell.y), cell.id, Vector2i(0,0))
+	
 static func set_character_data(scene, character_data):
 	var character = scene.get_node("Niveau/Avatar")
 	var properties = character_data.get("properties")
 	for property in properties.keys():
 		character[property] = properties[property]
-	character["start_position"] = str2var("Vector2" + properties["start_position"])
+	character["start_position"] = str_to_var("Vector2" + properties["start_position"])
 	
 	# hide old stuff
 	for child in character.get_children():
@@ -74,6 +75,8 @@ static func set_stuff_data(scene, stuff_list):
 			var properties = obj.get("properties")
 			for property in properties.keys():
 				item_node[property] = properties[property]
+			print(properties["xbox_button"])
+			item_node.set("xbox_button", item_node.input_xbox_map.find(properties.get("xbox_button")))
 
 # Get & Save #
 
@@ -104,11 +107,9 @@ static func save_file(scene, path : String):
 	data_dict.level_tilemap = get_tilemap_data(tilemap)
 
 	#print(data_dict)
-	var file = File.new()
-	file.open(path, File.WRITE)
+	var file = FileAccess.open(path, FileAccess.WRITE)
 
-	file.store_string(JSON.print(data_dict,"\t"))
-	file.close()
+	file.store_string(JSON.stringify(data_dict,"\t"))
 
 
 static func get_meta_data(niveau):
@@ -132,9 +133,9 @@ static func get_tilemap_data(tilemap):
 	var tilemap_data = []
 
 	print(tilemap)
-	var used_cells = tilemap.get_used_cells()
+	var used_cells = tilemap.get_used_cells(0)
 	for cell in used_cells:
-		var cell_id = tilemap.get_cell(cell.x,cell.y)
+		var cell_id = tilemap.get_cell_source_id(0,Vector2i(cell.x,cell.y))
 		tilemap_data.append({
 			"x":cell.x,
 			"y":cell.y,

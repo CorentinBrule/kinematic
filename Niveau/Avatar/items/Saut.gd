@@ -1,8 +1,8 @@
-tool
+@tool
 extends Item
 
 #var on_air_time = 100
-export var jump_power =  200
+@export var jump_power =  200
 const JUMP_MAX_AIRBORNE_TIME = 0.2
 
 var prev_jump_pressed = false
@@ -10,15 +10,16 @@ var prev_jump_pressed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	input_keyboard = KEY_SPACE
-	
+	avatar = get_parent()
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"prev_jump_pressed" : prev_jump_pressed
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	var action = Input.is_action_pressed(name)
 
 	if avatar.is_on_floor():
 		avatar.on_air_time = 0

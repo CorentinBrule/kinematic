@@ -1,15 +1,16 @@
-tool
+@tool
 extends Item
 
-export var tp_distance = 31
-export var tp_cooldown = 50
+@export var tp_distance = 31
+@export var tp_cooldown = 50
 var recall
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("t")
+	input_keyboard = OS.find_keycode_from_string("t")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	
+	init()
+	avatar = get_parent()
 	recall = tp_cooldown
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
@@ -17,7 +18,7 @@ func _ready():
 	}
 	
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	var action = Input.is_action_pressed(name)
 	
 	if action and recall > tp_cooldown:
 		if Input.is_action_pressed("move_left"):

@@ -1,18 +1,19 @@
-tool
+@tool
 extends Item
 
-export var glue_time_max = 10
-export var glue_effect = 1000
-export var glue_delay = 1
+@export var glue_time_max = 10
+@export var glue_effect = 1000
+@export var glue_delay = 1
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("e")
+	input_keyboard = OS.find_keycode_from_string("e")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	
+	init()
+	avatar = get_parent()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"no_wall_count" : no_wall_count,
@@ -21,7 +22,7 @@ func _ready():
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	var action = Input.is_action_pressed(name)
 	
 	if action:
 		if avatar.is_on_wall():
@@ -42,6 +43,6 @@ func physics_process(delta):
 		# reset air_time so reset jump
 		avatar.on_air_time = 0
 
-	if Input.is_action_just_released(action_name):
+	if Input.is_action_just_released(name):
 		avatar.colle = false
 

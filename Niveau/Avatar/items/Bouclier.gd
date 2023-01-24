@@ -1,4 +1,4 @@
-tool
+@tool
 extends Item
 const Cooldown = preload('res://Niveau/Avatar/cooldown.gd')
 
@@ -6,13 +6,15 @@ var cooldown
 var effect
 var animation
 
-export var effect_time = 0.5
-export var cooldown_time = 0.2
+@export var effect_time = 0.5
+@export var cooldown_time = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("p")
+	input_keyboard = OS.find_keycode_from_string("p")
 	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	avatar = get_parent()
+	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 	}
@@ -24,16 +26,16 @@ func _ready():
 	add_child(cooldown)
 	cooldown.wait_time = cooldown_time
 	cooldown.one_shot = true
-	cooldown.connect("timeout", self, "_on_Cooldown_timeout")
+	cooldown.connect("timeout",Callable(self,"_on_Cooldown_timeout"))
 	
 	effect = Timer.new()
 	add_child(effect)
 	effect.wait_time = effect_time
 	effect.one_shot = true
-	effect.connect("timeout", self, "_on_Effect_timeout")
+	effect.connect("timeout",Callable(self,"_on_Effect_timeout"))
 	
 func physics_process(delta):
-	var action = Input.is_action_just_pressed(action_name)
+	var action = Input.is_action_just_pressed(name)
 	
 	if action and cooldown.is_stopped() and effect.is_stopped() :
 		effect.start()
