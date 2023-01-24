@@ -19,17 +19,16 @@ func main(_edited_scene):
 	edited_scene = _edited_scene
 	
 	fileDialog = EditorFileDialog.new()
-	fileDialog.mode = EditorFileDialog.FILE_MODE_OPEN_FILE
+	fileDialog.file_mode = EditorFileDialog.FILE_MODE_OPEN_FILE
 	fileDialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	fileDialog.display_mode = 1
 	fileDialog.current_file = "save.json"
-	fileDialog.resizable = true
 	
 	fileDialog.current_dir = "save/"
 	
 	fileDialog.connect("file_selected",Callable(self,"_on_fileDialog_file_selected"))
 	fileDialog.get_cancel_button().connect("pressed",Callable(self,"_on_fileDialog_cancel"))
-	fileDialog.connect("modal_closed",Callable(self,"_on_fileDialog_modal_closed"))
+	fileDialog.connect("close_requested",Callable(self,"_on_fileDialog_close_requested"))
 
 	var viewport = get_editor_interface().get_editor_main_screen()
 	viewport.add_child(fileDialog)
@@ -49,5 +48,5 @@ func _on_fileDialog_file_selected(file_path : String):
 func _on_fileDialog_cancel():
 	fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.
 
-func _on_fileDialog_modal_closed():
+func _on_fileDialog_close_requested():
 	fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.

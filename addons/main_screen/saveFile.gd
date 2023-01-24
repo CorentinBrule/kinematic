@@ -24,7 +24,7 @@ func main(_edited_scene):
 		date = Time.get_datetime_dict_from_system()
 	
 	fileDialog = EditorFileDialog.new()
-	fileDialog.mode = EditorFileDialog.FILE_MODE_SAVE_FILE
+	fileDialog.file_mode = EditorFileDialog.FILE_MODE_SAVE_FILE
 	fileDialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	fileDialog.display_mode = 1
 	
@@ -34,11 +34,10 @@ func main(_edited_scene):
 	if edited_scene.get_node("Niveau").groupe_name != "":
 		fileDialog.current_file += "-" + edited_scene.get_node("Niveau").groupe_name.replace(" ","_")
 	fileDialog.current_file += ".json"
-	fileDialog.resizable = true
 	
 	fileDialog.connect("file_selected",Callable(self,"_on_fileDialog_file_selected"))
 	fileDialog.get_cancel_button().connect("pressed",Callable(self,"_on_fileDialog_cancel"))
-	fileDialog.connect("modal_closed",Callable(self,"_on_fileDialog_modal_closed"))
+	fileDialog.connect("close_requested",Callable(self,"_on_fileDialog_close_requested"))
 
 	var viewport = get_editor_interface().get_editor_main_screen()
 	viewport.add_child(fileDialog)
@@ -56,7 +55,7 @@ func _on_fileDialog_file_selected(path : String):
 func _on_fileDialog_cancel():
 	fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.
 
-func _on_fileDialog_modal_closed():
+func _on_fileDialog_close_requested():
 	fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.
 
 
