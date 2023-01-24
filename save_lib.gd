@@ -133,9 +133,9 @@ static func get_tilemap_data(tilemap):
 	var tilemap_data = []
 
 	print(tilemap)
-	var used_cells = tilemap.get_used_cells()
+	var used_cells = tilemap.get_used_cells(0)
 	for cell in used_cells:
-		var cell_id = tilemap.get_cell(cell.x,cell.y)
+		var cell_id = tilemap.get_cell_source_id(0,Vector2i(cell.x,cell.y))
 		tilemap_data.append({
 			"x":cell.x,
 			"y":cell.y,
