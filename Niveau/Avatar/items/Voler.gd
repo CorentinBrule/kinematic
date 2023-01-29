@@ -15,8 +15,8 @@ var progress_percent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("f")
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
+	keyboard_key_scancode = OS.find_scancode_from_string("f")
+	init()
 	
 	progress_percent = 0
 	initial_state = {

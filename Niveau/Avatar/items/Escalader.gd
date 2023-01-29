@@ -10,9 +10,8 @@ var no_wall_count = 0
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	input_keyboard = OS.find_scancode_from_string("e")
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	
+	keyboard_key_scancode = OS.find_scancode_from_string("e")
+	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"no_wall_count" : no_wall_count,
@@ -22,7 +21,7 @@ func _ready():
 
 func physics_process(delta):
 	var action = Input.is_action_pressed(action_name)
-	
+	print(action)
 	if action:
 		if avatar.is_on_wall():
 			avatar.colle = true

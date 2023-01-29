@@ -7,9 +7,11 @@ signal input_changed
 
 export(String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button setget change_input
 var input_xbox_map = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
-var input_keyboard = 0
+var button_index
+var keyboard_key_scancode
 var action_name
 var initial_state = {}
+var joypad_event
 
 func _ready():
 	avatar = get_parent()
@@ -19,18 +21,26 @@ func _ready():
 	connect("tree_entered", get_parent(), "_on_item_input_changed")
 	if not Engine.editor_hint:
 		assert(avatar is KinematicBody2D, "L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
-	if is_visible_in_tree() == false:
-		set_process(false)
-		set_physics_process(false)
-	
-	action_name = name
+	joypad_event = InputEventJoypadButton.new()
+
 	#init_input(action_name, input_keyboard ,input_xbox_map.find(xbox_button))
 
+func init():
+	action_name = name
+	button_index = input_xbox_map.find(xbox_button)
+	input_xbox_map.find(xbox_button)
+	init_input()
+	if is_visible() == false:
+		set_process(false)
+		set_physics_process(false)
+	else:
+		set_process(true)
+		set_physics_process(true)
 
-func init_input(action_name, keyboard_key_scancode, button_index):
+func init_input():
 	if not InputMap.has_action(action_name):
 		InputMap.add_action(action_name)
-	var joypad_event = InputEventJoypadButton.new()
+	print(joypad_event)
 	joypad_event.device = 0
 	joypad_event.button_index = button_index
 	InputMap.action_add_event(action_name, joypad_event)
