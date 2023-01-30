@@ -57,6 +57,8 @@ func init():
 	color_bonus  = (my_color + 1)%3
 	color_malus = my_color - 1
 	$Color.color = colors_val[my_color]
+	for item in get_items():
+		item.init()
 
 func _physics_process(delta):
 	if not Engine.is_editor_hint():

@@ -14,11 +14,8 @@ var regen_time = 0
 var progress_percent
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	input_keyboard = OS.find_keycode_from_string("f")
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	init()
-	avatar = get_parent()
+func _init():
+	keyboard_key_scancode = OS.find_keycode_from_string("f")
 	progress_percent = 0
 	initial_state = {
 		"regen_time" : regen_time,

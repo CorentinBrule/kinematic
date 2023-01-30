@@ -6,11 +6,8 @@ extends Item
 var recall
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	input_keyboard = OS.find_keycode_from_string("t")
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	init()
-	avatar = get_parent()
+func _init():
+	keyboard_key_scancode = OS.find_keycode_from_string("t")
 	recall = tp_cooldown
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {

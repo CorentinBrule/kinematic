@@ -4,21 +4,16 @@ const Cooldown = preload('res://Niveau/Avatar/cooldown.gd')
 
 var cooldown
 var effect
-var animation
+@onready var animation = get_parent().get_node("AnimationInteraction")
 @export var effect_time = 0.5
 @export var cooldown_time = 0.2
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	input_keyboard = OS.find_keycode_from_string("d")
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	init()
-	avatar = get_parent()
+func _init():
+	keyboard_key_scancode = OS.find_keycode_from_string("d")
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 	}
-	
-	animation = avatar.get_node("AnimationInteraction")
 	
 	cooldown = Timer.new()
 	add_child(cooldown)

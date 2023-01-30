@@ -8,11 +8,8 @@ const JUMP_MAX_AIRBORNE_TIME = 0.2
 var prev_jump_pressed = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	input_keyboard = KEY_SPACE
-	avatar = get_parent()
-	init_input(action_name, input_keyboard, input_xbox_map.find(xbox_button))
-	init()
+func _init():
+	keyboard_key_scancode = KEY_SPACE
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"prev_jump_pressed" : prev_jump_pressed

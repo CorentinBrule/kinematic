@@ -76,7 +76,7 @@ static func set_stuff_data(scene, stuff_list):
 			for property in properties.keys():
 				item_node[property] = properties[property]
 			print(properties["xbox_button"])
-			item_node.set("xbox_button", item_node.input_xbox_map.find(properties.get("xbox_button")))
+			item_node.set("xbox_button", properties.get("xbox_button"))
 
 # Get & Save #
 

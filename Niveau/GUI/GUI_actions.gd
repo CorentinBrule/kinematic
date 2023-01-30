@@ -1,16 +1,7 @@
 @tool
 extends HBoxContainer
 
-var key_colors={
-	"X":Color(0,0,1,1), #blue
-	"A":Color(0,1,0,1), #green
-	"B":Color(1,0,0,1), #red
-	"Y":Color(1,1,0,1), #yellow
-	"LT":Color(1,1,1,1), #white
-	"RT":Color(1,1,1,1), #white
-	"LB":Color(1,1,1,1), #white
-	"RB":Color(1,1,1,1), #white
-}
+const input_lib = preload("res://input_lib.gd")
 
 var has_progress = false
 var texture_progress
@@ -24,7 +15,8 @@ func init(_action):
 	action = _action
 
 	var action_name = action.get_name()
-	var key_name = action.input_xbox_map[action["xbox_button"]]
+	var key_name = action.input_xbox_mapped.name
+	
 	var action_is_visible = action.visible
 	
 	var description_label = $ActionDescription
@@ -35,11 +27,11 @@ func init(_action):
 	
 	key_label.text = key_name
 	
-	key_label.set("theme_override_colors/font_color", key_colors.get(key_name))
+	key_label.set("theme_override_colors/font_color", action.input_xbox_mapped.color)
 	
 	if not action.get("progress_percent") == null:
 		has_progress = true
-		texture_progress.tint_progress = key_colors[key_name]
+		texture_progress.tint_progress = action.input_xbox_mapped.color
 	else:
 		texture_progress.hide()
 		
