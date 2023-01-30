@@ -9,3 +9,4 @@ wiki.md
 .godot/imported/
 .godot/editor/
 .godot/editor/*
+export/
