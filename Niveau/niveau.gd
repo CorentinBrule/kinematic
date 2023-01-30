@@ -49,12 +49,12 @@ func restart_level():
 	add_child_below_node($TileMap,new_tileMap)
 	$TileMap.free()
 	new_tileMap.set_name(name)
-	print("restart")
+	
+	$"GUI/%win".hide()
+	
+	# restart Avatar
 	print($Avatar.position)
-	#$Avatar.position = start_position
 	$Avatar.life()
-	#$Avatar.position = start_position
-	print($Avatar.position)
 
 func clean_death_marks():
 	for mark in death_marks:
