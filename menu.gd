@@ -13,8 +13,8 @@ func _ready():
 func init(list_save_files):
 	save_files = list_save_files
 	for save_file in list_save_files:
-		print(save_file.file_path)
-		print(save_file.meta.date)
+#		print(save_file.file_path)
+#		print(save_file.meta.date)
 		var clean_date = save_file.meta.date.split("-")
 		if clean_date[3] == "00h":
 			clean_date.remove(3)

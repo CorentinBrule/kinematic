@@ -21,7 +21,6 @@ var zooming = false
 func _ready():
 	# avatar = get_parent().get_node("Avatar")
 	zoom_val = 0.5
-	print("val: "+str(zoom_val)+" zoom: " + str(zoom))
 	clip_left_position_dest = $ClipGauche.rect_position.x
 	clip_left_width_dest = $ClipGauche.rect_size.x
 	clip_right_position_dest = $ClipDroite.rect_position.x
@@ -61,7 +60,6 @@ func _process(delta):
 		zooming = true
 		position = lerp(position, target_pos, 0.4)
 	else: 
-		print("paf")
 		zooming = false
 		position = target_pos
 		
@@ -103,7 +101,7 @@ func reset_zoom():
 	
 
 func adapt_clip():
-	print(clip_open)
+#	print(clip_open)
 	adapt_clip_destination()
 	if clip_open == false:
 		force_update_clip()
@@ -114,8 +112,6 @@ func adapt_clip_destination():
 		var resize_factor = get_viewport().size.y / 384
 		var resized_edge_from_center = (get_viewport().size.x)/2
 		edge_from_center = (resized_edge_from_center / resize_factor)
-#		print("là:")
-#		print(edge_from_center)
 		clip_left_position_dest = edge_from_center * -1 * zoom_dest.x - 5
 		clip_left_width_dest =  edge_from_center * zoom_dest.x - 192 + 5
 		clip_right_position_dest = 192 - 5

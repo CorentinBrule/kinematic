@@ -21,7 +21,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "GitAPI": "",
-"Item": ""
+"Item": "res://assets/diamand_texture_21x21.png"
 }
 
 [application]

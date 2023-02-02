@@ -21,7 +21,6 @@ func _ready():
 
 func physics_process(delta):
 	var action = Input.is_action_pressed(action_name)
-	print(action)
 	if action:
 		if avatar.is_on_wall():
 			avatar.colle = true

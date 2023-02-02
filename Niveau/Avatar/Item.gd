@@ -40,13 +40,11 @@ func init():
 func init_input():
 	if not InputMap.has_action(action_name):
 		InputMap.add_action(action_name)
-	print(joypad_event)
 	joypad_event.device = 0
 	joypad_event.button_index = button_index
 	InputMap.action_add_event(action_name, joypad_event)
 	
 	if keyboard_key_scancode != 0:
-		print("input keyboard")
 		var keyboard_event = InputEventKey.new()
 		keyboard_event.scancode = keyboard_key_scancode
 		InputMap.action_add_event(action_name, keyboard_event)
@@ -66,7 +64,7 @@ func physics_process(delta):
 	pass
 
 func change_input(new_value):
-	print(new_value)
+	# print(new_value)
 	xbox_button = new_value
 	emit_signal("input_changed")
 
