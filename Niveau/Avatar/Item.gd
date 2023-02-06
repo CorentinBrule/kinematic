@@ -1,7 +1,7 @@
 @tool
-extends Node2D
-class_name Item
 @icon("res://assets/diamand_texture_21x21.png")
+class_name Item
+extends Node2D
 
 const input_lib = preload("res://input_lib.gd")
 
