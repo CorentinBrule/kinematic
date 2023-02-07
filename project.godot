@@ -13,7 +13,7 @@ config_version=5
 config/name="Kinematic Character"
 run/main_scene="res://Jeu.tscn"
 config/features=PackedStringArray("4.0")
-config/icon="res://icon.png"
+config/icon="res://assets/icon.png"
 
 [autoload]
 
