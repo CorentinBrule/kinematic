@@ -40,14 +40,10 @@ start_position = Vector2( 344, 344 )
 
 [node name="Sauter" parent="Niveau/Avatar" instance=ExtResource( 5 )]
 xbox_button = "A"
-jump_power = 200.0
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource( 8 )]
 visible = false
 xbox_button = "RB"
-glue_time_max = 10.0
-glue_effect = 1000.0
-glue_delay = 1.0
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource( 6 )]
 visible = false
@@ -56,9 +52,6 @@ xbox_button = "B"
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource( 9 )]
 visible = false
 xbox_button = "LT"
-infinite = true
-plane_time_max = 100.0
-plane_effect = 2.0
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource( 3 )]
 visible = false
@@ -67,20 +60,11 @@ xbox_button = "X"
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource( 4 )]
 visible = false
 xbox_button = "Y"
-tp_distance = 31.0
-tp_cooldown = 50.0
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 0, 6 )
 xbox_button = "RT"
-infinite = true
-energy_max = 100.0
-energy_use = 1.5
-energy_regen = 5.0
-jetpack_power = 10.0
-time_to_regen = 10.0
-maximum_vertical_speed = -110.0
 
 [node name="Menu" parent="." instance=ExtResource( 11 )]
 visible = false
