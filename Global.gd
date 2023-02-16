@@ -41,7 +41,7 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	save_files_path = list_files_in_directory(save_folder_path)
-	save_files_data = load_files_in_directory(save_folder_path)
+	save_files_data = load_files(save_files_path)
 	if current_scene.has_node("Menu"):
 		current_scene.get_node("Menu").init(save_files_data)
 
@@ -123,34 +123,22 @@ func list_files_in_directory(path):
 	var files = []
 	var dir = DirAccess.open(path)
 	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-
+	
 	while true:
 		var file = dir.get_next()
 		if file == "":
 			break
 		elif not file.begins_with("."):
 			files.append(path + "/" + file)
-
-	dir.list_dir_end()
+	files.sort()
 	return files
 
-
-
-func load_files_in_directory(path):
+func load_files(files):
 	var datas=[]
-	var dir = DirAccess.open(path)
-	dir.list_dir_begin() # TODOGODOT4 fill missing arguments https://github.com/godotengine/godot/pull/40547
-	
-	while true:
-		#print("-------")
-		var file_path = dir.get_next()
-		#print(file_path)
+	for file_path in files:
 		if file_path == "":
 			break
 		elif not file_path.begins_with("."):
-
-			file_path = path + "/" + file_path
-			#print(file_path)
 			if FileAccess.file_exists(file_path):
 				var file = FileAccess.open(file_path, FileAccess.READ)
 				var test_json_conv = JSON.new()
@@ -158,7 +146,4 @@ func load_files_in_directory(path):
 				var data_dict = test_json_conv.get_data()
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
-				
-	dir.list_dir_end()
-
 	return datas
