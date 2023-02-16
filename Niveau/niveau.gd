@@ -10,6 +10,7 @@ export(Dictionary) var date = {
 	"day":0,
 	"hour":0
 } setget _change_date
+export(bool) var maintenant = false setget _now_date
 export(String) var char_name = "" setget _change_char_name
 export(String, MULTILINE) var narrative = "" setget _change_narrative
 
@@ -76,6 +77,16 @@ func _change_date(new_value):
 	print(new_value)
 	date = new_value
 	emit_signal("var_changed")
+
+func _now_date(bool_now):
+	if bool_now:
+		var now_date = Time.get_datetime_dict_from_system()
+		date.year = now_date.year
+		date.month = now_date.month
+		date.day = now_date.day
+		date.hour = now_date.hour
+		maintenant = false
+		property_list_changed_notify()
 
 func _change_char_name(new_value):
 	print(new_value)

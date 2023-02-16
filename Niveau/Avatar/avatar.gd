@@ -136,6 +136,7 @@ func _physics_process(delta):
 	
 	else:
 		start_position = position
+		property_list_changed_notify()
 	
 func touch_plat(collision):
 #	if pushing:
@@ -261,5 +262,6 @@ func _on_item_input_changed():
 
 func change_start_position(value):
 	start_position = value
+	property_list_changed_notify()
 	if Engine.editor_hint:
 		position = start_position
