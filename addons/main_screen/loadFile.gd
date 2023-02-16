@@ -45,6 +45,7 @@ func _on_fileDialog_file_selected(file_path : String):
 	var tilemap = edited_scene.get_node(TileMap_path)
 	#tilemap.clear()
 	save_lib.load_file(edited_scene, file_path)
+	edited_scene.get_node("Niveau").property_list_changed_notify()
 
 func _on_fileDialog_cancel():
 	fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.
