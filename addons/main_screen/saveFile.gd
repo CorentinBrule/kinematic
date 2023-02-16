@@ -15,7 +15,7 @@ func _run():
 	# you must have selected the right scene !
 	main(get_scene())
 	
-func main(_edited_scene):
+func main(_edited_scene, default_path="save/"):
 	edited_scene = _edited_scene
 	
 	#get date info:
@@ -28,8 +28,12 @@ func main(_edited_scene):
 	fileDialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	fileDialog.display_mode = 1
 	
-	fileDialog.current_dir = "save/"
-
+	if default_path == null:
+		default_path = "save/"
+	default_path = default_path.replace("res://","") # fix godot 4 current_dir n'a plus l'air de comprendre "res://"
+	
+	fileDialog.current_dir = default_path
+	
 	fileDialog.current_file = "save-%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]
 	if edited_scene.get_node("Niveau").groupe_name != "":
 		fileDialog.current_file += "-" + edited_scene.get_node("Niveau").groupe_name.replace(" ","_").replace("'","_")
@@ -38,11 +42,11 @@ func main(_edited_scene):
 	fileDialog.connect("file_selected",Callable(self,"_on_fileDialog_file_selected"))
 	fileDialog.get_cancel_button().connect("pressed",Callable(self,"_on_fileDialog_cancel"))
 	fileDialog.connect("close_requested",Callable(self,"_on_fileDialog_close_requested"))
-
+	
 	var viewport = get_editor_interface().get_editor_main_screen()
 	viewport.add_child(fileDialog)
 	fileDialog.set_meta("_created_by", self)
-
+	
 	fileDialog.popup_centered_ratio()
 
 

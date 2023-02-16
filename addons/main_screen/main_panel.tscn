@@ -1,49 +1,53 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://7lapm7fkeeuj"]
 
-[ext_resource path="res://addons/main_screen/main_panel.gd" type="Script" id=3]
+[ext_resource type="Script" path="res://addons/main_screen/main_panel.gd" id="3"]
+
+[sub_resource type="Theme" id="Theme_io7la"]
 
 [node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 offset_left = 192.0
 offset_top = 192.0
 offset_right = 192.0
 offset_bottom = 192.0
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-offset_right = 570.0
-offset_bottom = 174.0
+[node name="MenuSave" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
-offset_right = 570.0
-offset_bottom = 174.0
-
-[node name="FileDialog" type="FileDialog" parent="CenterContainer/HBoxContainer/VBoxContainer"]
-visible = true
-offset_right = 570.0
-offset_bottom = 174.0
-window_title = "Enregistrer un fichier"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="CenterContainer"]
-offset_left = 160.0
-offset_top = 54.0
-offset_right = 410.0
-offset_bottom = 120.0
-
-[node name="ButtonSave" type="Button" parent="CenterContainer/HFlowContainer"]
-offset_right = 250.0
-offset_bottom = 31.0
+[node name="ButtonSave" type="Button" parent="CenterContainer/MenuSave"]
+layout_mode = 2
 text = "sauvegarder jeu ?"
 
-[node name="ButtonLoad" type="Button" parent="CenterContainer/HFlowContainer"]
-offset_top = 35.0
-offset_right = 180.0
-offset_bottom = 66.0
+[node name="ButtonLoad" type="Button" parent="CenterContainer/MenuSave"]
+layout_mode = 2
 text = "importer jeu"
 
-[connection signal="pressed" from="CenterContainer/HFlowContainer/ButtonSave" to="." method="_on_ButtonSave_pressed"]
-[connection signal="pressed" from="CenterContainer/HFlowContainer/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[node name="ExternalSave" type="HBoxContainer" parent="CenterContainer/MenuSave"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/MenuSave/ExternalSave"]
+layout_mode = 2
+text = "dossier de sauvegarde : "
+
+[node name="InputPath" type="LineEdit" parent="CenterContainer/MenuSave/ExternalSave"]
+layout_mode = 2
+theme = SubResource("Theme_io7la")
+text = "res://save/"
+
+[node name="LoadPath" type="Button" parent="CenterContainer/MenuSave/ExternalSave"]
+layout_mode = 2
+text = "…"
+
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonSave" to="." method="_on_ButtonSave_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[connection signal="text_changed" from="CenterContainer/MenuSave/ExternalSave/InputPath" to="." method="_on_ExternalSave_InputPath_text_changed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ExternalSave/LoadPath" to="." method="_on_ExternalSave_LoadPath_pressed"]
