@@ -10,6 +10,7 @@ signal var_changed
 	"day":0,
 	"hour":0
 } : set = _change_date
+@export var maintenant: bool = false : set = _now_date
 @export var char_name: String = "" : set = _change_char_name
 @export_multiline var narrative: String = "" : set = _change_narrative # (String, MULTILINE)
 
@@ -76,6 +77,16 @@ func _change_date(new_value):
 	print(new_value)
 	date = new_value
 	emit_signal("var_changed")
+
+func _now_date(bool_now):
+	if bool_now:
+		var now_date = Time.get_datetime_dict_from_system()
+		date.year = now_date.year
+		date.month = now_date.month
+		date.day = now_date.day
+		date.hour = now_date.hour
+		maintenant = false
+		notify_property_list_changed()
 
 func _change_char_name(new_value):
 	print(new_value)
