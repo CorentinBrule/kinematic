@@ -15,7 +15,7 @@ func _run():
 	# you must have selected the right scene !
 	main(get_scene())
 	
-func main(_edited_scene):
+func main(_edited_scene, default_path="save/"):
 	edited_scene = _edited_scene
 	
 	#get date info:
@@ -28,7 +28,10 @@ func main(_edited_scene):
 	fileDialog.access = EditorFileDialog.ACCESS_FILESYSTEM
 	fileDialog.display_mode = 1
 	
-	fileDialog.current_dir = "save/"
+	if default_path == null:
+		default_path = "save/"
+	
+	fileDialog.current_dir = default_path
 
 	fileDialog.current_file = "save-%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]
 	if edited_scene.get_node("Niveau").groupe_name != "":

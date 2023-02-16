@@ -14,7 +14,7 @@ func _run():
 	# run script form script editor context
 	main(get_scene())
 
-func main(_edited_scene):
+func main(_edited_scene, default_path="save/"):
 	
 	edited_scene = _edited_scene
 	
@@ -25,7 +25,10 @@ func main(_edited_scene):
 	fileDialog.current_file = "save.json"
 	fileDialog.resizable = true
 	
-	fileDialog.current_dir = "save/"
+	if default_path == null:
+		default_path = "save/"
+	
+	fileDialog.current_dir = default_path
 	
 	fileDialog.connect("file_selected", self, "_on_fileDialog_file_selected")
 	fileDialog.get_cancel().connect("pressed", self, "_on_fileDialog_cancel")

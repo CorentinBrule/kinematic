@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/main_screen/main_panel.gd" type="Script" id=3]
+
+[sub_resource type="Theme" id=1]
 
 [node name="Control" type="Control"]
 margin_left = 192.0
@@ -14,36 +16,46 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-margin_right = 570.0
-margin_bottom = 174.0
+[node name="MenuSave" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 576.0
+margin_bottom = 105.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer"]
-margin_right = 570.0
-margin_bottom = 174.0
-
-[node name="FileDialog" type="FileDialog" parent="CenterContainer/HBoxContainer/VBoxContainer"]
-visible = true
-margin_right = 570.0
-margin_bottom = 174.0
-window_title = "Enregistrer un fichier"
-
-[node name="HFlowContainer" type="HFlowContainer" parent="CenterContainer"]
-margin_left = 160.0
-margin_top = 54.0
-margin_right = 410.0
-margin_bottom = 120.0
-
-[node name="ButtonSave" type="Button" parent="CenterContainer/HFlowContainer"]
-margin_right = 250.0
+[node name="ButtonSave" type="Button" parent="CenterContainer/MenuSave"]
+margin_right = 576.0
 margin_bottom = 31.0
 text = "sauvegarder jeu ?"
 
-[node name="ButtonLoad" type="Button" parent="CenterContainer/HFlowContainer"]
+[node name="ButtonLoad" type="Button" parent="CenterContainer/MenuSave"]
 margin_top = 35.0
-margin_right = 180.0
+margin_right = 576.0
 margin_bottom = 66.0
 text = "importer jeu"
 
-[connection signal="pressed" from="CenterContainer/HFlowContainer/ButtonSave" to="." method="_on_ButtonSave_pressed"]
-[connection signal="pressed" from="CenterContainer/HFlowContainer/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[node name="ExternalSave" type="HBoxContainer" parent="CenterContainer/MenuSave"]
+unique_name_in_owner = true
+margin_top = 70.0
+margin_right = 576.0
+margin_bottom = 105.0
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/MenuSave/ExternalSave"]
+margin_right = 364.0
+margin_bottom = 35.0
+text = "dossier de sauvegarde : "
+
+[node name="InputPath" type="LineEdit" parent="CenterContainer/MenuSave/ExternalSave"]
+margin_left = 368.0
+margin_right = 546.0
+margin_bottom = 35.0
+theme = SubResource( 1 )
+text = "res://save/"
+
+[node name="LoadPath" type="Button" parent="CenterContainer/MenuSave/ExternalSave"]
+margin_left = 550.0
+margin_right = 576.0
+margin_bottom = 35.0
+text = "…"
+
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonSave" to="." method="_on_ButtonSave_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[connection signal="text_changed" from="CenterContainer/MenuSave/ExternalSave/InputPath" to="." method="_on_ExternalSave_InputPath_text_changed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ExternalSave/LoadPath" to="." method="_on_ExternalSave_LoadPath_pressed"]
