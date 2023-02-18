@@ -20,6 +20,61 @@
 					"xbox_button": "A",
 					"jump_power": 200
 				}
+			},
+			{
+				"name": "Escalader",
+				"properties": {
+					"xbox_button": "RB",
+					"glue_time_max": 10,
+					"glue_effect": 1000,
+					"glue_delay": 1
+				}
+			},
+			{
+				"name": "Détruire",
+				"properties": {
+					"xbox_button": "B",
+					"effect_time": 0.5,
+					"cooldown_time": 0.2
+				}
+			},
+			{
+				"name": "Planer",
+				"properties": {
+					"xbox_button": "LT",
+					"infinite": true,
+					"plane_time_max": 100,
+					"plane_effect": 2
+				}
+			},
+			{
+				"name": "Se protéger",
+				"properties": {
+					"xbox_button": "X",
+					"effect_time": 0.5,
+					"cooldown_time": 0.2
+				}
+			},
+			{
+				"name": "Se téléporter",
+				"properties": {
+					"xbox_button": "Y",
+					"tp_distance": 31,
+					"tp_cooldown": 50
+				}
+			},
+			{
+				"name": "Se propulser",
+				"properties": {
+					"xbox_button": "RT",
+					"infinite": true,
+					"energy_max": 100,
+					"energy_use": 1.5,
+					"energy_regen": 5,
+					"jetpack_power": 10,
+					"time_to_regen": 10,
+					"maximum_vertical_speed": -110
+				}
 			}
 		]
 	},
