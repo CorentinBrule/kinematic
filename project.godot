@@ -9,18 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
-}, {
 "base": "Node2D",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Niveau/Avatar/Item.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": "",
 "Item": "res://assets/diamand_texture_21x21.png"
 }
 
