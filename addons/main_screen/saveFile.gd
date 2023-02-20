@@ -32,7 +32,7 @@ func main(_edited_scene):
 
 	fileDialog.current_file = "save-%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]
 	if edited_scene.get_node("Niveau").groupe_name != "":
-		fileDialog.current_file += "-" + edited_scene.get_node("Niveau").groupe_name.replace(" ","_")
+		fileDialog.current_file += "-" + edited_scene.get_node("Niveau").groupe_name.replace(" ","_").replace("'","_")
 	fileDialog.current_file += ".json"
 	
 	fileDialog.connect("file_selected",Callable(self,"_on_fileDialog_file_selected"))
