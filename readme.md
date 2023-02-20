@@ -1,17 +1,17 @@
-# readme
+# Kinématique
 
-*testé avec Godot 3.5.1*
+*testé avec Godot 4.0 RC 2*
 
 Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D dans l’interface du moteur de jeu-vidéo [Godot](https://godotengine.org/download/).
 
-![Capture d'écran du logiciel Godot avec le projet Kinematic importé et prêt à l'usage](documents/Capture_écran.png)
+![Capture d’écran du logiciel Godot avec le projet Kinématique importé et prêt à l’usage](documents/Capture_écran.png)
 
 Il se concentre sur des notions de *game design* et surtout de *level design* en éloignant — peut-être dans un premier temps — le code pour cell·eux qui souhaitent l’utiliser ou encadrer des ateliers et cours.
 Comme tout à lieu dans l’interface d’un véritable éditeur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
 
-Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scene principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier dans le cadre d’un atelier sur le level design et les bases du game design.
+Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scene principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier pour se concentrer sur le level design et les bases du game design.
 
-Un wiki permet d'explorer [l'installation](https://github.com/CorentinBrule/kinematic/wiki/1.-Installation) et [la prise en main](https://github.com/CorentinBrule/kinematic/wiki/2.-Prise-en-main), les [ressources pédagogiques (déroulement d'ateliers avec l'outil)](https://github.com/CorentinBrule/kinematic/wiki/Ressources-p%C3%A9dagogiques) et les [aspects techniques pour adapter l'outil en mettant les mains dans le cambouis](https://github.com/CorentinBrule/kinematic/wiki/Aller-plus-loin-(dev)).
+Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/kinematic/wiki/1.-Installation) et [la prise en main](https://github.com/CorentinBrule/kinematic/wiki/2.-Prise-en-main) ; les [ressources pédagogiques (déroulement d’ateliers)](https://github.com/CorentinBrule/kinematic/wiki/Ressources-p%C3%A9dagogiques) et les [aspects techniques pour adapter l’outil en mettant les mains dans le cambouis](https://github.com/CorentinBrule/kinematic/wiki/Aller-plus-loin-(dev)).
 
 ## Principe générale du jeu
 
@@ -38,7 +38,8 @@ Un wiki permet d'explorer [l'installation](https://github.com/CorentinBrule/kine
 - les éléments de couleur **noir** sont neutres (**plateforme**)
 - les carrés aux **contours blancs** sont des checkpoints
 
-Certaines de ces règles peuvent est ignorés ou pourront être adapté selon les besoins de l'atelier.
+Certaines de ces règles peuvent être ignorées ou pourront être adaptées selon les besoins de l’atelier.
+
 ## Crédits
 
 Merci à Marine Bourlet-Simon pour son apport à la dimension pédagogique du projet
