@@ -13,6 +13,7 @@ signal input_changed
 @export_enum("A", "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button: set = change_input
 var input_xbox_names = ["A" , "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var input_xbox_mapped
+var keyboard_key_name
 var keyboard_key_scancode
 var initial_state = {}
 

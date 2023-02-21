@@ -15,6 +15,7 @@ var progress_percent
 
 # Called when the node enters the scene tree for the first time.
 func _init():
+	keyboard_key_name = "F"
 	keyboard_key_scancode = OS.find_keycode_from_string("f")
 	progress_percent = 0
 	initial_state = {

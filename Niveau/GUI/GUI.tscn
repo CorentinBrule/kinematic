@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=9 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://deoimpdvhsvy7" path="res://assets/xbox_start_21x21.png" id="4_3auof"]
+[ext_resource type="Texture2D" uid="uid://ckcudn6aw58vj" path="res://assets/ÉCH_21x21.png" id="5_huiai"]
 
 [sub_resource type="Theme" id="Theme_8y4km"]
 
@@ -86,7 +88,9 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_8y4km")
 bbcode_enabled = true
 text = "il·elle peut :"
-fit_content_height = true
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="ActionsContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 unique_name_in_owner = true
@@ -102,9 +106,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 bbcode_enabled = true
 text = "c'est parti !"
-fit_content_height = true
 
-[node name="VBoxContainer_meta" type="VBoxContainer" parent="outGameGUI"]
+[node name="meta" type="VBoxContainer" parent="outGameGUI"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.167
@@ -112,12 +115,14 @@ offset_top = -50.0
 offset_right = 1.87199
 offset_bottom = -34.0
 
-[node name="meta" type="Label" parent="outGameGUI/VBoxContainer_meta"]
+[node name="meta_label" type="Label" parent="outGameGUI/meta"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "test"
 
-[node name="VBoxContainer_esc" type="VBoxContainer" parent="outGameGUI"]
+[node name="retourMenu" type="HBoxContainer" parent="outGameGUI"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 0
 anchor_left = 1.0
 anchor_top = 1.0
@@ -130,8 +135,17 @@ offset_bottom = 55.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="esc" type="Label" parent="outGameGUI/VBoxContainer_esc"]
+[node name="TextureStart" type="TextureRect" parent="outGameGUI/retourMenu"]
 unique_name_in_owner = true
 visible = false
+layout_mode = 2
+texture = ExtResource("4_3auof")
+
+[node name="TextureEsc" type="TextureRect" parent="outGameGUI/retourMenu"]
+layout_mode = 2
+texture = ExtResource("5_huiai")
+
+[node name="retourMenu_label" type="Label" parent="outGameGUI/retourMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ESC pour revenir au menu"

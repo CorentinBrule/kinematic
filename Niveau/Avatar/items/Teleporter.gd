@@ -7,6 +7,7 @@ var recall
 
 # Called when the node enters the scene tree for the first time.
 func _init():
+	keyboard_key_name = "T"
 	keyboard_key_scancode = OS.find_keycode_from_string("t")
 	recall = tp_cooldown
 	# noms de variables et leur valeur par défaut au reset

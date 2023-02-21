@@ -13,16 +13,15 @@ var actions_container
 var avatar
 var color
 const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
-var base_size
+var base_size = Vector2(384,384)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
-	base_size = get_viewport().size
 	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
 	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
-	out_game_meta = $outGameGUI/VBoxContainer_meta
-	out_game_esc = $outGameGUI/VBoxContainer_esc
+	out_game_meta = $outGameGUI/meta
+	out_game_esc = $outGameGUI/retourMenu
 	actions_container = $"%ActionsContainer"
 	adapt_interface()
 
@@ -44,20 +43,26 @@ func init():
 		actions_container.add_child(gui_action)
 	
 	if get_parent().get_parent().has_node("Menu"):
-		$"%meta".visible = true
+		$"%meta_label".visible = true
 		var date =  get_parent().date
-		$"%meta".text = "%s/%s/%s " % [date.day, date.month, date.year] 
+		$"%meta_label".text = "%s/%s/%s " % [date.day, date.month, date.year] 
 		if (date.hour != 0):
-			$"%meta".text += str(date.hour) + "h "
-		$"%meta".text += get_parent().groupe_name
-		$"%esc".visible = true
+			$"%meta_label".text += str(date.hour) + "h "
+		$"%meta_label".text += get_parent().groupe_name
+		$"%retourMenu".visible = true
+		print(Input.get_joy_name(0))
+		var regex = RegEx.new()
+		regex.compile("(?i)(xbox|x-box|microsoft)")
+		if regex.search(Input.get_joy_name(0)):
+			$"%TextureStart".show()
 	
+	#yield(get_tree(), "idle_frame")
 	adapt_interface()
 
 func adapt_interface():
 	if not Engine.is_editor_hint():
 		var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)
-		var out_game_interface_width = base_size.x * ((resize_ratio - 1))
+		var out_game_interface_width = base_size.x * ((resize_ratio - 0.8))
 		out_game_interface_droit.size.x = max(out_game_interface_width, 150)
 		out_game_interface_gauche.size.x = max(out_game_interface_width, 150) 
 		out_game_interface_gauche.position.x = (out_game_interface_gauche.size.x*-1)
@@ -65,10 +70,7 @@ func adapt_interface():
 		out_game_esc.position.x = out_game_interface_droit.size.x + 50
 
 func on_resize_window():
-#   print("----------resize---------")
 	if not Engine.is_editor_hint():
-	#	print(get_viewport().size.x)
-	#	print(get_viewport().size.y)
 		adapt_interface()
 		get_parent().get_node("Camera2D").adapt_clip()
 	
