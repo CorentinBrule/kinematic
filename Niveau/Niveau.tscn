@@ -36,9 +36,9 @@ script = ExtResource("12")
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
 material = SubResource("10")
 offset_left = -192.0
-offset_top = -192.0
+offset_top = -500.0
 offset_right = -192.0
-offset_bottom = 192.0
+offset_bottom = 500.0
 color = Color(0, 0, 0, 1)
 
 [node name="ClipDroite" type="ColorRect" parent="Camera2D"]
@@ -46,9 +46,9 @@ material = SubResource("10")
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 192.0
-offset_top = -192.0
+offset_top = -500.0
 offset_right = 192.0
-offset_bottom = 192.0
+offset_bottom = 500.0
 color = Color(0, 0, 0, 1)
 
 [node name="Trigger_end" type="Area2D" parent="."]
