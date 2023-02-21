@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://px75yra5py1n"]
+[gd_scene load_steps=12 format=3 uid="uid://px75yra5py1n"]
 
 [ext_resource type="PackedScene" uid="uid://cf70pclr4d3fq" path="res://Niveau/Niveau.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://q7tm1hjo843x" path="res://Niveau/Avatar/avatar.tscn" id="2"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Escalader.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
-[ext_resource type="PackedScene" uid="uid://ctib5rstfc51r" path="res://Menu.tscn" id="11"]
 [ext_resource type="Script" path="res://tools.gd" id="12"]
 
 [node name="Jeu" type="Node"]
@@ -71,9 +70,6 @@ jetpack_power = 10.0
 time_to_regen = 10.0
 maximum_vertical_speed = -110.0
 xbox_button = 7
-
-[node name="Menu" parent="." instance=ExtResource("11")]
-visible = false
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]
