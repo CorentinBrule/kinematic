@@ -24,6 +24,7 @@ __meta__ = {
 [node name="GUI" parent="." instance=ExtResource( 13 )]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 1
 position = Vector2( 192, 192 )
 z_index = 20
 current = true

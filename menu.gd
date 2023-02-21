@@ -31,6 +31,6 @@ func init(list_save_files):
 
 func _on_save_files_list_item_activated(index):
 	Global.load_save(save_files[index]["file_path"])
-	Global.start_level()
+	Global.unpause_level()
 	visible = false
 	Global.is_menu = false
