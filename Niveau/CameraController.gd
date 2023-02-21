@@ -1,5 +1,7 @@
 extends Camera2D
 
+export(bool) var joystick_cam = false
+
 var avatar
 var middle_pos = Vector2(192, 192)
 var target_pos
@@ -27,7 +29,17 @@ func _ready():
 	clip_right_width_dest = $ClipDroite.rect_size.x
 	
 func init():
-	zoom_val = 0.5
+func _input(event):
+	if event.is_action("zoom_up_mouse"):
+		zoom_in()
+	if event.is_action("zoom_down_mouse"):
+		zoom_out()
+		
+	if event.is_action("zoom_reset"):
+		if zoom_val == 0.5 and clip_open_right == false:
+			open_clip_controls()
+		else:
+			reset_zoom()
 
 func _process(delta):
 
@@ -35,22 +47,15 @@ func _process(delta):
 		target_pos = lerp(avatar.position, middle_pos, zoom_val) 
 	else: 
 		target_pos = middle_pos
-	
-	if Input.is_action_pressed("zoom_up"):
-		zoom_in(10)
-	if Input.is_action_pressed("zoom_down"):
-		zoom_out(10)
-		
-	if Input.is_action_just_released("zoom_up_mouse"):
-		zoom_in()
-	if Input.is_action_just_released("zoom_down_mouse"):
-		zoom_out()
 
-	if Input.is_action_just_pressed("zoom_reset"):
-		if zoom_val == 0.5 and clip_open_right == false:
-			open_clip_controls()
-		else:
-			reset_zoom()
+	if joystick_cam:
+		if Input.is_action_pressed("zoom_up"):
+			zoom_in(10)
+		if Input.is_action_pressed("zoom_down"):
+			zoom_out(10)
+	
+	
+	
 	if zoom_val > 0.5:
 		open_clip()
 	else:
