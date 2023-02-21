@@ -8,6 +8,7 @@ signal input_changed
 export(String, "A",  "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button setget change_input
 var input_xbox_map = ["A", "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var button_index
+var keyboard_key_name
 var keyboard_key_scancode
 var action_name
 var initial_state = {}

@@ -10,6 +10,7 @@ export var cooldown_time = 0.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	keyboard_key_name = "D"
 	keyboard_key_scancode = OS.find_scancode_from_string("d")
 	init()
 	# noms de variables et leur valeur par défaut au reset

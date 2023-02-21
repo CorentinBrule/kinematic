@@ -7,6 +7,7 @@ var recall
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	keyboard_key_name = "T"
 	keyboard_key_scancode = OS.find_scancode_from_string("t")
 	init()
 	

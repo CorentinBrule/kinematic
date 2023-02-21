@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/FT88-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/FT88-regular.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Niveau/GUI/GUI_actions.gd" type="Script" id=3]
 [ext_resource path="res://assets/ring-texture.png" type="Texture" id=4]
+[ext_resource path="res://assets/carre_texture_21x21.png" type="Texture" id=5]
+[ext_resource path="res://assets/spacebar_texture_21x21.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 10
@@ -66,7 +68,7 @@ custom_fonts/font = SubResource( 1 )
 text = "A"
 align = 1
 
-[node name="TextureProgress" type="TextureProgress" parent="ActionDescription/ActionKey"]
+[node name="cadreDiamant" type="TextureProgress" parent="ActionDescription/ActionKey"]
 margin_left = 5.0
 margin_top = -6.0
 margin_right = 26.0
@@ -77,6 +79,32 @@ texture_progress = SubResource( 5 )
 fill_mode = 4
 tint_under = Color( 0, 0, 0, 1 )
 tint_progress = Color( 0.133333, 1, 0.0823529, 1 )
+nine_patch_stretch = true
+
+[node name="cadreCarré" type="TextureProgress" parent="ActionDescription/ActionKey"]
+visible = false
+margin_left = 5.0
+margin_top = -6.0
+margin_right = 26.0
+margin_bottom = 15.0
+value = 100.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+tint_under = Color( 0, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="cadreSpacebar" type="TextureProgress" parent="ActionDescription/ActionKey"]
+visible = false
+margin_left = 5.0
+margin_top = -6.0
+margin_right = 26.0
+margin_bottom = 15.0
+value = 100.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 6 )
+fill_mode = 4
+tint_under = Color( 0, 0, 0, 1 )
 nine_patch_stretch = true
 
 [node name="TextureProgress_cercle" type="TextureProgress" parent="ActionDescription/ActionKey"]
