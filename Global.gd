@@ -132,7 +132,7 @@ func list_files_in_directory(path):
 		if file == "":
 			break
 		elif not file.begins_with("."):
-			files.append(path + "/" + file)
+			files.append(path + file)
 	files.sort()
 	return files
 
