@@ -1,0 +1,53 @@
+[gd_resource type="Theme" load_steps=9 format=2]
+
+[ext_resource path="res://assets/FT88-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=3]
+size = 10
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxLine" id=2]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.517647, 0.517647, 0.517647, 1 )
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+content_margin_left = 14.0
+content_margin_right = 0.0
+content_margin_top = 0.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 1 )
+corner_detail = 1
+
+[resource]
+ItemList/colors/font_color = Color( 0, 0, 0, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
+ItemList/constants/vseparation = 6
+ItemList/fonts/font = SubResource( 3 )
+ItemList/styles/bg = SubResource( 1 )
+ItemList/styles/bg_focus = SubResource( 2 )
+Tree/colors/relationship_line_color = Color( 1, 1, 1, 1 )
+VScrollBar/styles/grabber = SubResource( 4 )
+VScrollBar/styles/grabber_highlight = SubResource( 5 )
+VScrollBar/styles/grabber_pressed = SubResource( 6 )
+VScrollBar/styles/scroll = SubResource( 7 )
+VScrollBar/styles/scroll_focus = null
