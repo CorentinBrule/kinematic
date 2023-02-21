@@ -135,8 +135,9 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity, Vector2(0, -1))
 	
 	else:
-		start_position = position
-		property_list_changed_notify()
+		if start_position != position:
+			start_position = position
+			property_list_changed_notify()
 	
 func touch_plat(collision):
 #	if pushing:
