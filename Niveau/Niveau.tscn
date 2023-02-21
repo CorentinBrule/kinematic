@@ -29,22 +29,23 @@ position = Vector2( 192, 192 )
 z_index = 20
 current = true
 script = ExtResource( 12 )
+auto_cam = false
 
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
 material = SubResource( 10 )
 margin_left = -192.0
-margin_top = -192.0
+margin_top = -500.0
 margin_right = -192.0
-margin_bottom = 192.0
+margin_bottom = 500.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="ClipDroite" type="ColorRect" parent="Camera2D"]
 material = SubResource( 10 )
 anchor_right = 1.0
 margin_left = 192.0
-margin_top = -192.0
+margin_top = -500.0
 margin_right = 192.0
-margin_bottom = 192.0
+margin_bottom = 500.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="Trigger_end" type="Area2D" parent="."]
