@@ -27,6 +27,7 @@ date = {
 [node name="GUI" parent="." instance=ExtResource("13")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+process_mode = 1
 z_index = 20
 position = Vector2(192, 192)
 current = true
