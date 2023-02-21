@@ -25,8 +25,10 @@ date = {
 "month": 1,
 "year": 2023
 }
-char_name = "Avatar"
-narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
+char_name = "Le carré"
+narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouges et Verts dépend de sa propre couleur.
+
+Comme c'est le tutoriel, vous pouvez tester toutes ses capacités."
 
 [node name="TileMap" parent="Niveau" instance=ExtResource( 10 )]
 tile_data = PoolIntArray( 65537, 1, 0, 196610, 0, 0, 262146, 0, 0, 327683, 0, 0, 393219, 0, 0, 458756, 0, 0, 524292, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851975, 0, 0, 917511, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1376267, 0, 0, 1376269, 4, 0, 1376271, 2, 0, 1376273, 1, 0, 1376275, 3, 0 )
@@ -44,32 +46,23 @@ start_position = Vector2( 344, 344 )
 xbox_button = "A"
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource( 8 )]
-visible = false
 xbox_button = "RB"
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource( 6 )]
-visible = false
 xbox_button = "B"
 
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource( 9 )]
-visible = false
 xbox_button = "LT"
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource( 3 )]
-visible = false
 xbox_button = "X"
 
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource( 4 )]
-visible = false
 xbox_button = "Y"
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 0, 6 )
 xbox_button = "RT"
-
-[node name="Menu" parent="." instance=ExtResource( 11 )]
-visible = false
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="color_change" from="Niveau/Avatar" to="." method="_on_Avatar_color_change"]

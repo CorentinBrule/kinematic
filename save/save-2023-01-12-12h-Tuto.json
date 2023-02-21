@@ -4,8 +4,8 @@
 		"groupe_name": "Tuto"
 	},
 	"story": {
-		"char_name": "Avatar",
-		"narrative": "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
+		"char_name": "Le carré",
+		"narrative": "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouges et Verts dépend de sa propre couleur.\n\nComme c'est le tutoriel, vous pouvez tester toutes ses capacités."
 	},
 	"character": {
 		"properties": {
