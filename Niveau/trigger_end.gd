@@ -18,4 +18,7 @@ func _ready():
 
 func _on_Trigger_end_body_entered(body):
 	if body.name == "Avatar":
-		get_parent().get_node("GUI").get_node("%win").show()
+		if get_parent().get_parent().has_node("Menu"):
+			Global.next_save()
+		else:
+			get_parent().get_node("GUI").get_node("%win").show()
