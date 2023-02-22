@@ -71,7 +71,7 @@ func _process(delta):
 				current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
 
 func load_save(path):
-	pause_level()
+	stop_level()
 	level_from_save = true
 	save_lib.load_file(current_scene, path)
 	init_level()
@@ -96,6 +96,10 @@ func prev_save():
 		save_index = len(save_files_path)-1
 	var path = save_files_path[save_index]
 	load_save(path)
+
+func stop_level():
+	pause_level()
+	current_scene.get_node(Niveau_path).clean_death_marks()
 
 func pause_level():
 	get_tree().paused = true
