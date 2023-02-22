@@ -5,14 +5,21 @@ extends Node
 # mais plutot script de centralisation des évenements de l'éditeur
 # et déclanchement des events de modification dans l'éditeur
 
+@export var auto_cam:bool = false
+@export var joystick_zoom:bool = false
+
 var avatar
 var GUI
+var camera
 
 func _ready():
 	avatar = get_node("Niveau/Avatar")
 	avatar.get_node("Color").color = avatar.colors_val[avatar.my_color]
 	GUI = get_node("Niveau/GUI")
 	GUI.init()
+	camera = get_node("Niveau/Camera2D")
+	camera.auto_cam = auto_cam
+	camera.joystick_zoom = joystick_zoom
 	
 func _process(delta):
 	if Engine.is_editor_hint():
