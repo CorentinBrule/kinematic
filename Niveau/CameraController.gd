@@ -1,7 +1,7 @@
 extends Camera2D
 
-export(bool) var auto_cam = false
-export(bool) var joystick_cam = false
+var auto_cam = false
+var joystick_zoom = false
 
 var avatar
 var middle_pos = Vector2(192, 192)
@@ -74,8 +74,8 @@ func _process(delta):
 		target_pos = lerp(avatar.position, middle_pos, zoom_val) 
 	else: 
 		target_pos = middle_pos
-
-	if joystick_cam:
+	
+	if joystick_zoom:
 		if Input.is_action_pressed("zoom_up"):
 			zoom_in(10)
 		if Input.is_action_pressed("zoom_down"):
