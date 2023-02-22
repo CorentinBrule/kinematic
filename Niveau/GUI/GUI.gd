@@ -72,8 +72,8 @@ func adapt_interface():
 func on_resize_window():
 	if not Engine.is_editor_hint():
 		adapt_interface()
-		get_parent().get_node("Camera2D").adapt_clip()
-	
+		get_parent().get_node("Camera2D").adapt_clips()
+		get_parent().get_node("Camera2D").force_update_clip()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
