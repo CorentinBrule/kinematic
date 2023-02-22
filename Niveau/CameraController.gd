@@ -17,28 +17,30 @@ var clip_left_width_dest
 var clip_right_position_dest
 var clip_right_width_dest
 var clip_speed = 0.1
-var clip_open = false
-var clip_open_right = false
+var clip_open_left = false
+var clip_open_right = true
 var zooming = false
 
 func _ready():
 	avatar = get_parent().get_node("Avatar")
-	init()
 	clip_left_position_dest = $ClipGauche.rect_position.x
 	clip_left_width_dest = $ClipGauche.rect_size.x
 	clip_right_position_dest = $ClipDroite.rect_position.x
 	clip_right_width_dest = $ClipDroite.rect_size.x
+	init()
 
 func init():
 	if !auto_cam:
 		zoom_val = 0.5
+		reset_zoom()
+		open_clip_controls()
 	else:
+		clip_open_left = true
 		zoom_val = 1
 		zoom_dest = min_zoom
 		zoom = min_zoom
-	$ClipGauche.rect_position.x = get_viewport().size.x * -1
-	$ClipDroite.rect_position.x = get_viewport().size.x
-	adapt_clip_destination()
+	adapt_clips()
+	force_update_clip()
 
 func _input(event):
 	if auto_cam:
@@ -52,12 +54,20 @@ func _input(event):
 		zoom_in()
 	if event.is_action("zoom_down_mouse"):
 		zoom_out()
-		
-	if event.is_action("zoom_reset"):
+	
+	if event.is_action_pressed("zoom_reset"):
 		if zoom_val == 0.5 and clip_open_right == false:
 			open_clip_controls()
 		else:
 			reset_zoom()
+	
+	print(zoom_val)
+	if zoom_val > 0.5:
+		open_clips()
+	else:
+		clip_open_left = false
+		#clip_open_right = false
+		adapt_clips()
 
 func _process(delta):
 	if zoom.x < 0.9: 
@@ -70,13 +80,6 @@ func _process(delta):
 			zoom_in(10)
 		if Input.is_action_pressed("zoom_down"):
 			zoom_out(10)
-	
-	
-	
-	if zoom_val > 0.5:
-		open_clip()
-	else:
-		clip_open = false
 	
 	if zoom.distance_to(zoom_dest) > 0.005:
 		zooming = true
@@ -91,13 +94,13 @@ func _process(delta):
 func zoom_in(zoom_speed_changer=1):
 	zoom_val = max(zoom_val - zoom_speed/zoom_speed_changer, 0)
 	zoom_dest = calc_zoom_dest(max_zoom,min_zoom,zoom_val)
-	adapt_clip_destination()
+	adapt_clips()
 	#print("val: "+str(zoom_val)+" zoom_dest: " + str(zoom_dest))
 
 func zoom_out(zoom_speed_changer=1):
 	zoom_val = min(zoom_val + zoom_speed/zoom_speed_changer, 1)
 	zoom_dest = calc_zoom_dest(max_zoom,min_zoom,zoom_val)
-	adapt_clip_destination()
+	adapt_clips()
 	#print("val: "+str(zoom_val)+" zoom_dest: " + str(zoom_dest))
 
 func calc_zoom_dest(max_zoom,min_zoom,zoom_val):
@@ -114,32 +117,39 @@ func reset_zoom():
 	zoom_dest = Vector2(1.0,1.0)
 	zoom_val = 0.5
 	clip_open_right = false
+	clip_open_left = false
 	target_pos = middle_pos
-	adapt_clip_destination()
+	adapt_clips()
 #	print("val: "+str(zoom_val)+" zoom_dest: " + str(zoom_dest))
 
-func adapt_clip():
-#	print(clip_open)
-	adapt_clip_destination()
-	if clip_open == false:
-		force_update_clip()
-
-func adapt_clip_destination():
+func adapt_clips():
 	var resize_ratio = get_viewport().size.x / get_viewport().size.y
 	if resize_ratio > 1 : # horizontal screen
 		var resize_factor = get_viewport().size.y / 384
 		var resized_edge_from_center = (get_viewport().size.x)/2
 		edge_from_center = (resized_edge_from_center / resize_factor)
-		clip_left_position_dest = edge_from_center * -1 * zoom_dest.x - 5
-		clip_left_width_dest =  edge_from_center * zoom_dest.x - 192 + 5
-		clip_right_position_dest = 192 - 5
+		
+		clip_left_position_dest = (edge_from_center * -1 * zoom_dest.x) - 5		
+		if clip_open_left == false:
+			clip_left_width_dest =  (edge_from_center * zoom_dest.x - 192) + 5
+		else:
+			clip_left_width_dest = 0
+		
 		clip_right_width_dest = edge_from_center * zoom_dest.x - 192 + 5
+		if clip_open_right == false:
+			clip_right_position_dest = 192 - 5
+		else:
+			clip_right_position_dest = 192 + clip_right_width_dest
 
 func update_clip():
-	$ClipGauche.rect_position.x = lerp($ClipGauche.rect_position.x, clip_left_position_dest, 0.05)
-	$ClipGauche.rect_size.x = lerp($ClipGauche.rect_size.x, clip_left_width_dest, 0.05)
-	$ClipDroite.rect_position.x = lerp($ClipDroite.rect_position.x, clip_right_position_dest, 0.05)
-	$ClipDroite.rect_size.x = lerp($ClipDroite.rect_size.x, clip_right_width_dest, 0.05)
+	if(abs($ClipGauche.rect_position.x - clip_left_position_dest) > 0.5):
+		$ClipGauche.rect_position.x = lerp($ClipGauche.rect_position.x, clip_left_position_dest, 0.05)
+	if(abs($ClipGauche.rect_size.x - clip_left_width_dest) > 0.5):
+		$ClipGauche.rect_size.x = lerp($ClipGauche.rect_size.x, clip_left_width_dest, 0.05)
+	if(abs($ClipDroite.rect_position.x - clip_right_position_dest) > 0.5):
+		$ClipDroite.rect_position.x = lerp($ClipDroite.rect_position.x, clip_right_position_dest, 0.05)
+	if(abs($ClipDroite.rect_size.x - clip_right_width_dest) > 0.5):
+		$ClipDroite.rect_size.x = lerp($ClipDroite.rect_size.x, clip_right_width_dest, 0.05)
 
 func force_update_clip():
 	$ClipGauche.rect_position.x = clip_left_position_dest
@@ -147,11 +157,11 @@ func force_update_clip():
 	$ClipDroite.rect_position.x = clip_right_position_dest
 	$ClipDroite.rect_size.x = clip_right_width_dest
 
-func open_clip():
-	clip_open = true
-	clip_left_width_dest = 0
-	clip_right_position_dest = 192 + clip_right_width_dest
-	
+func open_clips():
+	clip_open_left = true
+	clip_open_right = true
+	adapt_clips()
+
 func open_clip_controls():
 	clip_open_right = true
-	clip_right_position_dest = 192 + clip_right_width_dest
+	adapt_clips()
