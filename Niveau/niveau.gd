@@ -36,7 +36,7 @@ func _input(event):
 		$Avatar.start_position = $Avatar.original_start_position
 		clean_death_marks()
 		restart_level()
-	if not Global.is_menu:
+	if not Global.is_menu and not get_parent().has_node("Menu"):
 		if event is InputEventMouseButton and event.pressed == false and event.button_index == 1:
 			$Avatar.position = get_local_mouse_position()
 
