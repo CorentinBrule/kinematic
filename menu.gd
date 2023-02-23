@@ -5,6 +5,7 @@ extends CanvasLayer
 # var a = 2
 # var b = "text"
 var save_files
+const color_textures = ["res://Niveau/tileMap/rouge.png","res://Niveau/tileMap/vert.png","res://Niveau/tileMap/bleu.png"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,11 +27,14 @@ func init(list_save_files):
 		if save_file.story.char_name != "":
 			clean_text += " - " + save_file.story.char_name
 		
-		$"%save_files_list".add_item(clean_text)
+		var color_id = save_file.character.properties.my_color
+		var color_texture = load(color_textures[color_id])
+		$"%save_files_list".add_item(clean_text, color_texture)
 
 
 func _on_save_files_list_item_activated(index):
 	Global.load_save(save_files[index]["file_path"])
+	Global.save_index = index
 	Global.unpause_level()
 	visible = false
 	Global.is_menu = false

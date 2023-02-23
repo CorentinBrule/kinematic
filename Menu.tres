@@ -1,0 +1,61 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dy5dqajbxmjti"]
+
+[ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux8x0"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6rj0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aplhf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jv7vy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fy2mf"]
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykxl7"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p8kih"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="FontFile" id="1"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+fallbacks = Array[Font]([ExtResource("1"), ExtResource("1"), ExtResource("1")])
+face_index = null
+embolden = null
+transform = null
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+
+[resource]
+default_font = SubResource("1")
+ItemList/colors/font_color = Color(0, 0, 0, 1)
+ItemList/colors/font_selected_color = Color(0, 0, 0, 1)
+ItemList/colors/guide_color = Color(0, 0, 0, 1)
+ItemList/constants/line_separation = 3
+ItemList/constants/v_separation = 8
+ItemList/styles/panel = SubResource("StyleBoxFlat_ux8x0")
+ItemList/styles/selected = SubResource("StyleBoxFlat_b6rj0")
+ItemList/styles/selected_focus = SubResource("StyleBoxFlat_aplhf")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jv7vy")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_fy2mf")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_ykxl7")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_p8kih")
