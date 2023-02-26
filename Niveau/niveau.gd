@@ -32,17 +32,15 @@ func start():
 
 func _input(event):
 	if event.is_action_pressed("reset"):
-		$Avatar.death()
-		$Avatar.start_position = $Avatar.original_start_position
 		clean_death_marks()
-		restart_level()
+		$Avatar.start_position = $Avatar.original_start_position
+		$Avatar.death()
+	
 	if not Global.is_menu and not get_parent().has_node("Menu"):
 		if event is InputEventMouseButton and event.pressed == false and event.button_index == 1:
 			$Avatar.position = get_local_mouse_position()
 
 func restart_level():
-	set_process(false)
-
 	# reload tileMap
 	var tileMap_scene = load("user://save_tileMap.tscn")
 	var new_tileMap = tileMap_scene.instance()
@@ -52,9 +50,7 @@ func restart_level():
 	new_tileMap.set_name(name)
 	
 	$"GUI/%win".hide()
-	
-	# restart Avatar
-	print($Avatar.position)
+	yield(get_tree().create_timer(1), "timeout")
 	$Avatar.life()
 
 func clean_death_marks():

@@ -198,8 +198,6 @@ func death(collision=false):
 	get_parent().restart_level()
 
 func life():
-	yield(get_tree().create_timer(1.0), "timeout")
-	
 	for item in get_active_items():
 		item.reset()
 	

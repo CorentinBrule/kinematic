@@ -116,11 +116,14 @@ func unpause_level():
 func init_level():
 	var tilemap = current_scene.get_node(TileMap_path)
 	tilemap.init()
+	
 	var avatar = current_scene.get_node(Avatar_path)
-	avatar.death()
 	avatar.init()
+	avatar.life()
+	
 	var GUI = current_scene.get_node(GUI_path)
 	GUI.init()
+	
 	var camera = current_scene.get_node(Camera_path)
 	camera.init()
 
