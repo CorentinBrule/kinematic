@@ -28,8 +28,8 @@ var color_picker = {
 var avatar
 
 var has_server_saves = false
-export var save_folder_path = "res://save/"
-export var save_server_url = "http://localhost/kinematique/saves.php"
+var save_folder_path = "res://save/"
+var save_server_url = ""
 var save_files_path = []
 var save_files_data = []
 var save_index = 0
@@ -42,6 +42,9 @@ func _ready():
 	base_size = get_viewport().size
 	base_center = Vector2(base_size.x/2, base_size.y/2)
 	current_scene = root.get_child(root.get_child_count() - 1)
+	
+	save_folder_path = current_scene.save_folder_path
+	save_server_url = current_scene.save_server_url
 	
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 

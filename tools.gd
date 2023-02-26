@@ -7,7 +7,9 @@ extends Node
 
 export(bool) var auto_cam = false
 export(bool) var joystick_zoom = false
-export(bool) var menu_and_export_mode = false setget _set_menu
+
+export(String) var save_folder_path = "res://save/"
+export(String) var save_server_url = "http://localhost/kinematique/saves.php"
 
 var avatar
 var GUI
@@ -43,12 +45,3 @@ func _on_Niveau_var_changed():
 		print("event on change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
-
-func _set_menu(val):
-	menu_and_export_mode = val
-	if val:
-		add_child(load("res://Menu.tscn").instance())
-		$Menu.hide()
-	else:
-		if has_node("Menu"):
-			$Menu.queue_free()
