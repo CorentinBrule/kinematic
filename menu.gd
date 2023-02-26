@@ -33,7 +33,7 @@ func init(list_save_files):
 
 
 func _on_save_files_list_item_activated(index):
-	Global.load_save(save_files[index]["file_path"])
+	Global.set_save(save_files[index])
 	Global.save_index = index
 	Global.unpause_level()
 	visible = false
