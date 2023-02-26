@@ -40,5 +40,5 @@ func save_tileMap():
 func clean_interactives():
 	var children = get_children()
 	for child in children:
-		if child is StaticBody2D:
+		if child is StaticBody2D or child is Area2D:
 			child.queue_free()
