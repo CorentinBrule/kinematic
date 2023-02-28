@@ -2,7 +2,10 @@
 *.translation
 export_presets.cfg
 .mono/
-export/
+export/*
+!export/www/
+export/www/*
+!export/www/saves.php
 addons/godot-git-plugin
 save/
 !save/save-2023-01-12-12h-Tuto.json

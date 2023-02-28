@@ -9,6 +9,8 @@ Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D dans l’inter
 Il se concentre sur des notions de *game design* et surtout de *level design* en éloignant — peut-être dans un premier temps — le code pour cell·eux qui souhaitent l’utiliser ou encadrer des ateliers et cours.
 Comme tout à lieu dans l’interface d’un véritable éditeur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
 
+Testez [ici](https://brulé.net/kinématique/) les niveaux créés dans des ateliers (groupes d'environs 5 enfants de 6 à 12 ans) !
+
 Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scene principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier pour se concentrer sur le level design et les bases du game design.
 
 Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/kinematic/wiki/1.-Installation) et [la prise en main](https://github.com/CorentinBrule/kinematic/wiki/2.-Prise-en-main) ; les [ressources pédagogiques (déroulement d’ateliers)](https://github.com/CorentinBrule/kinematic/wiki/Ressources-p%C3%A9dagogiques) et les [aspects techniques pour adapter l’outil en mettant les mains dans le cambouis](https://github.com/CorentinBrule/kinematic/wiki/Aller-plus-loin-(dev)).
