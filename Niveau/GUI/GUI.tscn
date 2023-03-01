@@ -106,6 +106,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 10
 bbcode_enabled = true
 text = "c'est parti !"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="meta" type="VBoxContainer" parent="outGameGUI"]
 layout_mode = 1
@@ -123,16 +126,18 @@ text = "test"
 [node name="retourMenu" type="HBoxContainer" parent="outGameGUI"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 668.545
-offset_top = 50.0
-offset_right = 1004.54
-offset_bottom = 55.0
+offset_left = 1.0
+offset_top = 34.99
+offset_right = 387.0
+offset_bottom = 57.99
 grow_horizontal = 0
+grow_vertical = 0
 alignment = 2
 
 [node name="TextureStart" type="TextureRect" parent="outGameGUI/retourMenu"]

@@ -43,18 +43,19 @@ func init():
 		actions_container.add_child(gui_action)
 	
 	if get_parent().get_parent().has_node("Menu"):
-		$"%meta_label".visible = true
-		var date =  get_parent().date
-		$"%meta_label".text = "%s/%s/%s " % [date.day, date.month, date.year] 
-		if (date.hour != 0):
-			$"%meta_label".text += str(date.hour) + "h "
-		$"%meta_label".text += get_parent().groupe_name
 		$"%retourMenu".visible = true
-		print(Input.get_joy_name(0))
-		var regex = RegEx.new()
-		regex.compile("(?i)(xbox|x-box|microsoft)")
-		if regex.search(Input.get_joy_name(0)):
-			$"%TextureStart".show()
+		
+	$"%meta_label".visible = true
+	var date =  get_parent().date
+	$"%meta_label".text = "%s/%s/%s " % [date.day, date.month, date.year] 
+	if (date.hour != 0):
+		$"%meta_label".text += str(date.hour) + "h "
+	$"%meta_label".text += get_parent().groupe_name
+	
+	var regex = RegEx.new()
+	regex.compile("(?i)(xbox|x-box|microsoft)")
+	if regex.search(Input.get_joy_name(0)):
+		$"%TextureStart".show()
 	
 	#yield(get_tree(), "idle_frame")
 	adapt_interface()
