@@ -165,6 +165,12 @@ func _on_request_completed(result, response_code, headers, body):
 	print(result)
 	if result == HTTPRequest.RESULT_SUCCESS:
 		print("THE SAVES HAS BEEN LOADED FROM ANOTHER FILE ON SERVER")
-		has_server_saves = true
 		var json = JSON.parse(body.get_string_from_utf8())
-		save_files_data = json.result
+		
+		if json.error == OK:
+			has_server_saves = true
+			save_files_data = json.result
+		else:
+			print("BUT CAN'T PARSE JSON OR EMPTY:")
+			print(body.get_string_from_utf8())
+			
