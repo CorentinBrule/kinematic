@@ -9,10 +9,12 @@ var out_game_interface_gauche
 var out_game_meta
 var out_game_esc
 var actions_container
+var actions_touch_container
 
 var avatar
 var color
 const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
+const action_scene_touch = preload("res://Niveau/GUI/GUI_actions_touch.tscn")
 var base_size = Vector2(384,384)
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +25,7 @@ func _ready():
 	out_game_meta = $outGameGUI/meta
 	out_game_esc = $outGameGUI/retourMenu
 	actions_container = $"%ActionsContainer"
+	actions_touch_container = $"%ActionsContainerTouch"
 	adapt_interface()
 
 func init():
@@ -34,6 +37,8 @@ func init():
 	#clean actions_container
 	for action in actions_container.get_children():
 		action.free()
+	for action in actions_touch_container.get_children():
+		action.free()
 	
 	for item in avatar.get_active_items():
 		#print(item)
@@ -41,8 +46,19 @@ func init():
 		#print(gui_action)
 		gui_action.init(item)
 		actions_container.add_child(gui_action)
+		
+		var gui_action_touch = action_scene_touch.instance()
+		gui_action_touch.init(item)
+		actions_touch_container.add_child(gui_action_touch)
+		actions_touch_container.move_child(gui_action_touch, 0)
 	
-	if get_parent().get_parent().has_node("Menu"):
+	if Global.has_touch_screen:
+		actions_container.hide()
+		$"%touch_controls".show()
+	else:
+		actions_touch_container.hide()
+	
+	if get_parent().get_parent().has_node("Menu") and !Global.has_touch_screen:
 		$"%retourMenu".visible = true
 		
 	$"%meta_label".visible = true
@@ -75,6 +91,12 @@ func on_resize_window():
 		adapt_interface()
 		get_parent().get_node("Camera2D").adapt_clips()
 		get_parent().get_node("Camera2D").force_update_clip()
+		if Global.has_touch_screen:
+			if OS.window_fullscreen:
+				$touch_controls/fullscreen.hide()
+			else:
+				$touch_controls/fullscreen.show()
+				
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

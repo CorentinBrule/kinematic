@@ -38,3 +38,12 @@ func _on_save_files_list_item_activated(index):
 	Global.unpause_level()
 	visible = false
 	Global.is_menu = false
+
+
+func _on_save_files_list_item_selected(index):
+	if Global.has_touch_screen:
+		Global.set_save(save_files[index])
+		Global.save_index = index
+		Global.unpause_level()
+		visible = false
+		Global.is_menu = false

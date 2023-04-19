@@ -7,6 +7,8 @@ extends Node
 
 export(bool) var auto_cam = false
 export(bool) var joystick_zoom = false
+export(bool) var mobile_emulation = false setget _change_mobile_emulation
+export(bool) var click_to_move = false
 
 export(String) var save_folder_path = "res://save/"
 export(String) var save_server_url = "http://localhost/kinematique/saves.php"
@@ -45,3 +47,9 @@ func _on_Niveau_var_changed():
 		print("event on change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
+
+func _change_mobile_emulation(val):
+	mobile_emulation = val
+	if Engine.editor_hint:
+		ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse",val)
+		ProjectSettings.save()

@@ -27,6 +27,8 @@ var color_picker = {
 
 var avatar
 
+var has_touch_screen = false
+
 var has_server_saves = false
 var save_folder_path = "res://save/"
 var save_server_url = ""
@@ -46,6 +48,9 @@ func _ready():
 	save_folder_path = current_scene.save_folder_path
 	save_server_url = current_scene.save_server_url
 	
+	if OS.has_touchscreen_ui_hint():
+		has_touch_screen = true
+	
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 
 		if OS.has_feature('JavaScript'):
@@ -64,6 +69,9 @@ func _ready():
 		set_save(save_files_data[0])
 
 func _process(delta):
+	if Input.is_action_just_pressed("toggle_full_screen"):
+		OS.window_fullscreen = !OS.window_fullscreen
+
 	if current_scene.has_node("Menu"):
 		if Input.is_action_just_pressed("next_level"):
 			next_save()

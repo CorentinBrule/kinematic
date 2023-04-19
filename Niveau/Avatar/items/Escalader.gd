@@ -15,6 +15,8 @@ func _ready():
 	keyboard_key_name = "E"
 	keyboard_key_scancode = OS.find_scancode_from_string("e")
 	init()
+	if Global.has_touch_screen:
+		toggleable = true
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"no_wall_count" : no_wall_count,

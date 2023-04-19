@@ -32,3 +32,4 @@ anchor_bottom = 1.0
 theme = ExtResource( 5 )
 
 [connection signal="item_activated" from="Control/save_files_list" to="." method="_on_save_files_list_item_activated"]
+[connection signal="item_selected" from="Control/save_files_list" to="." method="_on_save_files_list_item_selected"]

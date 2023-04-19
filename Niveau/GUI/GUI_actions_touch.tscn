@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Niveau/GUI/GUI_actions_touch.gd" type="Script" id=1]
+[ext_resource path="res://assets/FT88-regular.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/touch_circle_400x300.png" type="Texture" id=3]
+[ext_resource path="res://assets/touch_circle_200x200.png" type="Texture" id=4]
+[ext_resource path="res://assets/touch_circle_200x200_active.png" type="Texture" id=5]
+[ext_resource path="res://assets/touch_void_200x200.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Masque:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "toggle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Masque:anchor_right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="GUI_actions_touch" type="HBoxContainer"]
+margin_right = 190.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 50 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 16.0 ],
+"_edit_vertical_guides_": [ 158.0 ]
+}
+
+[node name="ActionDescription" type="Label" parent="."]
+margin_right = 190.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 190, 50 )
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Sauter"
+align = 2
+valign = 1
+autowrap = true
+
+[node name="TouchButton" type="TouchScreenButton" parent="ActionDescription"]
+position = Vector2( 117, -21 )
+scale = Vector2( 0.29, 0.29 )
+z_index = -1
+normal = ExtResource( 6 )
+passby_press = true
+
+[node name="TextureProgress" type="TextureProgress" parent="ActionDescription/TouchButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+value = 100.0
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 4
+tint_under = Color( 1, 1, 1, 0.2 )
+tint_progress = Color( 1, 1, 1, 0.470588 )
+nine_patch_stretch = true
+
+[node name="Masque" type="ColorRect" parent="ActionDescription/TouchButton/TextureProgress"]
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.501961 )
+
+[node name="TextureRect" type="TextureRect" parent="ActionDescription/TouchButton"]
+margin_left = -99.758
+margin_right = 300.242
+margin_bottom = 300.0
+texture = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ActionDescription/TouchButton"]
+root_node = NodePath("../TextureProgress")
+anims/RESET = SubResource( 2 )
+anims/toggle = SubResource( 1 )
+
+[node name="TouchButton_zeropos" type="TouchScreenButton" parent="ActionDescription"]
+visible = false
+position = Vector2( 0, -23 )
+scale = Vector2( 0.45, 0.45 )
+normal = ExtResource( 4 )
