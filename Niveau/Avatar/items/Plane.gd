@@ -26,7 +26,7 @@ func process(delta):
 	progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	action = Input.is_action_pressed(action_name)
 	
 	if infinite and action:
 		action()

@@ -8,6 +8,8 @@ var animation
 export var effect_time = 0.5
 export var cooldown_time = 0.2
 
+var progress_percent = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	keyboard_key_name = "D"
@@ -32,9 +34,10 @@ func _ready():
 	effect.connect("timeout", self, "_on_Effect_timeout")
 
 func physics_process(delta):
-
-	var action = Input.is_action_just_pressed(action_name)
-
+	action = Input.is_action_just_pressed(action_name)
+	
+	progress_percent = effect.time_left / effect_time * 100
+	
 	if action and cooldown.is_stopped() and effect.is_stopped():
 		effect.start()
 		#cooldown.action()
@@ -42,6 +45,7 @@ func physics_process(delta):
 	
 	if effect.time_left > 0:
 		avatar.attacking = true
+		action = true
 		avatar.get_node("Effet").color = avatar.colors_val[avatar.color_bonus]	
 
 func _on_Cooldown_timeout():

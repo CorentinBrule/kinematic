@@ -29,7 +29,7 @@ func process(delta):
 	progress_percent = energy / energy_max * 100
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	action = Input.is_action_pressed(action_name)
 	
 	if action and infinite:
 		action()

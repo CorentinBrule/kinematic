@@ -7,6 +7,8 @@ export var glue_delay = 1
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
+export(bool) var toggleable = true
+
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -21,7 +23,12 @@ func _ready():
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(action_name)
+	if toggleable:
+		if Input.is_action_just_pressed(action_name) :
+			action = ! action
+	else:
+		action = Input.is_action_pressed(action_name)
+	
 	if action:
 		if avatar.is_on_wall():
 			avatar.colle = true

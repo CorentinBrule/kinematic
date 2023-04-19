@@ -14,6 +14,8 @@ var action_name
 var initial_state = {}
 var joypad_event
 
+var action = false
+
 func _ready():
 	avatar = get_parent()
 	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed", self, "_on_Item_visiblity_changed")
