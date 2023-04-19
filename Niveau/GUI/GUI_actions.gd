@@ -27,15 +27,17 @@ func init(_action):
 	texture_progress = $ActionDescription/ActionKey/cadreDiamant
 	var key_label = $ActionDescription/ActionKey
 	
+	# keyboard or controller
 	var regex = RegEx.new()
 	regex.compile("(?i)(xbox|x-box|microsoft)")
 	if regex.search(Input.get_joy_name(0)):
 		key_name = action.get("xbox_button")
 		key_label.set("custom_colors/font_color", key_colors.get(key_name, Color(1,1,1,1)))
+		texture_progress.tint_progress = key_colors.get(key_name, Color(1,1,1,1))
 	else:
 		key_name = action.keyboard_key_name
-		get_node("ActionDescription/ActionKey/cadreDiamant").hide()
 		key_label.set("custom_colors/font_color", Color(1,1,1,1))
+		texture_progress.tint_progress = Color(1,1,1,1)
 		if key_name.length() == 1:
 			get_node("ActionDescription/ActionKey/cadreCarré").show()
 		if key_name == "space":
@@ -48,9 +50,8 @@ func init(_action):
 	description_label.text = action_name #
 	key_label.text = key_name
 	
-	if not action.get("progress_percent") == null and action.get("infinite") == false:
+	if action.get("progress_percent") != null and (action.get("infinite") == false or action.get("infinite") == null):
 		has_progress = true
-		texture_progress.tint_progress = key_colors.get(key_name, Color(1,1,1,1))
 	else:
 		texture_progress.hide()
 		
