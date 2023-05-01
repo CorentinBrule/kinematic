@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="1"]
 
 [resource]
-fallbacks = [ExtResource("1")]
+fallbacks = Array[Font]([ExtResource("1")])
 face_index = null
 embolden = null
 transform = null

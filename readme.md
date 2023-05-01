@@ -1,6 +1,6 @@
 # Kinématique
 
-*testé avec Godot 4.0 RC 2*
+*testé avec Godot 4.0.2 stable*
 
 Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D dans l’interface du moteur de jeu-vidéo [Godot](https://godotengine.org/download/).
 
