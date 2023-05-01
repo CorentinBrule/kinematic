@@ -27,7 +27,9 @@ var color_picker = {
 
 var avatar
 
+var has_server_saves = false
 var save_folder_path = "res://save/"
+var save_server_url = "http://localhost/kinematique/saves.php"
 var save_files_path = []
 var save_files_data = []
 var save_index = 0
@@ -41,21 +43,29 @@ func _ready():
 	base_center = Vector2(base_size.x/2, base_size.y/2)
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
-	save_files_path = list_files_in_directory(save_folder_path)
-	save_files_data = load_files(save_files_path)
 	if current_scene.has_node("Menu"):
+		# load save from local "res://" file or from "server" 
+		if OS.has_feature('web'):
+			print("OS has feature web")
+			var http = HTTPRequest.new()
+			current_scene.add_child(http)
+			http.request_completed.connect(self._on_request_completed)
+			await http.request(save_server_url)
+			
+		if has_server_saves == false:
+			save_files_path = list_files_in_directory(save_folder_path)
+			save_files_data = load_files(save_files_path)
+		
 		current_scene.get_node("Menu").init(save_files_data)
 		await get_tree().create_timer(0.1).timeout
-		load_save(save_files_data[0].file_path)
+		set_save(save_files_data[0])
 
 func _process(delta):
 	if current_scene.has_node("Menu"):
 		if Input.is_action_just_pressed("next_level"):
-			print(current_scene.get_node(Niveau_path))
 			next_save()
 		
 		if Input.is_action_just_pressed("prev_level"):
-			print(current_scene.get_node(Niveau_path))
 			prev_save()
 		
 		if Input.is_action_just_pressed("menu"):
@@ -70,32 +80,28 @@ func _process(delta):
 				current_scene.get_node("Menu").visible = true
 				current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
 
-func load_save(path):
+func set_save(save_data):
 	stop_level()
 	level_from_save = true
-	save_lib.load_file(current_scene, path)
+	save_lib.set_data(current_scene, save_data)
 	init_level()
 	await get_tree().create_timer(1).timeout
 	unpause_level()
 
 func reload_save():
-	var path = save_files_path[save_index]
-	load_save(path)
+	set_save(save_files_data[save_index])
 
 func next_save():
 	if level_from_save:
-		save_index = (save_index+1) % len(save_files_path)
-	var path = save_files_path[save_index]
-#	print(path)
-	load_save(path)
+		save_index = (save_index+1) % len(save_files_data)
+	set_save(save_files_data[save_index])
 
 func prev_save():
 	if level_from_save:
 		save_index -= 1
 	if save_index < 0:
-		save_index = len(save_files_path)-1
-	var path = save_files_path[save_index]
-	load_save(path)
+		save_index = len(save_files_data)-1
+	set_save(save_files_data[save_index])
 
 func stop_level():
 	pause_level()
@@ -150,3 +156,17 @@ func load_files(files):
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
 	return datas
+
+func _on_request_completed(result, response_code, headers, body):
+	print(result)
+	if result == HTTPRequest.RESULT_SUCCESS:
+		print("THE SAVES HAS BEEN LOADED FROM ANOTHER FILE ON SERVER")
+		var json = JSON.parse_string(body.get_string_from_utf8())
+		
+		if json:
+			has_server_saves = true
+			save_files_data = json.result
+		else:
+			print("BUT CAN'T PARSE JSON OR EMPTY:")
+			print(body.get_string_from_utf8())
+			
