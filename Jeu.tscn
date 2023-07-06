@@ -15,9 +15,11 @@
 [node name="Jeu" type="Node"]
 pause_mode = 2
 script = ExtResource( 12 )
+auto_cam = true
+click_to_move = true
 
 [node name="Niveau" parent="." instance=ExtResource( 1 )]
-pause_mode = 2
+pause_mode = 1
 groupe_name = "Tuto"
 date = {
 "day": 12,
@@ -31,7 +33,7 @@ narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'
 Comme c'est le tutoriel, vous pouvez tester toutes ses capacités."
 
 [node name="TileMap" parent="Niveau" instance=ExtResource( 10 )]
-tile_data = PoolIntArray( 65537, 1, 0, 196610, 0, 0, 262146, 0, 0, 327683, 0, 0, 393219, 0, 0, 458756, 0, 0, 524292, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851975, 0, 0, 917511, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1376267, 0, 0, 1376269, 4, 0, 1376271, 2, 0, 1376273, 1, 0, 1376275, 3, 0 )
+tile_data = PoolIntArray( 196610, 0, 0, 262146, 0, 0, 327683, 0, 0, 393219, 0, 0, 458756, 0, 0, 524292, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851975, 0, 0, 917511, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1376267, 0, 0, 1376269, 4, 0, 1376271, 2, 0, 1376273, 1, 0, 1376275, 3, 0 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -43,26 +45,60 @@ my_color = 2
 start_position = Vector2( 344, 344 )
 
 [node name="Sauter" parent="Niveau/Avatar" instance=ExtResource( 5 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "A"
+jump_power = 200.0
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource( 8 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "RB"
+glue_time_max = 10.0
+glue_effect = 1000.0
+glue_delay = 1.0
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource( 6 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "B"
 
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource( 9 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "LT"
+plane_time_max = 100.0
+plane_effect = 2.0
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource( 3 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "X"
 
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource( 4 )]
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "Y"
+tp_distance = 31.0
+tp_cooldown = 50.0
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource( 7 )]
 position = Vector2( 0, 6 )
+__meta__ = {
+"_edit_lock_": true
+}
 xbox_button = "RT"
+energy_max = 100.0
+energy_regen = 5.0
+jetpack_power = 10.0
+time_to_regen = 10.0
+maximum_vertical_speed = -110.0
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="color_change" from="Niveau/Avatar" to="." method="_on_Avatar_color_change"]

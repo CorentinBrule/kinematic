@@ -7,7 +7,7 @@ export var glue_delay = 1
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
-export(bool) var toggleable = true
+var toggleable = false
 
 # Called when the node enters the scene tree for the first time.
 

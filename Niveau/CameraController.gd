@@ -61,7 +61,6 @@ func _input(event):
 		else:
 			reset_zoom()
 	
-	print(zoom_val)
 	if zoom_val > 0.5:
 		open_clips()
 	else:

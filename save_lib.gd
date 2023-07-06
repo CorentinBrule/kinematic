@@ -18,7 +18,7 @@ static func load_file(scene, path: String):
 	if file.file_exists(path):
 		file.open(path, file.READ)
 		var data_dict = parse_json(file.get_as_text())
-		print(data_dict)
+#		print(data_dict)
 		file.close()
 		set_data(scene, data_dict)
 		
@@ -114,7 +114,7 @@ static func save_file(scene, path : String):
 static func get_meta_data(niveau):
 	# si pas de date ou jour ou mois = 0 : date de maintenant
 	var date = niveau.date
-	print(date)
+#	print(date)
 	if date["day"] == 0 or date["month"] == 0:
 		date = Time.get_datetime_dict_from_system()
 	var data_date = "%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]	
@@ -131,7 +131,7 @@ static func get_story_data(niveau):
 static func get_tilemap_data(tilemap):
 	var tilemap_data = []
 
-	print(tilemap)
+#	print(tilemap)
 	var used_cells = tilemap.get_used_cells()
 	for cell in used_cells:
 		var cell_id = tilemap.get_cell(cell.x,cell.y)
@@ -147,15 +147,15 @@ static func get_character_data(character):
 		"properties":{}
 	}
 
-	print(character)
+#	print(character)
 	for property in get_exported_properties(character):
 		character_data.properties[property.name] = character[property.name]
 	
 	var children = character.get_children()
 	var stuff = []
 	for child in children:
-		print(child.name)
-		print(child.get_class())
+#		print(child.name)
+#		print(child.get_class())
 		if child is ItemClass: # if object is stuff
 			if child.is_visible_in_tree(): # if is visible/active
 				stuff.append(child)
