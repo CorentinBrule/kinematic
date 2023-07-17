@@ -9,9 +9,7 @@ signal input_changed
 
 @onready var avatar = get_parent()
 @onready var action_name = get_name()
-
 @export_enum("A", "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button: set = change_input
-var input_xbox_names = ["A" , "B", "X", "Y", "LB", "RB", "LT", "RT"]
 var input_xbox_mapped
 var keyboard_key_name
 var keyboard_key_scancode
@@ -25,7 +23,7 @@ func _ready():
 	if not Engine.is_editor_hint():
 		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
 	
-	input_xbox_mapped = input_lib.input_xbox_map[input_xbox_names[xbox_button]]
+	input_xbox_mapped = input_lib.input_xbox_map[xbox_button]
 	init()
 
 func init():

@@ -1,26 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://bh226i72aswri"]
 
-[ext_resource path="res://Niveau/tileMap/bleu.png" type="Texture2D" id=1]
-[ext_resource path="res://Niveau/tileMap/tile_collider.tres" type="OccluderPolygon2D" id=2]
+[ext_resource type="Texture2D" uid="uid://bgpjg2s3s3bo2" path="res://Niveau/tileMap/bleu.png" id="1"]
+[ext_resource type="OccluderPolygon2D" path="res://Niveau/tileMap/tile_collider.tres" id="2"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.99914, 8.00151 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(15.9983, 16.003)
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id="2"]
 
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id="3"]
+render_priority = 0
+shader = SubResource("2")
 
 [node name="Bleu" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
 [node name="bleu" type="Sprite2D" parent="."]
-material = SubResource( 3 )
-texture = ExtResource( 1 )
+material = SubResource("3")
+texture = ExtResource("1")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = ExtResource( 2 )
+occluder = ExtResource("2")

@@ -7,7 +7,7 @@ const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 # Color effect
 var colors_name = ["Rouge","Vert","Bleu"]
 var colors_val = [Color(1,0,0,1),Color(0,1,0,1),Color(0,0,1,1)]
-@export_enum("Rouge", "Vert", "Bleu") var my_color: set = change_color # (int, )
+@export_enum("Rouge", "Vert", "Bleu") var my_color: int: set = change_color # (int, )
 var color_bonus
 var color_malus
 # Member variables
@@ -75,7 +75,7 @@ func _physics_process(delta):
 			get_node("AnimationDéplacement").stop()
 		elif tileMap.get_cell_source_id(0, tileMap.local_to_map(position)) != -1 or walls.get_cell_source_id(0, tileMap.local_to_map(position)) != -1:
 			print("inside")
-			position = old_pos 			
+			position = old_pos
 			get_node("AnimationDéplacement").seek(1,true)
 			get_node("AnimationDéplacement").stop()
 		else:

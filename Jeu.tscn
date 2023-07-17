@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cf70pclr4d3fq" path="res://Niveau/Niveau.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://q7tm1hjo843x" path="res://Niveau/Avatar/avatar.tscn" id="2"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Proteger.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Teleporter.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Saut.tscn" id="5"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Detruire.tscn" id="6"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Voler.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Escalader.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://2b0oilwhtlcp" path="res://Niveau/Avatar/items/Proteger.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cpy4mgx0ccvxx" path="res://Niveau/Avatar/items/Teleporter.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://uc7ca7pnwf8m" path="res://Niveau/Avatar/items/Saut.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://bqub5dwg72dv3" path="res://Niveau/Avatar/items/Detruire.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://dpviexh1kj4dg" path="res://Niveau/Avatar/items/Voler.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://btlau1cvdt5ao" path="res://Niveau/Avatar/items/Escalader.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bxqsk0qayxjno" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
 [ext_resource type="Script" path="res://tools.gd" id="12"]
 
@@ -41,29 +41,29 @@ start_position = Vector2(344, 344)
 
 [node name="Sauter" parent="Niveau/Avatar" instance=ExtResource("5")]
 jump_power = 200.0
-xbox_button = 0
+xbox_button = "A"
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource("8")]
 glue_time_max = 10.0
 glue_effect = 1000.0
 glue_delay = 1.0
-xbox_button = 4
+xbox_button = "RB"
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource("6")]
-xbox_button = 1
+xbox_button = "B"
 
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource("9")]
 plane_time_max = 100.0
 plane_effect = 2.0
-xbox_button = 5
+xbox_button = "LT"
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource("3")]
-xbox_button = 2
+xbox_button = "X"
 
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource("4")]
 tp_distance = 31.0
 tp_cooldown = 50.0
-xbox_button = 3
+xbox_button = "Y"
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource("7")]
 position = Vector2(0, 6)
@@ -72,7 +72,7 @@ energy_regen = 5.0
 jetpack_power = 10.0
 time_to_regen = 10.0
 maximum_vertical_speed = -110.0
-xbox_button = 7
+xbox_button = "RT"
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]

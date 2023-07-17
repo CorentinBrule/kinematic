@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://btlau1cvdt5ao"]
 
-[ext_resource path="res://Niveau/Avatar/items/Escalader.gd" type="Script" id=1]
-[ext_resource path="res://Niveau/Avatar/items/escalader.png" type="Texture2D" id=2]
+[ext_resource type="Script" path="res://Niveau/Avatar/items/Escalader.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://djbxe3pn7hb78" path="res://Niveau/Avatar/items/escalader.png" id="2"]
 
 [node name="Escalader" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="escalader" type="Sprite2D" parent="."]
-position = Vector2( 0.179309, -0.939455 )
-scale = Vector2( 0.09, 0.09 )
-texture = ExtResource( 2 )
+position = Vector2(0.179309, -0.939455)
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("2")

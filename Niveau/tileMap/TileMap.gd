@@ -13,6 +13,7 @@ func init():
 # convertie les tuiles interactives en instance de scène d'éléments interactifs
 func fill_interactives():
 	clean_interactives()
+	# peut-être load une seule fois ?
 	var tilesize = cell_quadrant_size
 	var rouge = load("res://Niveau/tileMap/Rouge.tscn")
 	var vert = load("res://Niveau/tileMap/Vert.tscn")
@@ -20,6 +21,7 @@ func fill_interactives():
 	var trigger = load("res://Niveau/tileMap/Trigger.tscn")
 	
 	var colors = ["",rouge,vert,bleu,trigger]
+	var colors_name = ["","Rouge","Vert","Bleu","Trigger"]
 	
 	var tiles =  get_used_cells(0)
 	for t in tiles:
@@ -28,6 +30,7 @@ func fill_interactives():
 		if color_num > 0:
 			var node = colors[color_num].instantiate()
 			add_child(node)
+			node.name = colors_name[color_num]
 			node.position.x = t.x * tilesize + tilesize/2
 			node.position.y = t.y * tilesize + tilesize/2
 			set_cell(0, t, -1)
