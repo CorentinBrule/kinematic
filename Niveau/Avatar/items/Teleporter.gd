@@ -16,7 +16,7 @@ func _init():
 	}
 	
 func physics_process(delta):
-	var action = Input.is_action_pressed(name)
+	action = Input.is_action_pressed(name)
 	
 	if action and recall > tp_cooldown:
 		if Input.is_action_pressed("move_left"):

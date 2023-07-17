@@ -30,10 +30,10 @@ func physics_process(delta):
 	var action = Input.is_action_pressed(name)
 	
 	if action and infinite:
-		action()
+		active()
 	elif action and energy > 0:
 		regen_time = 0
-		action()
+		active()
 		energy = max(min(energy_max, energy - energy_use), 0)
 		
 	else:
@@ -41,5 +41,5 @@ func physics_process(delta):
 			energy = max(min(energy_max, energy + energy_regen), 0)
 		regen_time += 1
 
-func action():
+func active():
 	avatar.velocity.y = max(avatar.velocity.y - jetpack_power, maximum_vertical_speed)

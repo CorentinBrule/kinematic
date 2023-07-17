@@ -25,19 +25,19 @@ func process(delta):
 	progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(name)
+	action = Input.is_action_pressed(name)
 	
 	if infinite and action:
-		action()
+		active()
 	elif action and plane_time < plane_time_max:
-			action()
+			active()
 			plane_time += 1
 	
 	#print(avatar.colle == true and avatar.is_on_wall())
 	if avatar.is_on_floor() or avatar.is_on_wall() and avatar.colle == true:
 		plane_time = 0
 
-func action():
+func active():
 	if avatar.velocity.y < 0:
 		avatar.velocity.y = 0
 	else:

@@ -7,6 +7,8 @@ extends Item
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
+var toggleable = false
+
 # Called when the node enters the scene tree for the first time.
 
 func _init():
@@ -20,7 +22,12 @@ func _init():
 	}
 
 func physics_process(delta):
-	var action = Input.is_action_pressed(name)
+	
+	if toggleable:
+		if Input.is_action_just_pressed(action_name) :
+			action = ! action
+	else:
+		action = Input.is_action_pressed(action_name)
 	
 	if action:
 		if avatar.is_on_wall():

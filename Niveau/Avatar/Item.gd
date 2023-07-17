@@ -14,6 +14,7 @@ var input_xbox_mapped
 var keyboard_key_name
 var keyboard_key_scancode
 var initial_state = {}
+var action
 
 func _ready():
 	#get_parent().get_parent().get_parent().get_parent().connect("custom_visibility_changed",Callable(self,"_on_Item_visiblity_changed"))
