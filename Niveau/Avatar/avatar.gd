@@ -72,12 +72,10 @@ func _physics_process(delta):
 			print("stuck")
 			position = old_pos
 			get_node("AnimationDéplacement").seek(1,true)
-			get_node("AnimationDéplacement").stop()
 		elif tileMap.get_cell_source_id(0, tileMap.local_to_map(position)) != -1 or walls.get_cell_source_id(0, tileMap.local_to_map(position)) != -1:
 			print("inside")
 			position = old_pos
 			get_node("AnimationDéplacement").seek(1,true)
-			get_node("AnimationDéplacement").stop()
 		else:
 			old_pos = position
 		
