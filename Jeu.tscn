@@ -29,7 +29,8 @@ char_name = "Avatar"
 narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
 
 [node name="TileMap" parent="Niveau" instance=ExtResource("10")]
-layer_0/tile_data = PackedInt32Array(65537, 1, 0, 196610, 0, 0, 262146, 0, 0, 327683, 0, 0, 393219, 0, 0, 458756, 0, 0, 524292, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851975, 0, 0, 917511, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1376267, 0, 0, 1376269, 4, 0, 1376271, 2, 0, 1376273, 1, 0, 1376275, 3, 0)
+position = Vector2(-1, 0)
+layer_0/tile_data = PackedInt32Array(196610, 0, 0, 65537, 1, 0, 262146, 0, 0, 327683, 0, 0, 393219, 0, 0, 458756, 0, 0, 524292, 0, 0, 589829, 0, 0, 655365, 0, 0, 720902, 0, 0, 786438, 0, 0, 851975, 0, 0, 917511, 0, 0, 983048, 0, 0, 1048584, 0, 0, 1114121, 0, 0, 1179657, 0, 0, 1245194, 0, 0, 1310730, 0, 0, 1376267, 0, 0, 1376269, 4, 0, 1376271, 2, 0, 1376273, 1, 0, 1376275, 3, 0)
 
 [node name="Avatar" parent="Niveau" instance=ExtResource("2")]
 process_mode = 1

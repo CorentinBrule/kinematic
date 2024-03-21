@@ -14,7 +14,7 @@ func init():
 func fill_interactives():
 	clean_interactives()
 	# peut-être load une seule fois ?
-	var tilesize = cell_quadrant_size
+	var tilesize = rendering_quadrant_size
 	var rouge = load("res://Niveau/tileMap/Rouge.tscn")
 	var vert = load("res://Niveau/tileMap/Vert.tscn")
 	var bleu = load("res://Niveau/tileMap/Bleu.tscn")
