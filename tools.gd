@@ -44,4 +44,3 @@ func _on_Niveau_var_changed():
 		print("event checked change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
-

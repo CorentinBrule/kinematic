@@ -48,7 +48,7 @@ static func set_tilemap_data(scene, tilemap_data):
 	tilemap.clear()
 	print(tilemap)
 	for cell in tilemap_data:
-		tilemap.set_cell(0, Vector2(cell.x, cell.y), cell.id, Vector2i(0,0))
+		tilemap.set_cell(Vector2(cell.x, cell.y), cell.id, Vector2i(0,0))
 	
 static func set_character_data(scene, character_data):
 	var character = scene.get_node("Niveau/Avatar")
@@ -135,7 +135,7 @@ static func get_tilemap_data(tilemap):
 	print(tilemap)
 	var used_cells = tilemap.get_used_cells(0)
 	for cell in used_cells:
-		var cell_id = tilemap.get_cell_source_id(0,Vector2i(cell.x,cell.y))
+		var cell_id = tilemap.get_cell_source_id(Vector2i(cell.x,cell.y))
 		tilemap_data.append({
 			"x":cell.x,
 			"y":cell.y,

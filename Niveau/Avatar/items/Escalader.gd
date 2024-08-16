@@ -50,4 +50,3 @@ func physics_process(delta):
 
 	if Input.is_action_just_released(name):
 		avatar.colle = false
-

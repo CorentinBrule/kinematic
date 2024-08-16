@@ -1,4 +1,4 @@
-extends TileMap
+extends TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,17 +23,17 @@ func fill_interactives():
 	var colors = ["",rouge,vert,bleu,trigger]
 	var colors_name = ["","Rouge","Vert","Bleu","Trigger"]
 	
-	var tiles =  get_used_cells(0)
+	var tiles =  get_used_cells()
 	for t in tiles:
 		#print(t)
-		var color_num = get_cell_source_id(0,t)
+		var color_num = get_cell_source_id(t)
 		if color_num > 0:
 			var node = colors[color_num].instantiate()
 			add_child(node)
 			node.name = colors_name[color_num]
 			node.position.x = t.x * tilesize + tilesize/2
 			node.position.y = t.y * tilesize + tilesize/2
-			set_cell(0, t, -1)
+			set_cell(t, -1)
 	
 func save_tileMap():
 	var packed_scene = PackedScene.new()
