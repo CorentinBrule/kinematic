@@ -11,7 +11,6 @@ export(bool) var mobile_emulation = false setget _change_mobile_emulation
 export(bool) var click_to_move = false
 
 export(String) var save_folder_path = "res://save/"
-export(String) var save_server_url = "http://localhost/kinematique/saves.php"
 
 var avatar
 var GUI

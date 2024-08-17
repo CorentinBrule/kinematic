@@ -31,7 +31,6 @@ var has_touch_screen = false
 
 var has_server_saves = false
 var save_folder_path = "res://save/"
-var save_server_url = ""
 var save_files_path = []
 var save_files_data = []
 var save_index = 0
@@ -46,14 +45,18 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	save_folder_path = current_scene.save_folder_path
-	save_server_url = current_scene.save_server_url
 	
+	print(OS.has_touchscreen_ui_hint())
 	if OS.has_touchscreen_ui_hint():
 		has_touch_screen = true
 	
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 
 		if OS.has_feature('JavaScript'):
+			print("OS has JavaScript Feature")
+			var js_return = JavaScript.eval("window.location.origin + window.location.pathname")
+			var save_server_url = js_return + "saves.php"
+			print(save_server_url)
 			var http = HTTPRequest.new()
 			current_scene.add_child(http)
 			http.connect("request_completed", self, "_on_request_completed")
