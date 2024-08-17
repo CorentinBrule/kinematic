@@ -13,6 +13,7 @@ func _ready():
 
 func init(list_save_files):
 	save_files = list_save_files
+	var idx = 0
 	for save_file in list_save_files:
 #		print(save_file.file_path)
 #		print(save_file.meta.date)
@@ -30,7 +31,8 @@ func init(list_save_files):
 		var color_id = save_file.character.properties.my_color
 		var color_texture = load(color_textures[color_id])
 		$"%save_files_list".add_item(clean_text, color_texture)
-
+		$"%save_files_list".set_item_tooltip_enabled(idx, false)
+		idx+=1
 
 func _on_save_files_list_item_activated(index):
 	Global.set_save(save_files[index])
