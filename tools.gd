@@ -8,7 +8,6 @@ extends Node
 @export var auto_cam:bool = false
 @export var joystick_zoom:bool = false
 @export var save_folder_path:String = "res://save/"
-@export var save_server_url:String = "http://localhost/kinematique/saves.php"
 
 var avatar
 var GUI

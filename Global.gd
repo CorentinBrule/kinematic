@@ -29,7 +29,6 @@ var avatar
 
 var has_server_saves = false
 var save_folder_path = "res://save/"
-var save_server_url = "http://localhost/kinematique/saves.php"
 var save_files_path = []
 var save_files_data = []
 var save_index = 0
@@ -44,17 +43,19 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	save_folder_path = current_scene.save_folder_path
-	save_server_url = current_scene.save_server_url
 	
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 
 		if OS.has_feature('web'):
 			print("OS has feature web")
-			var http = HTTPRequest.new()
-			current_scene.add_child(http)
-			http.request_completed.connect(self._on_request_completed)
-			await http.request(save_server_url)
-			
+			var js_return = JavaScriptBridge.eval("window.location.origin + window.location.pathname")
+			var save_server_url = js_return + "saves.php"
+			print(save_server_url)
+			var response = await server_request(save_server_url)
+			if response:
+				has_server_saves = true
+				save_files_data = response
+		
 		if has_server_saves == false:
 			save_files_path = list_files_in_directory(save_folder_path)
 			save_files_data = load_files(save_files_path)
@@ -62,6 +63,33 @@ func _ready():
 		current_scene.get_node("Menu").init(save_files_data)
 		await get_tree().create_timer(0.1).timeout
 		set_save(save_files_data[0])
+
+func server_request(save_server_url):
+	var http = HTTPRequest.new()
+	current_scene.add_child(http)
+	# http.request_completed.connect(self, "_on_request_completed")
+	var error = http.request(save_server_url)
+	var result = await http.request_completed
+	var response_code = result[1]
+	if response_code == 200:
+		var body = result[3]
+		var json = JSON.new()
+		var json_error = json.parse(body.get_string_from_utf8())
+		if json_error == OK:
+			print("CONNECTION WITH SAVE SERVER")
+			var data_received = json.data
+			if typeof(data_received) == TYPE_ARRAY:
+				save_files_data = json.data
+				print("THE SAVES HAS BEEN LOADED FROM ANOTHER FILE ON SERVER")
+				return json.data
+			else:
+				print("Unexpected data")
+		else:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", body.get_string_from_utf8(), " at line ", json.get_error_line())
+			print(body.get_string_from_utf8())
+	else:
+		print("CONNECTION FAILED :'(")
+	return false
 
 func _process(delta):
 	if current_scene.has_node("Menu"):
@@ -159,17 +187,3 @@ func load_files(files):
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
 	return datas
-
-func _on_request_completed(result, response_code, headers, body):
-	print(result)
-	if result == HTTPRequest.RESULT_SUCCESS:
-		print("THE SAVES HAS BEEN LOADED FROM ANOTHER FILE ON SERVER")
-		var json = JSON.parse_string(body.get_string_from_utf8())
-		
-		if json:
-			has_server_saves = true
-			save_files_data = json.result
-		else:
-			print("BUT CAN'T PARSE JSON OR EMPTY:")
-			print(body.get_string_from_utf8())
-			
