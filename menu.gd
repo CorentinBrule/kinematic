@@ -12,6 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 func init(list_save_files):
+	$"%toogleFullScreen".pressed = OS.window_fullscreen
 	save_files = list_save_files
 	var idx = 0
 	for save_file in list_save_files:
@@ -34,18 +35,31 @@ func init(list_save_files):
 		$"%save_files_list".set_item_tooltip_enabled(idx, false)
 		idx+=1
 
-func _on_save_files_list_item_activated(index):
-	Global.set_save(save_files[index])
-	Global.save_index = index
+func exit_menu():
 	Global.unpause_level()
 	visible = false
 	Global.is_menu = false
+
+func _on_save_files_list_item_activated(index):
+	Global.set_save(save_files[index])
+	Global.save_index = index
+	exit_menu()
 
 
 func _on_save_files_list_item_selected(index):
 	if Global.has_touch_screen:
 		Global.set_save(save_files[index])
 		Global.save_index = index
-		Global.unpause_level()
-		visible = false
-		Global.is_menu = false
+		exit_menu()
+
+func _on_exitMenuButton_pressed():
+	exit_menu()
+
+func _on_toogleFullScreen_pressed():
+	OS.set_window_fullscreen(!OS.window_fullscreen)
+
+func on_resize_window():
+	$"%toogleFullScreen".pressed = OS.window_fullscreen
+
+
+

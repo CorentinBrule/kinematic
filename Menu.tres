@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=9 format=2]
+[gd_resource type="Theme" load_steps=10 format=2]
 
 [ext_resource path="res://assets/FT88-Regular.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 10
@@ -38,6 +41,18 @@ bg_color = Color( 1, 1, 1, 1 )
 corner_detail = 1
 
 [resource]
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_focus = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 0
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource( 8 )
+Button/styles/pressed = null
 ItemList/colors/font_color = Color( 0, 0, 0, 1 )
 ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
 ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
@@ -45,6 +60,7 @@ ItemList/constants/vseparation = 6
 ItemList/fonts/font = SubResource( 3 )
 ItemList/styles/bg = SubResource( 1 )
 ItemList/styles/bg_focus = SubResource( 2 )
+ScrollContainer/styles/bg = null
 Tree/colors/relationship_line_color = Color( 1, 1, 1, 1 )
 VScrollBar/styles/grabber = SubResource( 4 )
 VScrollBar/styles/grabber_highlight = SubResource( 5 )

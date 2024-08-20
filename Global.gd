@@ -93,8 +93,8 @@ func _process(delta):
 			else:
 				is_menu = true
 				pause_level()
-				current_scene.get_node("Menu/Control/save_files_list").select(save_index)
 				current_scene.get_node("Menu").visible = true
+				current_scene.get_node("Menu").get_node("%save_files_list").select(save_index)
 				current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
 
 func set_save(save_data):
