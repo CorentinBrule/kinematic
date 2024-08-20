@@ -7,7 +7,7 @@ var tool_node
 var out_game_interface_droit
 var out_game_interface_gauche
 var out_game_meta
-var out_game_esc
+var out_game_bas_droit
 var actions_container
 var actions_touch_container
 
@@ -26,7 +26,7 @@ func _ready():
 	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
 	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
 	out_game_meta = $outGameGUI/meta
-	out_game_esc = $outGameGUI/retourMenu
+	out_game_bas_droit = $"%bas_droit"
 	actions_container = $"%ActionsContainer"
 	actions_touch_container = $"%ActionsContainerTouch"
 	adapt_interface()
@@ -72,10 +72,13 @@ func init():
 	if regex.search(Input.get_joy_name(0)):
 		$"%TextureStart".show()
 		$"%TextureEsc".hide()
-	
+		$"%GuiActionZoom".find_node("ActionButton").hide()
+		$"%GuiActionZoom".find_node("ActionKey").show()
 	else:
 		$"%TextureEsc".show()
 		$"%TextureStart".hide()
+		$"%GuiActionZoom".find_node("ActionButton").show()
+		$"%GuiActionZoom".find_node("ActionKey").hide()
 	yield(get_tree(), "idle_frame")
 	
 	adapt_interface()
@@ -95,6 +98,8 @@ func update_interface():
 		actions_touch_container.show()
 		actions_touch_container_overflow.show()
 		$touch_controls.show()
+		$"%GuiActionZoom".hide()
+		$"%bas_droit/MarginContainer".show()
 		$"%TextureStart".show()
 		$"%TextureEsc".hide()
 	else:
@@ -102,20 +107,23 @@ func update_interface():
 		actions_touch_container_overflow.hide()
 		$touch_controls.hide()
 		actions_container.show()
+		$"%GuiActionZoom".show()
+		$"%bas_droit/MarginContainer".hide()
 
 func adapt_interface():
 	if not Engine.editor_hint:
 		var resize_ratio = get_viewport().size.x / get_viewport().size.y
-		var out_game_interface_width = base_size.x * ((resize_ratio - 0.8))
-		out_game_interface_droit.rect_size.x = max(out_game_interface_width, 150)
-		out_game_interface_gauche.rect_size.x = max(out_game_interface_width, 150) 
+		width_out_game_interface = max(base_size.x * ((resize_ratio - 0.8)),180)
+		out_game_interface_droit.rect_size.x = width_out_game_interface
+		out_game_interface_gauche.rect_size.x = width_out_game_interface
 		out_game_interface_gauche.rect_position.x = (out_game_interface_gauche.rect_size.x*-1)
 		out_game_meta.rect_position.x = (out_game_interface_gauche.rect_size.x*-1)
-		out_game_esc.rect_position.x = out_game_interface_droit.rect_size.x + 50
+		out_game_bas_droit.rect_size.x = out_game_interface_droit.rect_size.x + 50
 
 func on_resize_window():
 	if not Engine.editor_hint:
 		adapt_interface()
+		get_parent().get_node("Camera2D").update_mid_zoom(width_out_game_interface)
 		get_parent().get_node("Camera2D").adapt_clips()
 		get_parent().get_node("Camera2D").force_update_clip()
 

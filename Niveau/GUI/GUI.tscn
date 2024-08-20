@@ -6,7 +6,9 @@
 [ext_resource path="res://assets/xbox_start_21x21.png" type="Texture" id=4]
 [ext_resource path="res://assets/ÉCH_21x21.png" type="Texture" id=5]
 [ext_resource path="res://Niveau/GUI/touch_controls.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/Tab_21x21.png" type="Texture" id=7]
 [ext_resource path="res://Niveau/GUI/GUI_actions_touch.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/xbox_select_21x21.png" type="Texture" id=9]
 
 [sub_resource type="Theme" id=15]
 default_font = ExtResource( 1 )
@@ -19,6 +21,9 @@ script = SubResource( 13 )
 [node name="GUI" type="Node2D"]
 z_index = 10
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_vertical_guides_": [ -315.0 ]
+}
 
 [node name="touch_controls" parent="." instance=ExtResource( 6 )]
 unique_name_in_owner = true
@@ -94,7 +99,7 @@ autowrap = true
 anchor_left = 1.0
 anchor_right = 1.5
 anchor_bottom = 1.0
-margin_right = 810.545
+margin_right = 810.0
 grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit"]
@@ -119,7 +124,7 @@ fit_content_height = true
 unique_name_in_owner = true
 margin_top = 30.0
 margin_right = 1002.0
-margin_bottom = 354.0
+margin_bottom = 355.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
 
@@ -131,30 +136,26 @@ margin_bottom = 25.0
 [node name="ActionsContainerTouch" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 unique_name_in_owner = true
 visible = false
-margin_top = 87.0
+margin_top = 82.0
 margin_right = 1002.0
-margin_bottom = 353.0
+margin_bottom = 325.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 100.0
 alignment = 2
 
 [node name="Gui_actions_touch" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch" instance=ExtResource( 8 )]
-margin_top = 216.0
+margin_top = 193.0
 margin_right = 1002.0
-margin_bottom = 266.0
+margin_bottom = 243.0
 
-[node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
-margin_top = 358.0
+[node name="MarginContainer" type="MarginContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+margin_top = 359.0
 margin_right = 1002.0
 margin_bottom = 384.0
-size_flags_horizontal = 3
-size_flags_vertical = 2
-custom_colors/default_color = Color( 1, 1, 1, 1 )
-custom_fonts/normal_font = ExtResource( 1 )
-bbcode_enabled = true
-bbcode_text = "c'est parti !"
-text = "c'est parti !"
-fit_content_height = true
+
+[node name="Label" type="Label" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/MarginContainer"]
+margin_right = 1002.0
+margin_bottom = 25.0
 
 [node name="meta" type="VBoxContainer" parent="outGameGUI"]
 margin_left = -56.0
@@ -169,39 +170,104 @@ margin_right = 56.0
 margin_bottom = 25.0
 text = "test"
 
-[node name="retourMenu" type="HBoxContainer" parent="outGameGUI"]
+[node name="bas_droit" type="VBoxContainer" parent="outGameGUI"]
 unique_name_in_owner = true
-visible = false
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 668.545
-margin_top = 50.0
-margin_right = 1004.54
+margin_top = -26.0
+margin_right = 1005.0
+margin_bottom = 84.0
+
+[node name="MarginContainer" type="MarginContainer" parent="outGameGUI/bas_droit"]
+visible = false
+margin_right = 1005.0
+margin_bottom = 25.0
+
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer"]
+margin_right = 1005.0
+margin_bottom = 25.0
+
+[node name="GuiActionZoom" type="HBoxContainer" parent="outGameGUI/bas_droit"]
+unique_name_in_owner = true
+margin_right = 1005.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_horizontal_guides_": [ 16.0 ]
+}
+
+[node name="ActionDescription" type="Label" parent="outGameGUI/bas_droit/GuiActionZoom"]
+margin_right = 1005.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "zoom/dézoom"
+
+[node name="ActionButton" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
+margin_left = -26.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 7 )
+
+[node name="ActionKey" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
+visible = false
+margin_left = -26.0
+margin_right = -5.0
+margin_bottom = 21.0
+texture = ExtResource( 9 )
+
+[node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/bas_droit"]
+margin_top = 29.0
+margin_right = 1005.0
 margin_bottom = 55.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = ExtResource( 1 )
+bbcode_enabled = true
+bbcode_text = "c'est parti !"
+text = "c'est parti !"
+fit_content_height = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="outGameGUI/bas_droit"]
+margin_top = 59.0
+margin_right = 1005.0
+margin_bottom = 84.0
+
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer2"]
+margin_right = 1005.0
+margin_bottom = 25.0
+
+[node name="retourMenu" type="HBoxContainer" parent="outGameGUI/bas_droit"]
+unique_name_in_owner = true
+margin_top = 88.0
+margin_right = 1005.0
+margin_bottom = 110.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="TextureStart" type="TextureRect" parent="outGameGUI/retourMenu"]
+[node name="TextureStart" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
 unique_name_in_owner = true
 visible = false
-margin_left = 5.0
-margin_right = 26.0
+margin_left = 14.0
+margin_right = 35.0
 margin_bottom = 25.0
 rect_pivot_offset = Vector2( -73.5449, 10 )
 texture = ExtResource( 4 )
 
-[node name="TextureEsc" type="TextureRect" parent="outGameGUI/retourMenu"]
-margin_left = 30.0
-margin_right = 51.0
+[node name="TextureEsc" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
+unique_name_in_owner = true
+margin_left = 709.0
+margin_right = 730.0
 margin_bottom = 25.0
 rect_pivot_offset = Vector2( -73.5449, 10 )
 texture = ExtResource( 5 )
 
-[node name="retourMenu_label" type="Label" parent="outGameGUI/retourMenu"]
+[node name="retourMenu_label" type="Label" parent="outGameGUI/bas_droit/retourMenu"]
 unique_name_in_owner = true
-margin_left = 55.0
-margin_right = 335.0
+margin_left = 734.0
+margin_right = 1005.0
 margin_bottom = 25.0
 text = "pour revenir au menu"
