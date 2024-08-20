@@ -13,7 +13,9 @@ var key_colors={
 }
 
 var has_progress = false
+var has_cooldown = false
 var texture_progress
+var texture_cooldown
 var action
 var key_name = ""
 
@@ -24,6 +26,7 @@ func _ready():
 func init(_action):
 	action = _action
 	var action_name = action.get_name()
+	texture_cooldown = $ActionDescription/ActionKey/cacheCooldown
 	texture_progress = $ActionDescription/ActionKey/cadreDiamant
 	var key_label = $ActionDescription/ActionKey
 	
@@ -50,15 +53,25 @@ func init(_action):
 	description_label.text = action_name #
 	key_label.text = key_name
 	
-	if action.get("progress_percent") != null and (action.get("infinite") == false or action.get("infinite") == null):
+	if action.get("has_effect") and (action.get("infinite") == false or action.get("infinite") == null):
 		has_progress = true
-	else:
-		texture_progress.hide()
-		
+		#print(has_progress)
+	
+	if action.get("has_cooldown"):
+		has_cooldown = true
+	
 	if action_is_visible == false:
 		hide()
 
 func _process(delta):
 	if not Engine.editor_hint:
 		if has_progress:
+			#print(action.progress_percent)
 			texture_progress.value = action.progress_percent
+		else:
+			if action.action:
+				texture_progress.value = 100
+			else:
+				texture_progress.value = 0
+		if has_cooldown:
+			texture_cooldown.value = action.cooldown_percent

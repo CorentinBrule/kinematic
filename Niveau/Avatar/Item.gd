@@ -2,6 +2,8 @@ tool
 extends Node2D
 class_name Item, "res://assets/diamand_texture_21x21.png"
 
+const Cooldown = preload('res://Niveau/Avatar/cooldown.gd')
+
 var avatar
 signal input_changed
 
@@ -13,6 +15,21 @@ var keyboard_key_scancode
 var action_name
 var initial_state = {}
 var joypad_event
+
+var toggleable = false
+var toggle = false
+
+var has_cooldown
+var has_effect
+
+var cooldown
+var effect
+
+var cooldown_time = 0
+var effect_time = 0
+
+var cooldown_percent = 0
+var progress_percent = 0
 
 var action = false
 
@@ -32,6 +49,12 @@ func init():
 	action_name = name
 	button_index = input_xbox_map.find(xbox_button)
 	input_xbox_map.find(xbox_button)
+	
+	if not Engine.editor_hint:
+		if Global.has_touch_screen:
+			if toggleable:
+				toggle = true
+			
 	init_input()
 	if is_visible() == false:
 		set_process(false)
@@ -39,6 +62,20 @@ func init():
 	else:
 		set_process(true)
 		set_physics_process(true)
+		
+	if has_cooldown:
+		cooldown = Timer.new()
+		add_child(cooldown)
+		cooldown.wait_time = cooldown_time
+		cooldown.one_shot = true
+		cooldown.connect("timeout", self, "_on_Cooldown_timeout")
+	
+	if has_effect:
+		effect = Timer.new()
+		add_child(effect)
+		effect.wait_time = effect_time
+		effect.one_shot = true
+		effect.connect("timeout", self, "_on_Effect_timeout")
 
 func init_input():
 	if not InputMap.has_action(action_name):
@@ -61,6 +98,12 @@ func process(delta):
 
 func _physics_process(delta):
 	if not Engine.editor_hint:
+		if toggle == false:
+			action = Input.is_action_pressed(action_name)
+		else:
+			if Input.is_action_just_pressed(action_name) :
+				action = !action
+		
 		physics_process(delta)
 
 func physics_process(delta):
@@ -74,6 +117,39 @@ func change_input(new_value):
 func reset():
 	for state in initial_state.keys():
 		set(state, initial_state[state])
+
+## Conditional properties exporter
+func _get(property):
+	match property:
+		"toggle":            
+			return toggle          
+
+func _set(property, value):
+	# Assume the property exists
+	var retval: bool = true
+	match property:
+		"toggle":            
+			toggle = value  
+		"_effect_time":
+			effect_time = value
+		"_cooldown_time":
+			cooldown_time = value
+		_:
+			# If here, trying to set a property we are not manually dealing with.
+			retval = false
+		#property_list_changed_notify()# update inspect
+	return retval
+
+func _get_property_list():
+	var ret: Array = []
+	if(toggleable):
+		ret.append({
+			"name": "toggle",
+			"type": TYPE_BOOL,
+		})
+	
+	return ret
+
 
 #func _on_self_visibility_changed():
 #	print("oui de la class")

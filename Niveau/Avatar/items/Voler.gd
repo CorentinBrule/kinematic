@@ -11,26 +11,26 @@ export var time_to_regen = 10
 export var maximum_vertical_speed = -110
 var regen_time = 0
 
-var progress_percent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	keyboard_key_name = "F"
 	keyboard_key_scancode = OS.find_scancode_from_string("f")
+	has_effect = true
 	init()
 	
-	progress_percent = 0
 	initial_state = {
 		"regen_time" : regen_time,
 		"energy" : energy
 	}
 
 func process(delta):
-	progress_percent = energy / energy_max * 100
+	if action:
+		progress_percent = energy / energy_max * 100
+	else: 
+		progress_percent = 0
 
 func physics_process(delta):
-	action = Input.is_action_pressed(action_name)
-	
 	if action and infinite:
 		action()
 	elif action and energy > 0:

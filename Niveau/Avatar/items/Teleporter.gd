@@ -10,16 +10,17 @@ func _ready():
 	keyboard_key_name = "T"
 	keyboard_key_scancode = OS.find_scancode_from_string("t")
 	init()
-	
+	has_cooldown = true
 	recall = tp_cooldown
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"recall" : recall
 	}
-	
+
+func process(delta):
+	cooldown_percent = (tp_cooldown - recall) / tp_cooldown * 100
+
 func physics_process(delta):
-	action = Input.is_action_pressed(action_name)
-	
 	if action and recall > tp_cooldown:
 		if Input.is_action_pressed("move_left"):
 			avatar.get_node("AnimationDéplacement").play("téléportation_gauche",-1,2,false)

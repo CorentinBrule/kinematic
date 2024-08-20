@@ -7,32 +7,29 @@ export var plane_effect = 2
 
 var plane_time = 0
 
-var progress_percent
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	keyboard_key_name = "A"
 	keyboard_key_scancode = OS.find_scancode_from_string("a")
+	has_effect = true
 	init()
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"plane_time" : plane_time
 	}
-	
-	progress_percent = 0
-	
 
 func process(delta):
-	progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
+	if action:
+		progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
+	else:
+		progress_percent = 0
 
 func physics_process(delta):
-	action = Input.is_action_pressed(action_name)
-	
 	if infinite and action:
 		action()
 	elif action and plane_time < plane_time_max:
-			action()
-			plane_time += 1
+		action()
+		plane_time += 1
 	
 	#print(avatar.colle == true and avatar.is_on_wall())
 	if avatar.is_on_floor() or avatar.is_on_wall() and avatar.colle == true:
