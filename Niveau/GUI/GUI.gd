@@ -7,7 +7,7 @@ extends Node2D
 var out_game_interface_droit
 var out_game_interface_gauche
 var out_game_meta
-var out_game_esc
+var out_game_bas_droit
 var actions_container
 
 var avatar
@@ -15,13 +15,15 @@ var color
 const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
 var base_size = Vector2(384,384)
 
+var width_out_game_interface = base_size.x
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
 	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
 	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
 	out_game_meta = $outGameGUI/meta
-	out_game_esc = $outGameGUI/retourMenu
+	out_game_bas_droit = $"%bas_droit"
 	actions_container = $"%ActionsContainer"
 	adapt_interface()
 
@@ -56,23 +58,59 @@ func init():
 	regex.compile("(?i)(xbox|x-box|microsoft)")
 	if regex.search(Input.get_joy_name(0)):
 		$"%TextureStart".show()
+		$"%TextureEsc".hide()
+		$"%GuiActionZoom".find_child("ActionButton").hide()
+		$"%GuiActionZoom".find_child("ActionKey").show()
+	else:
+		$"%TextureEsc".show()
+		$"%TextureStart".hide()
+		$"%GuiActionZoom".find_child("ActionButton").show()
+		$"%GuiActionZoom".find_child("ActionKey").hide()
+	await get_tree().process_frame
 	
-	#yield(get_tree(), "idle_frame")
 	adapt_interface()
+
+#func _input(event):
+	#if (event is InputEventKey and event.pressed) or (event is InputEventJoypadButton):
+		#Global.has_touch_screen = false
+		#update_interface()
+	#elif event is InputEventScreenTouch:
+		#Global.has_touch_screen = true
+		#update_interface()
+
+func update_interface():
+	#print(Global.has_touch_screen)
+	if Global.has_touch_screen:
+		actions_container.hide()
+		#actions_touch_container.show()
+		#actions_touch_container_overflow.show()
+		$touch_controls.show()
+		$"%GuiActionZoom".hide()
+		$"%bas_droit/MarginContainer".show()
+		$"%TextureStart".show()
+		$"%TextureEsc".hide()
+	else:
+		#actions_touch_container.hide()
+		#actions_touch_container_overflow.hide()
+		$touch_controls.hide()
+		actions_container.show()
+		$"%GuiActionZoom".show()
+		$"%bas_droit/MarginContainer".hide()
 
 func adapt_interface():
 	if not Engine.is_editor_hint():
-		var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)
-		var out_game_interface_width = base_size.x * ((resize_ratio - 0.8))
-		out_game_interface_droit.size.x = max(out_game_interface_width, 150)
-		out_game_interface_gauche.size.x = max(out_game_interface_width, 150) 
+		var resize_ratio = float(get_viewport().size.x )/ float(get_viewport().size.y)
+		width_out_game_interface = max(base_size.x * ((resize_ratio - 0.8)),180)
+		out_game_interface_droit.size.x = width_out_game_interface
+		out_game_interface_gauche.size.x = width_out_game_interface
 		out_game_interface_gauche.position.x = (out_game_interface_gauche.size.x*-1)
 		out_game_meta.position.x = (out_game_interface_gauche.size.x*-1)
-		out_game_esc.position.x = out_game_interface_droit.size.x + 50
+		out_game_bas_droit.size.x = out_game_interface_droit.size.x + 50
 
 func on_resize_window():
 	if not Engine.is_editor_hint():
 		adapt_interface()
+		get_parent().get_node("Camera2D").update_mid_zoom(width_out_game_interface)
 		get_parent().get_node("Camera2D").adapt_clips()
 		get_parent().get_node("Camera2D").force_update_clip()
 

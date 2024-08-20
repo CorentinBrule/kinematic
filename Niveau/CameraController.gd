@@ -9,8 +9,8 @@ var target_pos
 var zoom_val = 1
 var zoom_speed = 0.1
 var min_zoom = Vector2(0.5, 0.5)
-var max_zoom = Vector2(4, 4)
-var mid_zoom = Vector2(1,1)
+var max_zoom = Vector2(2,2)
+var mid_zoom = Vector2(1, 1)
 var zoom_dest = zoom
 var edge_from_center
 var clip_left_position_dest
@@ -33,7 +33,7 @@ func _ready():
 func init():
 	if !auto_cam:
 		zoom_val = 0.5
-		reset_zoom()
+		zoom_to_game()
 		open_clip_controls()
 	else:
 		clip_open_left = true
@@ -48,7 +48,7 @@ func _input(event):
 		if event.is_action("move_bottom") or event.is_action("move_right") or event.is_action("move_left") or event.is_action("move_up") or event.is_action("Sauter"):
 			if event.get_action_strength("move_bottom") > 0.5 or event.get_action_strength("move_right") > 0.5 or event.get_action_strength("move_left") > 0.5 or event.get_action_strength("move_up") > 0.5 or event.get_action_strength("Sauter") > 0.5:
 				# il y a un truc que j'ai pas compris ave les zones mortes des joysticks...
-				reset_zoom()
+				zoom_to_game()
 				open_clip_controls()
 	
 	if event.is_action("zoom_up_mouse"):
@@ -56,11 +56,18 @@ func _input(event):
 	if event.is_action("zoom_down_mouse"):
 		zoom_out()
 	
+	if event.is_action_pressed("zoom_toggle"):
+		#print(zoom_val)
+		if zoom_val == 0.5:
+			zoom_to_out()
+		else:
+			zoom_to_game()
+	
 	if event.is_action_pressed("zoom_reset"):
 		if zoom_val == 0.5 and clip_open_right == false:
 			open_clip_controls()
 		else:
-			reset_zoom()
+			zoom_to_game()
 	
 	#print(zoom_val)
 	if zoom_val > 0.5:
@@ -115,14 +122,33 @@ func calc_zoom_dest(max_zoom,min_zoom,zoom_val):
 		_zoom_dest = mid_zoom
 	return _zoom_dest
 
-func reset_zoom():
+func zoom_to_game():
 	zoom_dest = mid_zoom
 	zoom_val = 0.5
 	clip_open_right = false
 	clip_open_left = false
 	target_pos = middle_pos
+	open_clip_controls()
 	adapt_clips()
 #	print("val: "+str(zoom_val)+" zoom_dest: " + str(zoom_dest))
+
+func zoom_to_out():
+	zoom_val = 1
+	zoom_dest = min_zoom
+	adapt_clips()
+
+func update_mid_zoom(width_out_game_interface):
+	var resize_ratio = get_viewport().size.x / get_viewport().size.y
+	var width_total = 384 + width_out_game_interface *2
+	var width_ratio = float(float(width_out_game_interface*2)/384)
+
+	if(resize_ratio < 2):
+		# valeurs arbitraires mais fonctionne pour la plus part des ratios
+		var zoom = 1/(0.7+(1/width_ratio))
+		#var zoom = (384/width_out_game_interface)
+		mid_zoom = Vector2(zoom, zoom)  
+	else:
+		mid_zoom = Vector2(1.0,1.0)
 
 func adapt_clips():
 	var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)

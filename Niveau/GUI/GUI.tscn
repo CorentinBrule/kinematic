@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=11 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://deoimpdvhsvy7" path="res://assets/xbox_start_21x21.png" id="4_3auof"]
+[ext_resource type="Texture2D" uid="uid://b2csid1xpmpoy" path="res://assets/Tab_21x21.png" id="4_xvex8"]
+[ext_resource type="Texture2D" uid="uid://wyh884psiqaa" path="res://assets/xbox_select_21x21.png" id="5_hhcff"]
 [ext_resource type="Texture2D" uid="uid://ckcudn6aw58vj" path="res://assets/ÉCH_21x21.png" id="5_huiai"]
 
 [sub_resource type="Theme" id="Theme_8y4km"]
@@ -100,16 +102,6 @@ layout_mode = 2
 material = SubResource("14")
 layout_mode = 2
 
-[node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
-bbcode_enabled = true
-text = "c'est parti !"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
 [node name="meta" type="VBoxContainer" parent="outGameGUI"]
 layout_mode = 1
 anchors_preset = -1
@@ -123,34 +115,80 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "test"
 
-[node name="retourMenu" type="HBoxContainer" parent="outGameGUI"]
+[node name="bas_droit" type="VBoxContainer" parent="outGameGUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 384.0
+offset_top = 358.0
+offset_right = 559.0
+offset_bottom = 450.0
+
+[node name="MarginContainer" type="MarginContainer" parent="outGameGUI/bas_droit"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer"]
+layout_mode = 2
+
+[node name="GuiActionZoom" type="HBoxContainer" parent="outGameGUI/bas_droit"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ActionDescription" type="Label" parent="outGameGUI/bas_droit/GuiActionZoom"]
+layout_mode = 2
+text = "zoom/dézoom"
+
+[node name="ActionButton" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
+layout_mode = 0
+offset_left = -26.0
+offset_right = -5.0
+offset_bottom = 21.0
+texture = ExtResource("4_xvex8")
+
+[node name="ActionKey" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
+visible = false
+layout_mode = 0
+offset_left = -26.0
+offset_right = -5.0
+offset_bottom = 21.0
+texture = ExtResource("5_hhcff")
+
+[node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/bas_droit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+bbcode_enabled = true
+text = "c'est parti !"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="outGameGUI/bas_droit"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer2"]
+layout_mode = 2
+
+[node name="retourMenu" type="HBoxContainer" parent="outGameGUI/bas_droit"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 34.99
-offset_right = 387.0
-offset_bottom = 57.99
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 2
 alignment = 2
 
-[node name="TextureStart" type="TextureRect" parent="outGameGUI/retourMenu"]
+[node name="TextureStart" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 texture = ExtResource("4_3auof")
 
-[node name="TextureEsc" type="TextureRect" parent="outGameGUI/retourMenu"]
+[node name="TextureEsc" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_huiai")
 
-[node name="retourMenu_label" type="Label" parent="outGameGUI/retourMenu"]
+[node name="retourMenu_label" type="Label" parent="outGameGUI/bas_droit/retourMenu"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ESC pour revenir au menu"
