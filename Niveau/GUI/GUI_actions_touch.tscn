@@ -79,6 +79,7 @@ tracks/1/keys = {
 }
 
 [node name="GUI_actions_touch" type="HBoxContainer"]
+use_parent_material = true
 margin_right = 190.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 0, 50 )
@@ -89,6 +90,7 @@ __meta__ = {
 }
 
 [node name="ActionDescription" type="Label" parent="."]
+use_parent_material = true
 margin_right = 190.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 190, 50 )
@@ -100,6 +102,7 @@ valign = 1
 autowrap = true
 
 [node name="TouchButton" type="TouchScreenButton" parent="ActionDescription"]
+use_parent_material = true
 position = Vector2( 117, -21 )
 scale = Vector2( 0.29, 0.29 )
 z_index = -1
@@ -111,6 +114,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.501961 )
 
 [node name="TextureProgress" type="TextureProgress" parent="ActionDescription/TouchButton"]
+use_parent_material = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 value = 100.0
@@ -120,6 +124,7 @@ tint_progress = Color( 1, 1, 1, 0.470588 )
 nine_patch_stretch = true
 
 [node name="TextureCooldown" type="TextureProgress" parent="ActionDescription/TouchButton"]
+use_parent_material = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture_progress = ExtResource( 5 )
@@ -129,6 +134,7 @@ tint_progress = Color( 0.419608, 0.419608, 0.419608, 0.470588 )
 nine_patch_stretch = true
 
 [node name="TextureRect" type="TextureRect" parent="ActionDescription/TouchButton"]
+use_parent_material = true
 margin_left = -99.758
 margin_right = 300.242
 margin_bottom = 300.0

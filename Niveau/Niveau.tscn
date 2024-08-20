@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Niveau/niveau.gd" type="Script" id=1]
 [ext_resource path="res://Niveau/Avatar/light.png" type="Texture" id=2]
 [ext_resource path="res://Niveau/trigger_end.gd" type="Script" id=3]
+[ext_resource path="res://assets/1px_texture.png" type="Texture" id=4]
 [ext_resource path="res://Niveau/CameraController.gd" type="Script" id=12]
 [ext_resource path="res://Niveau/GUI/GUI.tscn" type="PackedScene" id=13]
 
@@ -21,14 +22,19 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="GUI" parent="." instance=ExtResource( 13 )]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 pause_mode = 1
 position = Vector2( 192, 192 )
 z_index = 20
 current = true
 script = ExtResource( 12 )
+
+[node name="Reveal_actions_touch_overflow" type="Light2D" parent="Camera2D"]
+unique_name_in_owner = true
+light_mask = 2
+position = Vector2( -359.441, 56 )
+scale = Vector2( 337.117, 714 )
+texture = ExtResource( 4 )
 
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
 material = SubResource( 10 )
@@ -46,6 +52,8 @@ margin_top = -500.0
 margin_right = 192.0
 margin_bottom = 500.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="GUI" parent="." instance=ExtResource( 13 )]
 
 [node name="Trigger_end" type="Area2D" parent="."]
 position = Vector2( 32, 32 )
