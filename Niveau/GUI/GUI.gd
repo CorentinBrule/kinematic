@@ -1,6 +1,6 @@
 tool
 extends Node2D
-
+var tool_node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -17,8 +17,11 @@ const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
 const action_scene_touch = preload("res://Niveau/GUI/GUI_actions_touch.tscn")
 var base_size = Vector2(384,384)
 
+var width_out_game_interface = base_size.x
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	tool_node = get_tree().root.get_child(0)
 	get_tree().get_root().connect("size_changed", self, "on_resize_window")
 	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
 	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
@@ -52,13 +55,9 @@ func init():
 		actions_touch_container.add_child(gui_action_touch)
 		actions_touch_container.move_child(gui_action_touch, 0)
 	
-	if Global.has_touch_screen:
-		actions_container.hide()
-		$"%touch_controls".show()
-	else:
-		actions_touch_container.hide()
+	update_interface()
 	
-	if get_parent().get_parent().has_node("Menu") and !Global.has_touch_screen:
+	if get_parent().get_parent().has_node("Menu"):
 		$"%retourMenu".visible = true
 		
 	$"%meta_label".visible = true
@@ -72,9 +71,37 @@ func init():
 	regex.compile("(?i)(xbox|x-box|microsoft)")
 	if regex.search(Input.get_joy_name(0)):
 		$"%TextureStart".show()
+		$"%TextureEsc".hide()
 	
+	else:
+		$"%TextureEsc".show()
+		$"%TextureStart".hide()
 	yield(get_tree(), "idle_frame")
+	
 	adapt_interface()
+
+func _input(event):
+	if (event is InputEventKey and event.pressed) or (event is InputEventJoypadButton):
+		tool_node.has_touch_screen = false
+		update_interface()
+	elif event is InputEventScreenTouch:
+		tool_node.has_touch_screen = true
+		update_interface()
+
+func update_interface():
+	#print(Global.has_touch_screen)
+	if tool_node.has_touch_screen:
+		actions_container.hide()
+		actions_touch_container.show()
+		actions_touch_container_overflow.show()
+		$touch_controls.show()
+		$"%TextureStart".show()
+		$"%TextureEsc".hide()
+	else:
+		actions_touch_container.hide()
+		actions_touch_container_overflow.hide()
+		$touch_controls.hide()
+		actions_container.show()
 
 func adapt_interface():
 	if not Engine.editor_hint:
@@ -91,12 +118,6 @@ func on_resize_window():
 		adapt_interface()
 		get_parent().get_node("Camera2D").adapt_clips()
 		get_parent().get_node("Camera2D").force_update_clip()
-		if Global.has_touch_screen:
-			if OS.window_fullscreen:
-				$touch_controls/fullscreen.hide()
-			else:
-				$touch_controls/fullscreen.show()
-				
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

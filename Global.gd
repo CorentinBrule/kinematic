@@ -45,10 +45,13 @@ func _ready():
 	current_scene = root.get_child(root.get_child_count() - 1)
 	
 	save_folder_path = current_scene.save_folder_path
-	
+	print("touch_screen :")
 	print(OS.has_touchscreen_ui_hint())
 	if OS.has_touchscreen_ui_hint():
 		has_touch_screen = true
+	
+	if(Global.has_touch_screen):
+		OS.window_fullscreen = true
 	
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 
