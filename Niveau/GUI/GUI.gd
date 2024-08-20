@@ -10,6 +10,7 @@ var out_game_meta
 var out_game_bas_droit
 var actions_container
 var actions_touch_container
+var actions_touch_container_overflow
 
 var avatar
 var color
@@ -28,6 +29,7 @@ func _ready():
 	out_game_bas_droit = $"%bas_droit"
 	actions_container = $"%ActionsContainer"
 	actions_touch_container = $"%ActionsContainerTouch"
+	actions_touch_container_overflow = $"%ActionsContainerTouch2"
 	adapt_interface()
 
 func init():
@@ -41,7 +43,11 @@ func init():
 		action.free()
 	for action in actions_touch_container.get_children():
 		action.free()
+	for action in actions_touch_container_overflow.get_children():
+		action.free()
 	
+	var max_height_touch = actions_touch_container.size.y
+	var index_action = 0
 	for item in avatar.get_active_items():
 		#print(item)
 		var gui_action = action_scene.instantiate()
@@ -51,11 +57,16 @@ func init():
 		
 		var gui_action_touch = action_scene_touch.instantiate()
 		gui_action_touch.init(item)
-		actions_touch_container.add_child(gui_action_touch)
-		actions_touch_container.move_child(gui_action_touch, 0)
+
+		if index_action < 5:
+			actions_touch_container.add_child(gui_action_touch)
+			actions_touch_container.move_child(gui_action_touch, 0)
+		else:
+			actions_touch_container_overflow.add_child(gui_action_touch)
+		index_action += 1
 	
 	update_interface()
-	
+
 	if get_parent().get_parent().has_node("Menu"):
 		$"%retourMenu".visible = true
 		
@@ -108,7 +119,7 @@ func update_interface():
 		actions_container.show()
 		$"%GuiActionZoom".show()
 		$"%bas_droit/MarginContainer".hide()
-
+		
 func adapt_interface():
 	if not Engine.is_editor_hint():
 		var resize_ratio = float(get_viewport().size.x )/ float(get_viewport().size.y)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=14 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
@@ -16,6 +16,9 @@
 
 [sub_resource type="ShaderMaterial" id="14"]
 script = SubResource("13")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mkutc"]
+light_mode = 2
 
 [node name="GUI" type="Node2D"]
 z_index = 10
@@ -206,3 +209,27 @@ texture = ExtResource("5_huiai")
 unique_name_in_owner = true
 layout_mode = 2
 text = "ESC pour revenir au menu"
+
+[node name="ActionsContainerTouchOverflow" type="Node2D" parent="outGameGUI"]
+clip_children = 1
+position = Vector2(5, 220)
+
+[node name="ActionsContainerTouch2" type="VBoxContainer" parent="outGameGUI/ActionsContainerTouchOverflow"]
+unique_name_in_owner = true
+light_mask = 2
+z_index = 10
+material = SubResource("CanvasItemMaterial_mkutc")
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -190.0
+offset_top = -25.0
+offset_bottom = 25.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+
+[node name="GUI_actions_touch" parent="outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2" instance=ExtResource("4_2oh6y")]
+layout_mode = 2

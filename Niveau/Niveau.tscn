@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf70pclr4d3fq"]
+[gd_scene load_steps=10 format=3 uid="uid://cf70pclr4d3fq"]
 
 [ext_resource type="Script" path="res://Niveau/niveau.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bx0v86h6opdxo" path="res://Niveau/Avatar/light.png" id="2"]
 [ext_resource type="Script" path="res://Niveau/trigger_end.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://b1iqgjbljejq8" path="res://assets/1px_texture.png" id="4_ccb78"]
 [ext_resource type="Script" path="res://Niveau/CameraController.gd" id="12"]
 [ext_resource type="PackedScene" uid="uid://co3afijj5piwx" path="res://Niveau/GUI/GUI.tscn" id="13"]
 
@@ -28,6 +29,8 @@ script = ExtResource("12")
 auto_cam = true
 
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
+z_index = 10
+z_as_relative = false
 material = SubResource("10")
 offset_left = -192.0
 offset_top = -500.0
@@ -44,6 +47,14 @@ offset_top = -500.0
 offset_right = 192.0
 offset_bottom = 500.0
 color = Color(0, 0, 0, 1)
+
+[node name="Reveal_actions_touch_overflow" type="PointLight2D" parent="Camera2D"]
+unique_name_in_owner = true
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-195, 0)
+scale = Vector2(3.99951, 900)
+texture = ExtResource("4_ccb78")
 
 [node name="Trigger_end" type="Area2D" parent="."]
 position = Vector2(32, 32)

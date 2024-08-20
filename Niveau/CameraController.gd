@@ -159,7 +159,7 @@ func adapt_clips():
 		var zoom_factor = 1/zoom_dest.x
 		clip_left_position_dest = (edge_from_center * -1 * zoom_factor) - 5		
 		if clip_open_left == false:
-			clip_left_width_dest =  (edge_from_center * zoom_factor - 192) + 5
+			clip_left_width_dest =  (edge_from_center * zoom_factor - 192) + 20
 		else:
 			clip_left_width_dest = 0
 		
@@ -170,10 +170,12 @@ func adapt_clips():
 			clip_right_position_dest = 192 + clip_right_width_dest
 
 func update_clip():
-	if(abs($ClipGauche.position.x - clip_left_position_dest) > 0.5):
-		$ClipGauche.position.x = lerpf($ClipGauche.position.x, clip_left_position_dest, 0.05)
 	if(abs($ClipGauche.size.x - clip_left_width_dest) > 0.5):
 		$ClipGauche.size.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
+		$"%Reveal_actions_touch_overflow".scale.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
+	if(abs($ClipGauche.position.x - clip_left_position_dest) > 0.5):
+		$ClipGauche.position.x = lerpf($ClipGauche.position.x, clip_left_position_dest, 0.05)
+		$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
 	if(abs($ClipDroite.position.x - clip_right_position_dest) > 0.5):
 		$ClipDroite.position.x = lerpf($ClipDroite.position.x, clip_right_position_dest, 0.05)
 	if(abs($ClipDroite.size.x - clip_right_width_dest) > 0.5):
