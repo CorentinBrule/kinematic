@@ -61,7 +61,7 @@ func _change_mobile_emulation(val):
 	has_touch_screen = val
 	var action_caintainer_keyboard = get_node("Niveau/GUI/outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer")
 	var action_container_touch_droit = get_node("Niveau/GUI/outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch")
-	var action_container_touch_overflow = get_node("Niveau/GUI/outGameGUI/HBoxContainer_gauche/VBoxContainer/ActionsContainerTouchOverflow/ActionsContainerTouch2")
+	var action_container_touch_overflow = get_node("Niveau/GUI/outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2")
 	var main_touch_controls = get_node("Niveau/GUI/touch_controls")
 	if Engine.editor_hint:
 		ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse",val)
