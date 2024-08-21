@@ -66,13 +66,4 @@ func _change_mobile_emulation(val):
 	if Engine.editor_hint:
 		ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse",val)
 		ProjectSettings.save()
-		if val:
-			action_container_touch_droit.show()
-			action_container_touch_overflow.show()
-			main_touch_controls.show()
-			action_caintainer_keyboard.hide()
-		else:
-			action_container_touch_overflow.hide()
-			action_container_touch_droit.hide()
-			main_touch_controls.hide()
-			action_caintainer_keyboard.show()
+		GUI.update_interface(has_touch_screen)
