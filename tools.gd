@@ -25,7 +25,7 @@ func _ready():
 	camera = get_node("Niveau/Camera2D")
 	camera.auto_cam = auto_cam
 	camera.joystick_zoom = joystick_zoom
-	
+	camera.init()
 	
 	if(Global.has_touch_screen):
 		OS.window_fullscreen = true

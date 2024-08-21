@@ -4,9 +4,10 @@ var auto_cam = false
 var joystick_zoom = false
 
 var avatar
+var GUI
 var middle_pos = Vector2(192, 192)
 var target_pos
-var zoom_val = 1
+var zoom_val = 0.5
 var zoom_speed = 0.1
 var max_zoom = Vector2(0.2, 0.2)
 var min_zoom = Vector2(2,2)
@@ -24,16 +25,22 @@ var zooming = false
 
 func _ready():
 	avatar = get_parent().get_node("Avatar")
+	GUI = get_parent().get_node("GUI")
+	get_tree().get_root().connect("size_changed", self, "on_resize_window")
 	clip_left_position_dest = $ClipGauche.rect_position.x
 	clip_left_width_dest = $ClipGauche.rect_size.x
+	$"%Reveal_actions_touch_overflow".scale.x = $ClipGauche.rect_position.x
+	$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.rect_position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
 	clip_right_position_dest = $ClipDroite.rect_position.x
 	clip_right_width_dest = $ClipDroite.rect_size.x
-	init()
+	#init()
 
 func init():
+	update_mid_zoom(GUI.width_out_game_interface)
 	if !auto_cam:
-		zoom_val = 0.5
-		zoom_to_game()
+		if zoom_val == 0.5:
+			zoom_dest = mid_zoom
+			zoom = mid_zoom
 		open_clip_controls()
 	else:
 		clip_open_left = true
@@ -121,7 +128,7 @@ func calc_zoom_dest(max_zoom,min_zoom,zoom_val):
 	return _zoom_dest
 
 func zoom_to_game():
-	print(mid_zoom)
+	# print(mid_zoom)
 	zoom_dest = mid_zoom
 	zoom_val = 0.5
 	clip_open_right = false
@@ -145,7 +152,7 @@ func update_mid_zoom(width_out_game_interface):
 		# valeurs arbitraires mais fonctionne pour la plus part des ratios
 		var zoom = 0.7+(1/width_ratio)
 		#var zoom = (384/width_out_game_interface)
-		mid_zoom = Vector2(zoom, zoom)  
+		mid_zoom = Vector2(zoom, zoom)
 	else:
 		mid_zoom = Vector2(1.0,1.0)
 
@@ -171,10 +178,10 @@ func adapt_clips():
 func update_clip():
 	if(abs($ClipGauche.rect_size.x - clip_left_width_dest) > 0.5):
 		$ClipGauche.rect_size.x = lerp($ClipGauche.rect_size.x, clip_left_width_dest, 0.05)
-		$"%Reveal_actions_touch_overflow".scale.x = lerp($ClipGauche.rect_size.x, clip_left_width_dest, 0.05)
+	$"%Reveal_actions_touch_overflow".scale.x = $ClipGauche.rect_size.x
 	if(abs($ClipGauche.rect_position.x - clip_left_position_dest) > 0.5):
 		$ClipGauche.rect_position.x = lerp($ClipGauche.rect_position.x, clip_left_position_dest, 0.05)
-		$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.rect_position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
+	$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.rect_position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
 	if(abs($ClipDroite.rect_position.x - clip_right_position_dest) > 0.5):
 		$ClipDroite.rect_position.x = lerp($ClipDroite.rect_position.x, clip_right_position_dest, 0.05)
 	if(abs($ClipDroite.rect_size.x - clip_right_width_dest) > 0.5):
@@ -183,6 +190,8 @@ func update_clip():
 func force_update_clip():
 	$ClipGauche.rect_position.x = clip_left_position_dest
 	$ClipGauche.rect_size.x = clip_left_width_dest
+	$"%Reveal_actions_touch_overflow".scale.x = clip_left_width_dest
+	$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.rect_position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
 	$ClipDroite.rect_position.x = clip_right_position_dest
 	$ClipDroite.rect_size.x = clip_right_width_dest
 
@@ -194,3 +203,13 @@ func open_clips():
 func open_clip_controls():
 	clip_open_right = true
 	adapt_clips()
+
+func on_resize_window():
+	if not Engine.editor_hint:
+		update_mid_zoom(GUI.width_out_game_interface)
+		adapt_clips()
+		force_update_clip()
+		if zoom_val == 0.5:
+			zoom_to_game()
+		else:
+			zoom_to_out()

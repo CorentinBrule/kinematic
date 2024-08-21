@@ -21,12 +21,15 @@ func _on_Trigger_end_body_entered(body):
 			var camera = get_parent().get_node('Camera2D')
 			avatar.set_process(false)
 			avatar.set_physics_process(false)
-			camera.auto_cam = false
-			camera.zoom_to_out()
+			var auto_cam = camera.auto_cam
+			if auto_cam:
+				camera.auto_cam = false
+				camera.zoom_to_out()
 			transition = true
 			yield(get_tree().create_timer(1), "timeout")
 			transition = false
-			camera.auto_cam = true
+			if auto_cam:
+				camera.auto_cam = true
 			Global.next_save()
 		else:
 			get_parent().get_node("GUI").get_node("%win").show()
