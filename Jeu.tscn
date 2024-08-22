@@ -15,6 +15,8 @@
 [node name="Jeu" type="Node"]
 process_mode = 3
 script = ExtResource("12")
+auto_cam = true
+click_to_move = true
 
 [node name="Niveau" parent="." instance=ExtResource("1")]
 process_mode = 3
@@ -29,7 +31,6 @@ char_name = "Avatar"
 narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
 
 [node name="TileMap" parent="Niveau" instance=ExtResource("10")]
-position = Vector2(-1, 0)
 
 [node name="Avatar" parent="Niveau" instance=ExtResource("2")]
 process_mode = 1
@@ -42,28 +43,34 @@ start_position = Vector2(344, 344)
 [node name="Sauter" parent="Niveau/Avatar" instance=ExtResource("5")]
 jump_power = 200.0
 xbox_button = "A"
+metadata/_edit_lock_ = true
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource("8")]
 glue_time_max = 10.0
 glue_effect = 1000.0
 glue_delay = 1.0
 xbox_button = "RB"
+metadata/_edit_lock_ = true
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource("6")]
 xbox_button = "B"
+metadata/_edit_lock_ = true
 
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource("9")]
 plane_time_max = 100.0
 plane_effect = 2.0
 xbox_button = "LT"
+metadata/_edit_lock_ = true
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource("3")]
 xbox_button = "X"
+metadata/_edit_lock_ = true
 
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource("4")]
 tp_distance = 31.0
 tp_cooldown = 50.0
 xbox_button = "Y"
+metadata/_edit_lock_ = true
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource("7")]
 position = Vector2(0, 6)
@@ -73,6 +80,7 @@ jetpack_power = 10.0
 time_to_regen = 10.0
 maximum_vertical_speed = -110.0
 xbox_button = "RT"
+metadata/_edit_lock_ = true
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]

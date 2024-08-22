@@ -19,7 +19,7 @@ static func load_file(scene, path: String):
 		var test_json_conv = JSON.new()
 		test_json_conv.parse(file.get_as_text())
 		var data_dict = test_json_conv.get_data()
-		print(data_dict)
+		#print(data_dict)
 		set_data(scene, data_dict)
 
 static func set_data(scene, data):
@@ -46,7 +46,7 @@ static func set_story_data(scene, story_data):
 static func set_tilemap_data(scene, tilemap_data):
 	var tilemap = scene.get_node("Niveau/TileMap")
 	tilemap.clear()
-	print(tilemap)
+	#print(tilemap)
 	for cell in tilemap_data:
 		tilemap.set_cell(Vector2(cell.x, cell.y), cell.id, Vector2i(0,0))
 	
@@ -75,7 +75,7 @@ static func set_stuff_data(scene, stuff_list):
 			var properties = obj.get("properties")
 			for property in properties.keys():
 				item_node[property] = properties[property]
-			print(properties["xbox_button"])
+			#print(properties["xbox_button"])
 			item_node.set("xbox_button", properties.get("xbox_button"))
 
 # Get & Save #
@@ -115,7 +115,7 @@ static func save_file(scene, path : String):
 static func get_meta_data(niveau):
 	# si pas de date ou jour ou mois = 0 : date de maintenant
 	var date = niveau.date
-	print(date)
+	#print(date)
 	if date["day"] == 0 or date["month"] == 0:
 		date = Time.get_datetime_dict_from_system()
 	var data_date = "%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]	
@@ -132,7 +132,7 @@ static func get_story_data(niveau):
 static func get_tilemap_data(tilemap):
 	var tilemap_data = []
 
-	print(tilemap)
+	#print(tilemap)
 	var used_cells = tilemap.get_used_cells(0)
 	for cell in used_cells:
 		var cell_id = tilemap.get_cell_source_id(Vector2i(cell.x,cell.y))
@@ -148,15 +148,15 @@ static func get_character_data(character):
 		"properties":{}
 	}
 
-	print(character)
+	#print(character)
 	for property in get_exported_properties(character):
 		character_data.properties[property.name] = character[property.name]
 	
 	var children = character.get_children()
 	var stuff = []
 	for child in children:
-		print(child.name)
-		print(child.get_class())
+		#print(child.name)
+		#print(child.get_class())
 		if child is ItemClass: # if object is stuff
 			if child.is_visible_in_tree(): # if is visible/active
 				stuff.append(child)
