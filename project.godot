@@ -185,6 +185,10 @@ menu={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+toggle_full_screen={
+"deadzone": 0.5,
+"events": []
+}
 
 [layer_names]
 

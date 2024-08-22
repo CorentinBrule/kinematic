@@ -26,3 +26,4 @@ grow_vertical = 2
 theme = ExtResource("3")
 
 [connection signal="item_activated" from="Control/save_files_list" to="." method="_on_save_files_list_item_activated"]
+[connection signal="item_selected" from="Control/save_files_list" to="." method="_on_save_files_list_item_selected"]

@@ -7,6 +7,8 @@ extends Node
 
 @export var auto_cam:bool = false
 @export var joystick_zoom:bool = false
+@export var mobile_emulation:bool = false :	set = change_mobile_emulation
+@export var click_to_move = false
 @export var save_folder_path:String = "res://save/"
 
 var avatar
@@ -43,3 +45,20 @@ func _on_Niveau_var_changed():
 		print("event checked change")
 		GUI = get_node("Niveau/GUI")
 		GUI.init()
+
+func change_mobile_emulation(val):
+	mobile_emulation = val
+	var action_caintainer_keyboard = get_node("Niveau/GUI/outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer")
+	var action_container_touch_droit = get_node("Niveau/GUI/outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch")
+	var main_touch_controls = get_node("Niveau/GUI/touch_controls")
+	if Engine.is_editor_hint():
+		ProjectSettings.set_setting("input_devices/pointing/emulate_touch_from_mouse",val)
+		ProjectSettings.save()
+		if val:
+			action_container_touch_droit.show()
+			main_touch_controls.show()
+			action_caintainer_keyboard.hide()
+		else:
+			action_container_touch_droit.hide()
+			main_touch_controls.hide()
+			action_caintainer_keyboard.show()

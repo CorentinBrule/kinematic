@@ -27,6 +27,8 @@ var color_picker = {
 
 var avatar
 
+var has_touch_screen = false
+
 var has_server_saves = false
 var save_folder_path = "res://save/"
 var save_files_path = []
@@ -44,6 +46,12 @@ func _ready():
 	
 	save_folder_path = current_scene.save_folder_path
 	
+	if DisplayServer.is_touchscreen_available():
+		has_touch_screen = true
+	
+	if(has_touch_screen):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
 	if current_scene.has_node("Menu"):
 		# load save from local "res://" file or from "server" 
 		if OS.has_feature('web'):
