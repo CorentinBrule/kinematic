@@ -7,25 +7,27 @@ Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D dans l’inter
 ![Capture d’écran du logiciel Godot avec le projet Kinématique importé et prêt à l’usage](documents/Capture_écran.png)
 
 Il se concentre sur des notions de *game design* et surtout de *level design* en éloignant — peut-être dans un premier temps — le code pour cell·eux qui souhaitent l’utiliser ou encadrer des ateliers et cours.
-Comme tout à lieu dans l’interface d’un véritable éditeur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
+Comme tout se passe dans l’interface d’un véritable éditeur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
 
-Testez [ici](https://brulé.net/kinématique/) les niveaux créés dans des ateliers (groupes d'environs 5 enfants de 6 à 12 ans) !
+Testez [ici](https://brulé.net/kinématique/) les niveaux créés dans des ateliers (groupes d'environ 5 enfants de 6 à 12 ans) !
 
-Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scene principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier pour se concentrer sur le level design et les bases du game design.
+Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scène principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier pour se concentrer sur le level design et les bases du game design.
 
 Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/kinematic/wiki/1.-Installation) et [la prise en main](https://github.com/CorentinBrule/kinematic/wiki/2.-Prise-en-main) ; les [ressources pédagogiques (déroulement d’ateliers)](https://github.com/CorentinBrule/kinematic/wiki/Ressources-p%C3%A9dagogiques) et les [aspects techniques pour adapter l’outil en mettant les mains dans le cambouis](https://github.com/CorentinBrule/kinematic/wiki/Aller-plus-loin-(dev)).
 
-## Principe générale du jeu
+## Principes généraux du jeu
 
-*Kinématique* permet de prototyper un niveau de jeu de plateforme en 2D. Il met en place donc un certains nombre de principe de base de *gameplay*:
+*Kinématique* permet de prototyper un niveau de jeu de plateforme en 2D. Il met en place donc un certain nombre de principes de base de *gameplay*:
 
-- on contrôle un **objet / personnage / avatar**
+- on contrôle un **carré / personnage / avatar**
 - l’**avatar** est soumis à des règles qui ressemblent à la gravité (attiré par le bas, retenu par d’autres objets physiques)
 - il se déplace et interagit avec l’environnement grâce à des **capacités / équipements / items**
-- le joueur ou la joueuse doit atteindre une zone pour completer le niveau
+- le joueur ou la joueuse doit atteindre une zone pour compléter le niveau
 - l’environnement se construit sur une grille de 20 carrés par 20 (400 carrés)
 - l’**avatar** que l’on contrôle fait la taille d’un carré
-- il existe une dynamique entre 3 couleurs qui forme "un jeu à somme nulle" comme le pierre/feuille/ciseaux ou le poule/renard/viper :
+
+- il existe une dynamique entre 3 couleurs qui forme "un jeu à somme nulle" comme le pierre/feuille/ciseaux ou le poule/renard/vipère :
+<img align="right" style="width:10rem;margin:0;" src="documents/icon.svg">
 
     - le **rouge** bat le **vert** mais est battu par le **bleu**
     - le **bleu** bat le **rouge** mais est battu par le **vert**
@@ -35,12 +37,12 @@ Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/
 
 **Ainsi, la couleur de l’avatar détermine ce qui est négatif pour lui (ennemies, malus, pièges...) et ce qui est positif (alliés, bonus, nourriture...)**
 
-- sans interaction particulière ou modification des règles du jeu, l’avatar qui touche un carré de la couleur malus, disparaît et réapparaît au point de départ ("perds"/"meurs"), laissant une petite croix pour que l’on se rappel là où l’on a raté.
+- sans interaction particulière ou modification des règles du jeu, l’avatar qui touche un carré de la couleur malus, disparaît et réapparaît au point de départ ("perds"/"meurs"), laissant une petite croix pour que l’on se rappelle là où l’on a raté.
 
 - les éléments de couleur **noir** sont neutres (**plateforme**)
 - les carrés aux **contours blancs** sont des checkpoints
 
-Certaines de ces règles peuvent être ignorées ou pourront être adaptées selon les besoins de l’atelier.
+Certaines de ces règles peuvent être ignorées/désactivées ou pourront être adaptées selon les besoins de l’atelier.
 
 ## Crédits
 
