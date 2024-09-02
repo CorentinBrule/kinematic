@@ -17,8 +17,6 @@ func _init():
 	}
 
 func physics_process(delta):
-	action = Input.is_action_pressed(name)
-
 	if avatar.is_on_floor():
 		avatar.on_air_time = 0
 		avatar.jumping = false

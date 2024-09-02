@@ -41,15 +41,12 @@ my_color = 2
 start_position = Vector2(344, 344)
 
 [node name="Sauter" parent="Niveau/Avatar" instance=ExtResource("5")]
-jump_power = 200.0
 xbox_button = "A"
 metadata/_edit_lock_ = true
 
 [node name="Escalader" parent="Niveau/Avatar" instance=ExtResource("8")]
-glue_time_max = 10.0
-glue_effect = 1000.0
-glue_delay = 1.0
 xbox_button = "RB"
+toggle = false
 metadata/_edit_lock_ = true
 
 [node name="Détruire" parent="Niveau/Avatar" instance=ExtResource("6")]
@@ -57,9 +54,7 @@ xbox_button = "B"
 metadata/_edit_lock_ = true
 
 [node name="Planer" parent="Niveau/Avatar" instance=ExtResource("9")]
-plane_time_max = 100.0
-plane_effect = 2.0
-xbox_button = "LT"
+xbox_button = "LB"
 metadata/_edit_lock_ = true
 
 [node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource("3")]
@@ -67,20 +62,15 @@ xbox_button = "X"
 metadata/_edit_lock_ = true
 
 [node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource("4")]
-tp_distance = 31.0
-tp_cooldown = 50.0
 xbox_button = "Y"
 metadata/_edit_lock_ = true
 
 [node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource("7")]
 position = Vector2(0, 6)
-energy_max = 100.0
-energy_regen = 5.0
-jetpack_power = 10.0
-time_to_regen = 10.0
-maximum_vertical_speed = -110.0
 xbox_button = "RT"
 metadata/_edit_lock_ = true
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
+[connection signal="color_change" from="Niveau/Avatar" to="." method="_on_Avatar_color_change"]
+[connection signal="item_change" from="Niveau/Avatar" to="." method="_on_Avatar_item_change"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]

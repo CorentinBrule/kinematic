@@ -7,30 +7,24 @@ extends Item
 var colle_time = glue_time_max
 var no_collision_count = 0
 var no_wall_count = 0
-var toggleable = false
 
 # Called when the node enters the scene tree for the first time.
 
 func _init():
 	keyboard_key_name = "E"
 	keyboard_key_scancode = OS.find_keycode_from_string("e")
+	toggleable = true
 	if Global.has_touch_screen:
 		toggleable = true
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
+		"action": false,
 		"no_wall_count" : no_wall_count,
 		"no_collision_count" : no_collision_count,
 		"colle_time" : colle_time
 	}
 
 func physics_process(delta):
-	
-	if toggleable:
-		if Input.is_action_just_pressed(action_name) :
-			action = ! action
-	else:
-		action = Input.is_action_pressed(action_name)
-	
 	if action:
 		if avatar.is_on_wall():
 			avatar.colle = true

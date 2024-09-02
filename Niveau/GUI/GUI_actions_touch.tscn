@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cck4nwh5ow7j"]
+[gd_scene load_steps=11 format=3 uid="uid://cck4nwh5ow7j"]
 
 [ext_resource type="Script" path="res://Niveau/GUI/GUI_actions_touch.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://dmtl4cdmw2113" path="res://assets/FT88-regular.tres" id="2_jvjqm"]
@@ -12,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Masque:anchor_right")
+tracks/0/path = NodePath("../Masque:anchor_right")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -21,14 +21,38 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Masque:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(300, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Masque:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 300)]
+}
 
 [sub_resource type="Animation" id="1"]
-resource_name = "toggle"
+resource_name = "toggle_droit"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Masque:anchor_right")
+tracks/0/path = NodePath("../Masque:anchor_right")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,14 +62,43 @@ tracks/0/keys = {
 "values": [0.0, 1.0]
 }
 
+[sub_resource type="Animation" id="Animation_06s1o"]
+resource_name = "toggle_gauche"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Masque:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Masque:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 300), Vector2(300, 300)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6t8f"]
 _data = {
 "RESET": SubResource("2"),
-"toggle": SubResource("1")
+"toggle_droit": SubResource("1"),
+"toggle_gauche": SubResource("Animation_06s1o")
 }
 
 [node name="GUI_actions_touch" type="HBoxContainer"]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -334.0
@@ -73,6 +126,14 @@ scale = Vector2(0.29, 0.29)
 texture_normal = ExtResource("6")
 passby_press = true
 
+[node name="Masque" type="ColorRect" parent="ActionDescription/TouchButton"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 300.0
+offset_right = 300.0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
 [node name="TextureProgress" type="TextureProgressBar" parent="ActionDescription/TouchButton"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,15 +141,18 @@ anchor_bottom = 1.0
 value = 100.0
 fill_mode = 4
 nine_patch_stretch = true
-texture_under = ExtResource("5")
 texture_progress = ExtResource("5")
-tint_under = Color(1, 1, 1, 0.2)
 tint_progress = Color(1, 1, 1, 0.470588)
 
-[node name="Masque" type="ColorRect" parent="ActionDescription/TouchButton/TextureProgress"]
-layout_mode = 0
+[node name="TextureCooldown" type="TextureProgressBar" parent="ActionDescription/TouchButton"]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.501961)
+value = 100.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("5")
+tint_progress = Color(0.419608, 0.419608, 0.419608, 0.470588)
 
 [node name="TextureRect" type="TextureRect" parent="ActionDescription/TouchButton"]
 offset_left = -100.0

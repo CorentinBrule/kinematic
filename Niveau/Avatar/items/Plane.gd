@@ -7,26 +7,23 @@ extends Item
 
 var plane_time = 0
 
-var progress_percent
-
 # Called when the node enters the scene tree for the first time.
 func _init():
 	keyboard_key_name = "A"
 	keyboard_key_scancode = OS.find_keycode_from_string("a")
+	has_effect = true
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"plane_time" : plane_time
 	}
-	
-	progress_percent = 0
-	
 
 func process(delta):
-	progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
+	if action:
+		progress_percent = (float(plane_time_max) - plane_time) / plane_time_max * 100
+	else:
+		progress_percent = 0
 
 func physics_process(delta):
-	action = Input.is_action_pressed(name)
-	
 	if infinite and action:
 		active()
 	elif action and plane_time < plane_time_max:
