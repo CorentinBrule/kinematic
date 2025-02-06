@@ -12,7 +12,7 @@ func _ready():
 	pass # Replace with function body.
 
 func init(list_save_files):
-	$"%toogleFullScreen".pressed = OS.window_fullscreen
+	$"%toggleFullScreen".pressed = OS.window_fullscreen
 	save_files = list_save_files
 	var idx = 0
 	for save_file in list_save_files:
@@ -55,11 +55,11 @@ func _on_save_files_list_item_selected(index):
 func _on_exitMenuButton_pressed():
 	exit_menu()
 
-func _on_toogleFullScreen_pressed():
+func _on_toggleFullScreen_pressed():
 	OS.set_window_fullscreen(!OS.window_fullscreen)
 
 func on_resize_window():
-	$"%toogleFullScreen".pressed = OS.window_fullscreen
+	$"%toggleFullScreen".pressed = OS.window_fullscreen
 
 
 
