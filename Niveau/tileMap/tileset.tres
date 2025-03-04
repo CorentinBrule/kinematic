@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://csy16r6x73njx"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://csy16r6x73njx"]
 
 [ext_resource type="Texture2D" uid="uid://c8ubb1knkxwsb" path="res://Niveau/tileMap/obstacle.png" id="1_ooi21"]
 [ext_resource type="Texture2D" uid="uid://dh4t08uspnab6" path="res://Niveau/tileMap/rouge.png" id="2_neg3o"]
@@ -6,11 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://bgpjg2s3s3bo2" path="res://Niveau/tileMap/bleu.png" id="4_f2k58"]
 [ext_resource type="Texture2D" uid="uid://cv8x4oeqf4txp" path="res://Niveau/tileMap/checkpoint.png" id="5_moamn"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1apbu"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uxldw"]
 texture = ExtResource("1_ooi21")
 use_texture_padding = false
 0:0/next_alternative_id = 9
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_1apbu")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/1 = 1
 0:0/1/flip_h = true
@@ -170,6 +174,8 @@ texture = ExtResource("5_moamn")
 0:0/7/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, 0, 16, 0, 0, 16, 0)
 
 [resource]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uxldw")
 sources/1 = SubResource("TileSetAtlasSource_xya3c")
