@@ -100,6 +100,9 @@ func server_request(save_server_url):
 	return false
 
 func _process(delta):
+	if Input.is_action_just_pressed("toggle_full_screen"):
+		toggle_full_screen()
+
 	if current_scene.has_node("Menu"):
 		if Input.is_action_just_pressed("next_level"):
 			next_save()
@@ -115,7 +118,7 @@ func _process(delta):
 			else:
 				is_menu = true
 				pause_level()
-				current_scene.get_node("Menu/Control/save_files_list").select(save_index)
+				current_scene.get_node("Menu").get_node("%save_files_list").select(save_index)
 				current_scene.get_node("Menu").visible = true
 				current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
 
@@ -195,3 +198,9 @@ func load_files(files):
 				data_dict["file_path"] = file_path
 				datas.append(data_dict)
 	return datas
+
+func toggle_full_screen():
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

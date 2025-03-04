@@ -1,13 +1,59 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dy5dqajbxmjti"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://dy5dqajbxmjti"]
 
 [ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="1"]
+[ext_resource type="Texture2D" uid="uid://8bbwb71saqd" path="res://assets/toggle_on_32x18.png" id="1_4vjhu"]
+[ext_resource type="Texture2D" uid="uid://cx3ktw4gnp3k5" path="res://assets/toggle_off_32x18.png" id="2_5a2y1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhvta"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5xx3"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r72lh"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mlinn"]
+bg_color = Color(0.8, 0.8, 0.8, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux8x0"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.8, 0.8, 0.8, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6rj0"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aplhf"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jv7vy"]
 
@@ -41,15 +87,66 @@ cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
 cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/2/0/ascent = 0.0
+cache/0/2/0/descent = 0.0
+cache/0/2/0/underline_position = 0.0
+cache/0/2/0/underline_thickness = 0.0
+cache/0/2/0/scale = 1.0
+cache/0/3/0/ascent = 0.0
+cache/0/3/0/descent = 0.0
+cache/0/3/0/underline_position = 0.0
+cache/0/3/0/underline_thickness = 0.0
+cache/0/3/0/scale = 1.0
+cache/0/4/0/ascent = 0.0
+cache/0/4/0/descent = 0.0
+cache/0/4/0/underline_position = 0.0
+cache/0/4/0/underline_thickness = 0.0
+cache/0/4/0/scale = 1.0
+cache/0/5/0/ascent = 0.0
+cache/0/5/0/descent = 0.0
+cache/0/5/0/underline_position = 0.0
+cache/0/5/0/underline_thickness = 0.0
+cache/0/5/0/scale = 1.0
+cache/0/6/0/ascent = 0.0
+cache/0/6/0/descent = 0.0
+cache/0/6/0/underline_position = 0.0
+cache/0/6/0/underline_thickness = 0.0
+cache/0/6/0/scale = 1.0
+cache/0/7/0/ascent = 0.0
+cache/0/7/0/descent = 0.0
+cache/0/7/0/underline_position = 0.0
+cache/0/7/0/underline_thickness = 0.0
+cache/0/7/0/scale = 1.0
+cache/0/8/0/ascent = 0.0
+cache/0/8/0/descent = 0.0
+cache/0/8/0/underline_position = 0.0
+cache/0/8/0/underline_thickness = 0.0
+cache/0/8/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
 
 [resource]
 default_font = SubResource("1")
+CheckButton/icons/checked = ExtResource("1_4vjhu")
+CheckButton/icons/unchecked = ExtResource("2_5a2y1")
+CheckButton/styles/focus = SubResource("StyleBoxFlat_lhvta")
 ItemList/colors/font_color = Color(0, 0, 0, 1)
 ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
 ItemList/colors/font_selected_color = Color(0, 0, 0, 1)
 ItemList/colors/guide_color = Color(0, 0, 0, 1)
 ItemList/constants/line_separation = 3
 ItemList/constants/v_separation = 8
+ItemList/styles/cursor_unfocused = SubResource("StyleBoxFlat_c5xx3")
+ItemList/styles/focus = SubResource("StyleBoxFlat_r72lh")
+ItemList/styles/hovered = SubResource("StyleBoxFlat_mlinn")
 ItemList/styles/panel = SubResource("StyleBoxFlat_ux8x0")
 ItemList/styles/selected = SubResource("StyleBoxFlat_b6rj0")
 ItemList/styles/selected_focus = SubResource("StyleBoxFlat_aplhf")

@@ -1,10 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctib5rstfc51r"]
+[gd_scene load_steps=6 format=3 uid="uid://ctib5rstfc51r"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://dy5dqajbxmjti" path="res://Menu.tres" id="3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqa5b"]
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlcjc"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d517x"]
+
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -15,8 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3")
 
-[node name="save_files_list" type="ItemList" parent="Control"]
-unique_name_in_owner = true
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +43,47 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3")
+theme_override_constants/separation = 0
 
-[connection signal="item_activated" from="Control/save_files_list" to="." method="_on_save_files_list_item_activated"]
-[connection signal="item_selected" from="Control/save_files_list" to="." method="_on_save_files_list_item_selected"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="exitMenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxFlat_rqa5b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wlcjc")
+theme_override_styles/normal = SubResource("StyleBoxFlat_d517x")
+text = "  X  "
+
+[node name="toggleFullScreen" type="CheckButton" parent="Control/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3")
+theme_override_font_sizes/font_size = 10
+text = "Plein écran "
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "       "
+
+[node name="save_files_list" type="ItemList" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3")
+theme_override_font_sizes/font_size = 10
+
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/exitMenuButton" to="." method="_on_exitMenuButton_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/toggleFullScreen" to="." method="_on_toggleFullScreen_pressed"]
+[connection signal="item_activated" from="Control/VBoxContainer/save_files_list" to="." method="_on_save_files_list_item_activated"]
+[connection signal="item_selected" from="Control/VBoxContainer/save_files_list" to="." method="_on_save_files_list_item_selected"]

@@ -9,9 +9,11 @@ const color_textures = ["res://Niveau/tileMap/rouge.png","res://Niveau/tileMap/v
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
 	pass # Replace with function body.
 
 func init(list_save_files):
+	$"%toggleFullScreen".button_pressed = (DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
 	save_files = list_save_files
 	for save_file in list_save_files:
 #		print(save_file.file_path)
@@ -48,3 +50,22 @@ func _on_save_files_list_item_selected(index):
 		Global.unpause_level()
 		visible = false
 		Global.is_menu = false
+
+
+func exit_menu():
+	Global.unpause_level()
+	visible = false
+	Global.is_menu = false
+
+func _on_exitMenuButton_pressed():
+	exit_menu()
+
+func _on_toggleFullScreen_pressed():
+	Global.toggle_full_screen()
+
+func on_resize_window():
+	# print("on_resize :")
+	# print(DisplayServer.screen_get_size())
+	# print("is fullscreen ?")
+	# print((DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN))
+	$"%toggleFullScreen".button_pressed = (DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN)
