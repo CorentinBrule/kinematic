@@ -149,6 +149,9 @@ func update_mid_zoom(width_out_game_interface):
 		mid_zoom = Vector2(zoom, zoom)  
 	else:
 		mid_zoom = Vector2(1.0,1.0)
+		
+	if(zoom_val == 0.5):
+		zoom_to_game()
 
 func adapt_clips():
 	var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)
@@ -172,7 +175,7 @@ func adapt_clips():
 func update_clip():
 	if(abs($ClipGauche.size.x - clip_left_width_dest) > 0.5):
 		$ClipGauche.size.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
-		$"%Reveal_actions_touch_overflow".scale.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
+		$"%Reveal_actions_touch_overflow".scale.x = lerpf($ClipGauche.size.x, clip_left_width_dest + 100, 0.05)
 	if(abs($ClipGauche.position.x - clip_left_position_dest) > 0.5):
 		$ClipGauche.position.x = lerpf($ClipGauche.position.x, clip_left_position_dest, 0.05)
 		$"%Reveal_actions_touch_overflow".position.x = $ClipGauche.position.x + ($"%Reveal_actions_touch_overflow".scale.x/2)
