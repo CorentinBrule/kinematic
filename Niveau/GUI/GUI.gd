@@ -1,17 +1,6 @@
 @tool
 extends Node2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-var out_game_interface_droit
-var out_game_interface_gauche
-var out_game_meta
-var out_game_bas_droit
-var actions_container
-var actions_touch_container
-var actions_touch_container_overflow
-
 var avatar
 var color
 const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
@@ -23,13 +12,6 @@ var width_out_game_interface = base_size.x
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
-	out_game_interface_droit = $outGameGUI/HBoxContainer_droit
-	out_game_interface_gauche = $outGameGUI/HBoxContainer_gauche
-	out_game_meta = $outGameGUI/meta
-	out_game_bas_droit = $"%bas_droit"
-	actions_container = $"%ActionsContainer"
-	actions_touch_container = $"%ActionsContainerTouch"
-	actions_touch_container_overflow = $"%ActionsContainerTouch2"
 	adapt_interface()
 
 func init():
@@ -38,8 +20,12 @@ func init():
 	$"%char_name".set("theme_override_colors/font_color", avatar.colors_val[avatar.my_color])
 	$"%narrative".text = get_parent().narrative
 	
-	#clean actions_container
-	for action in actions_container.get_children():
+	## init action containers
+	var actions_touch_container = $"%ActionsContainerTouch"
+	var actions_touch_container_overflow = $"%ActionsContainerTouch2"
+
+	#clean actions containers
+	for action in $"%ActionsContainer".get_children():
 		action.free()
 	for action in actions_touch_container.get_children():
 		action.free()
@@ -53,7 +39,7 @@ func init():
 		var gui_action = action_scene.instantiate()
 		#print(gui_action)
 		gui_action.init(item)
-		actions_container.add_child(gui_action)
+		$"%ActionsContainer".add_child(gui_action)
 		
 		var gui_action_touch = action_scene_touch.instantiate()
 		gui_action_touch.init(item)
@@ -65,7 +51,11 @@ func init():
 			actions_touch_container_overflow.add_child(gui_action_touch)
 		index_action += 1
 	
-	update_interface()
+	if Engine.is_editor_hint():
+		var tool_node = get_parent().get_parent()
+		update_interface(tool_node.has_touch_screen)
+	else: 
+		update_interface(Global.has_touch_screen)
 
 	if get_parent().get_parent().has_node("Menu"):
 		$"%retourMenu".visible = true
@@ -96,27 +86,28 @@ func init():
 func _input(event):
 	if (event is InputEventKey and event.pressed) or (event is InputEventJoypadButton):
 		Global.has_touch_screen = false
-		update_interface()
+		update_interface(false)
 	elif event is InputEventScreenTouch:
 		Global.has_touch_screen = true
-		update_interface()
+		update_interface(true)
 
-func update_interface():
-	#print(Global.has_touch_screen)
-	if Global.has_touch_screen:
-		actions_container.hide()
-		actions_touch_container.show()
-		#actions_touch_container_overflow.show()
+func update_interface(has_touch_screen):
+	#print("update interface")
+	#print(has_touch_screen)
+	if has_touch_screen:
+		$"%ActionsContainer".hide()
+		$"%ActionsContainerTouch".show()
+		$"%ActionsContainerTouch2".show()
 		$touch_controls.show()
 		$"%GuiActionZoom".hide()
 		$"%bas_droit/MarginContainer".show()
 		$"%TextureStart".show()
 		$"%TextureEsc".hide()
 	else:
-		actions_touch_container.hide()
-		#actions_touch_container_overflow.hide()
+		$"%ActionsContainerTouch".hide()
+		$"%ActionsContainerTouch2".hide()
 		$touch_controls.hide()
-		actions_container.show()
+		$"%ActionsContainer".show()
 		$"%GuiActionZoom".show()
 		$"%bas_droit/MarginContainer".hide()
 		
@@ -124,11 +115,11 @@ func adapt_interface():
 	if not Engine.is_editor_hint():
 		var resize_ratio = float(get_viewport().size.x )/ float(get_viewport().size.y)
 		width_out_game_interface = max(base_size.x * ((resize_ratio - 0.8)),180)
-		out_game_interface_droit.size.x = width_out_game_interface
-		out_game_interface_gauche.size.x = width_out_game_interface
-		out_game_interface_gauche.position.x = (out_game_interface_gauche.size.x*-1)
-		out_game_meta.position.x = (out_game_interface_gauche.size.x*-1)
-		out_game_bas_droit.size.x = out_game_interface_droit.size.x + 50
+		$outGameGUI/HBoxContainer_droit.size.x = width_out_game_interface
+		$outGameGUI/HBoxContainer_gauche.size.x = width_out_game_interface
+		$outGameGUI/HBoxContainer_gauche.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
+		$outGameGUI/meta.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
+		$"%bas_droit".size.x = $outGameGUI/HBoxContainer_droit.size.x + 50
 
 func on_resize_window():
 	if not Engine.is_editor_hint():

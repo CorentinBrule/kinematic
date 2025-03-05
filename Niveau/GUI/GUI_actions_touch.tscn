@@ -99,12 +99,9 @@ _data = {
 
 [node name="GUI_actions_touch" type="HBoxContainer"]
 use_parent_material = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -334.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 170.0
+offset_bottom = 50.0
+size_flags_horizontal = 8
 size_flags_vertical = 3
 script = ExtResource("1")
 metadata/_edit_vertical_guides_ = [158.0]
@@ -112,8 +109,10 @@ metadata/_edit_horizontal_guides_ = [16.0]
 
 [node name="ActionDescription" type="Label" parent="."]
 use_parent_material = true
-custom_minimum_size = Vector2(190, 50)
+custom_minimum_size = Vector2(170, 50)
+layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 8
 size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("2_jvjqm")
 theme_override_font_sizes/font_size = 20

@@ -14,10 +14,14 @@ func _ready():
 	# interface "tête-bèche"
 	if get_index() %2 == 0:
 		animation_name = "toggle_droit"
+		alignment = ALIGNMENT_BEGIN
+
+		
 	else:
 		animation_name = "toggle_gauche"
-		$ActionDescription.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
-		$ActionDescription/TouchButton.position.x = 70
+		alignment = ALIGNMENT_END
+		$ActionDescription.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		$ActionDescription/TouchButton.position.x = 100
 		$ActionDescription/TouchButton.scale.x *= -1
 		$ActionDescription/TouchButton/TextureProgress.fill_mode = TextureProgressBar.FILL_COUNTER_CLOCKWISE
 		$ActionDescription/TouchButton/TextureCooldown.fill_mode = TextureProgressBar.FILL_COUNTER_CLOCKWISE

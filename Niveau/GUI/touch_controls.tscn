@@ -11,7 +11,7 @@
 [node name="right" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
-position = Vector2(111, 285)
+position = Vector2(112, 293)
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("2")
 texture_pressed = ExtResource("5")
@@ -34,11 +34,12 @@ grow_vertical = 2
 rotation = 1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1")
+metadata/_edit_use_anchors_ = true
 
 [node name="left" type="TouchScreenButton" parent="."]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
-position = Vector2(0, 285)
+position = Vector2(1, 293)
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("2")
 texture_pressed = ExtResource("5")
