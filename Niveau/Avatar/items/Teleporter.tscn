@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpy4mgx0ccvxx"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Teleporter.gd" id="1"]
+[ext_resource type="Script" uid="uid://bt6qh3b2ufbfo" path="res://Niveau/Avatar/items/Teleporter.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ch0s7fitmnvvn" path="res://Niveau/Avatar/items/teleporter.png" id="2"]
 
 [node name="Teleporter" type="Node2D"]

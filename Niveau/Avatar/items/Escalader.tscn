@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://btlau1cvdt5ao"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Escalader.gd" id="1"]
+[ext_resource type="Script" uid="uid://dy12jxynyh5w2" path="res://Niveau/Avatar/items/Escalader.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://djbxe3pn7hb78" path="res://Niveau/Avatar/items/escalader.png" id="2"]
 
 [node name="Escalader" type="Node2D"]

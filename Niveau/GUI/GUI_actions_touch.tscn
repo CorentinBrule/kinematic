@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cck4nwh5ow7j"]
 
-[ext_resource type="Script" path="res://Niveau/GUI/GUI_actions_touch.gd" id="1"]
+[ext_resource type="Script" uid="uid://860hxr3bfdan" path="res://Niveau/GUI/GUI_actions_touch.gd" id="1"]
 [ext_resource type="FontFile" uid="uid://dmtl4cdmw2113" path="res://assets/FT88-regular.tres" id="2_jvjqm"]
 [ext_resource type="Texture2D" uid="uid://d2dndhucdgejs" path="res://assets/touch_circle_400x300.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://btcsv70o75is1" path="res://assets/touch_circle_200x200.png" id="4"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6t8f"]
 _data = {
-"RESET": SubResource("2"),
-"toggle_droit": SubResource("1"),
-"toggle_gauche": SubResource("Animation_06s1o")
+&"RESET": SubResource("2"),
+&"toggle_droit": SubResource("1"),
+&"toggle_gauche": SubResource("Animation_06s1o")
 }
 
 [node name="GUI_actions_touch" type="HBoxContainer"]

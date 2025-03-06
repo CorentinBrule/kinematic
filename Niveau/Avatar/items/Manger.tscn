@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsh1vs4ygkjhq"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Manger.gd" id="1"]
+[ext_resource type="Script" uid="uid://cnlqemxwhckdx" path="res://Niveau/Avatar/items/Manger.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cnia1s7mxexqv" path="res://Niveau/Avatar/items/manger.png" id="2"]
 
 [node name="Manger" type="Node2D"]

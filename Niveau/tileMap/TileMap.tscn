@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://csy16r6x73njx" path="res://Niveau/tileMap/tileset.tres" id="1_007ih"]
 [ext_resource type="Texture2D" uid="uid://ct16v2ba4h3wx" path="res://Niveau/tileMap/fond2.png" id="5"]
-[ext_resource type="Script" path="res://Niveau/tileMap/TileMap.gd" id="7"]
+[ext_resource type="Script" uid="uid://be86oml2lkyj3" path="res://Niveau/tileMap/TileMap.gd" id="7"]
 
 [sub_resource type="FontVariation" id="FontVariation_00lbu"]
 spacing_glyph = 2

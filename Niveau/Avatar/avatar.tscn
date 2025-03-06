@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://q7tm1hjo843x"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/avatar.gd" id="1"]
+[ext_resource type="Script" uid="uid://bduq1de2gr7q6" path="res://Niveau/Avatar/avatar.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bx0v86h6opdxo" path="res://Niveau/Avatar/light.png" id="5"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -79,9 +79,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5044a"]
 _data = {
-"action": SubResource("2"),
-"téléportation_droite": SubResource("3"),
-"téléportation_gauche": SubResource("4")
+&"action": SubResource("2"),
+&"téléportation_droite": SubResource("3"),
+&"téléportation_gauche": SubResource("4")
 }
 
 [sub_resource type="Animation" id="5"]
@@ -101,9 +101,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ct40x"]
 _data = {
-"RESET": SubResource("5"),
-"téléportation_droit": SubResource("4"),
-"téléportation_gauche": SubResource("3")
+&"RESET": SubResource("5"),
+&"téléportation_droit": SubResource("4"),
+&"téléportation_gauche": SubResource("3")
 }
 
 [node name="Avatar" type="CharacterBody2D"]

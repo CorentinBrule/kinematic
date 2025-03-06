@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://2b0oilwhtlcp"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Bouclier.gd" id="1"]
+[ext_resource type="Script" uid="uid://bq4yj16spaox5" path="res://Niveau/Avatar/items/Bouclier.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dldjinhybek7e" path="res://Niveau/Avatar/items/proteger.png" id="2"]
 
 [node name="Proteger" type="Node2D"]

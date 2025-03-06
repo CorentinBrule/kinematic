@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/manger.png-31856e917d7dde9f64b24bdd6c53b6b1.c
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

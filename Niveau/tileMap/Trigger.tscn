@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://tx5p47jmmtyc"]
 
-[ext_resource type="Script" path="res://Niveau/tileMap/Trigger.gd" id="1"]
+[ext_resource type="Script" uid="uid://d0s8obauk6y50" path="res://Niveau/tileMap/Trigger.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cv8x4oeqf4txp" path="res://Niveau/tileMap/checkpoint.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="1"]

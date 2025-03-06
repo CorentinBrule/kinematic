@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bxqsk0qayxjno"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Plane.gd" id="1"]
+[ext_resource type="Script" uid="uid://bi3jds6tkjq6u" path="res://Niveau/Avatar/items/Plane.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bm6gj7mqd5pl0" path="res://Niveau/Avatar/items/planer.png" id="2"]
 
 [node name="Planer" type="Node2D"]

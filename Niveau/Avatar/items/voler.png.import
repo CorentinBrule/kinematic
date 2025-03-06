@@ -16,9 +16,9 @@ dest_files=["res://.godot/imported/voler.png-6f85a0e3f5e482d43a2ee0730660a9a4.ct
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/bptc_ldr=0
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false

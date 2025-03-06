@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dpviexh1kj4dg"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Voler.gd" id="1"]
+[ext_resource type="Script" uid="uid://bqib266m6ekvp" path="res://Niveau/Avatar/items/Voler.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://brx2nlg6h1ws3" path="res://Niveau/Avatar/items/voler.png" id="2"]
 
 [node name="Voler" type="Node2D"]

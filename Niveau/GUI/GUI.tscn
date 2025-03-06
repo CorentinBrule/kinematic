@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
-[ext_resource type="Script" path="res://Niveau/GUI/GUI.gd" id="3"]
+[ext_resource type="Script" uid="uid://b4wmjanppg50d" path="res://Niveau/GUI/GUI.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cck4nwh5ow7j" path="res://Niveau/GUI/GUI_actions_touch.tscn" id="4_2oh6y"]
 [ext_resource type="Texture2D" uid="uid://deoimpdvhsvy7" path="res://assets/xbox_start_21x21.png" id="4_3auof"]
 [ext_resource type="Texture2D" uid="uid://b2csid1xpmpoy" path="res://assets/Tab_21x21.png" id="4_xvex8"]

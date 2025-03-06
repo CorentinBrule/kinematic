@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://cf70pclr4d3fq"]
 
-[ext_resource type="Script" path="res://Niveau/niveau.gd" id="1"]
+[ext_resource type="Script" uid="uid://cbtrqxho12jn2" path="res://Niveau/niveau.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bx0v86h6opdxo" path="res://Niveau/Avatar/light.png" id="2"]
-[ext_resource type="Script" path="res://Niveau/trigger_end.gd" id="3"]
+[ext_resource type="Script" uid="uid://clcv03ifthq50" path="res://Niveau/trigger_end.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b1iqgjbljejq8" path="res://assets/1px_texture.png" id="4_ccb78"]
-[ext_resource type="Script" path="res://Niveau/CameraController.gd" id="12"]
+[ext_resource type="Script" uid="uid://dttyuu0yre13m" path="res://Niveau/CameraController.gd" id="12"]
 [ext_resource type="PackedScene" uid="uid://co3afijj5piwx" path="res://Niveau/GUI/GUI.tscn" id="13"]
 
 [sub_resource type="Shader" id="9"]

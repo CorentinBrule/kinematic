@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://uc7ca7pnwf8m"]
 
-[ext_resource type="Script" path="res://Niveau/Avatar/items/Saut.gd" id="1"]
+[ext_resource type="Script" uid="uid://cthcsfeqj10d6" path="res://Niveau/Avatar/items/Saut.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cr0b6lso41xhw" path="res://Niveau/Avatar/items/sauter.png" id="2"]
 
 [node name="Sauter" type="Node2D"]
