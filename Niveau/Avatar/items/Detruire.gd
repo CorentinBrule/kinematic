@@ -42,4 +42,4 @@ func _on_Cooldown_timeout():
 func _on_Effect_timeout():
 	avatar.attacking = false
 	cooldown.start()
-	avatar.get_node("Effet").color = Color(1,1,1,0)
+	avatar.get_node("Effet").color = Color(1,1,1,1)

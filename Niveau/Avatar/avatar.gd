@@ -65,8 +65,8 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
-		# if stuck in walls
 		var tileMap = get_parent().get_node("TileMap")
+		# if stuck in walls
 		var walls = tileMap.get_node("Walls")
 		if get_slide_collision_count() > 3:
 			print("stuck")
@@ -240,8 +240,13 @@ func life():
 	show()
 
 func attack(collider):
+	var tileMap = get_parent().get_node("TileMap")
+	var pos = collider.position
+	var cell = tileMap.get_node("TileMap_lights").local_to_map(pos)
+	tileMap.get_node("TileMap_lights").set_cells_terrain_connect([cell],0,-1)
+	#tileMap.get_node("TileMap_lights").erase_cell(cell)
 	collider.free()
-	pass
+
 #
 #func push(collision):
 #	if collision.normal.y == 0:

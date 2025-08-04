@@ -16,6 +16,7 @@ func _ready():
 		init()
 
 func init():
+	init_lights()
 	fill_interactives()
 	save_tileMap()
 	prepare_transition()
@@ -67,6 +68,19 @@ func prepare_transition(reverse:bool = false):
 			all_objs.append(checkpoint)
 	
 	transition_speed = int((all_cells.size() + all_objs.size()) / 100.0) + 1
+
+## init lights TileMap terrain
+func init_lights():
+	$TileMap_lights.show()
+	$TileMap_lights.clear()
+	var tiles_wall = $Walls.get_used_cells()
+	$TileMap_lights.set_cells_terrain_connect(tiles_wall,0,0)
+	var tiles = get_used_cells()
+	var tiles_to_light = []
+	for tile in tiles:
+		if get_cell_source_id(tile) != 4: #if not a checkpoint
+			tiles_to_light.append(tile)
+	$TileMap_lights.set_cells_terrain_connect(tiles_to_light,0,0)
 
 ## convert interactive tiles into instances of interactive objects
 func fill_interactives():

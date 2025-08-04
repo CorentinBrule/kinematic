@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://dkhkk4ctl7svu"]
+[gd_scene load_steps=9 format=4 uid="uid://dkhkk4ctl7svu"]
 
 [ext_resource type="TileSet" uid="uid://csy16r6x73njx" path="res://Niveau/tileMap/tileset.tres" id="1_007ih"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="4_eqf7u"]
 [ext_resource type="Texture2D" uid="uid://ct16v2ba4h3wx" path="res://Niveau/tileMap/fond2.png" id="5"]
 [ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="5_fcpm1"]
+[ext_resource type="TileSet" uid="uid://dewv7opotbkhd" path="res://Niveau/tileMap/tileset-lights.tres" id="6_fcpm1"]
 [ext_resource type="Script" uid="uid://be86oml2lkyj3" path="res://Niveau/tileMap/TileMap.gd" id="7"]
 
 [sub_resource type="FontVariation" id="FontVariation_qposp"]
@@ -81,3 +82,12 @@ text = "01
 18
 19
 20"
+
+[node name="TileMap_lights" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.47058824)
+light_mask = 4
+visibility_layer = 7
+z_index = 10
+z_as_relative = false
+material = SubResource("CanvasItemMaterial_5yveb")
+tile_set = ExtResource("6_fcpm1")
