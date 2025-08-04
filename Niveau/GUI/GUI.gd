@@ -11,6 +11,8 @@ var width_out_game_interface = base_size.x
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not Engine.is_editor_hint():
+		$outGameGUI/cache_GUI_actions_input.hide()
 	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
 	adapt_interface()
 
@@ -62,7 +64,7 @@ func init():
 		
 	$"%meta_label".visible = true
 	var date =  get_parent().date
-	$"%meta_label".text = "%s/%s/%s " % [date.day, date.month, date.year] 
+	$"%meta_label".text = "%s/%s/%s " % ["%02d"%date.day, "%02d"%date.month, "%04d"%date.year]
 	if (date.hour != 0):
 		$"%meta_label".text += str(date.hour) + "h "
 	$"%meta_label".text += get_parent().groupe_name

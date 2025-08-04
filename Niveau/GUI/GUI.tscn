@@ -245,3 +245,13 @@ size_flags_vertical = 10
 
 [node name="GUI_actions_touch" parent="outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2" instance=ExtResource("4_2oh6y")]
 layout_mode = 2
+
+[node name="cache_GUI_actions_input" type="ColorRect" parent="outGameGUI"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 0, 0, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 355.0
+offset_right = 384.0
+offset_bottom = 384.0
