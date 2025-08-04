@@ -9,6 +9,11 @@ var base_size = Vector2(384,384)
 
 var width_out_game_interface = base_size.x
 
+var all_labels = []
+var all_transitions_check = []
+var is_text_transition = false
+var is_reverse_transition = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not Engine.is_editor_hint():
@@ -25,6 +30,43 @@ func _process(delta):
 		else: 
 			$outGameGUI/HBoxContainer_gauche.show()
 			$outGameGUI/meta.show()
+			
+	if is_text_transition and not Engine.is_editor_hint():
+		text_transition(is_reverse_transition)
+		
+func prepare_text_transition(reverse:bool = false):
+	is_text_transition = true
+	is_reverse_transition = reverse
+	all_labels = []
+	all_transitions_check = []
+	for child in find_children("*","",true,false):
+		if (child is Label or child is RichTextLabel) and not child.get_meta("avoid_transition",false):
+			all_labels.append(child)
+			all_transitions_check.append(false)
+			if not reverse:
+				child.visible_ratio = 0.0
+
+func text_transition(reverse:bool = false):
+	for i in all_labels.size():
+		if all_transitions_check[i] == false:
+			if is_instance_valid(all_labels[i]):
+				if reverse:
+					if all_labels[i].visible_ratio > 0.0:
+						#all_labels[i].visible_ratio -= 1.0/ all_labels[i].text.length()/2
+						all_labels[i].visible_ratio -= 0.01
+					else:
+						all_transitions_check[i] = true
+				else:
+					if all_labels[i].visible_ratio < 1.0:
+						#all_labels[i].visible_ratio += 1.0/ all_labels[i].text.length()/2
+						all_labels[i].visible_ratio += 0.01
+					else:
+						all_transitions_check[i] = true
+			else:
+				all_transitions_check[i] = true
+		if not false in all_transitions_check:
+			is_text_transition = false
+			print("transition finish")
 
 func init():
 	avatar = get_parent().get_node("Avatar")

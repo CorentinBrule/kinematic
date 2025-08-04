@@ -127,7 +127,8 @@ func set_save(save_data):
 	level_from_save = true
 	save_lib.set_data(current_scene, save_data)
 	init_level()
-	await get_tree().create_timer(1).timeout
+	while (current_scene.get_node(GUI_path).is_text_transition or current_scene.get_node(TileMap_path).is_level_transition):
+		await get_tree().create_timer(0.5).timeout
 	unpause_level()
 
 func reload_save():
@@ -157,6 +158,7 @@ func unpause_level():
 
 func init_level():
 	var tilemap = current_scene.get_node(TileMap_path)
+	tilemap.is_new_level = true
 	tilemap.init()
 	
 	var avatar = current_scene.get_node(Avatar_path)

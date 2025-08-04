@@ -45,17 +45,33 @@ func restart_level():
 	# reload tileMap
 	var tileMap_scene = load("user://save_tileMap.tscn")
 	var new_tileMap = tileMap_scene.instantiate()
+	new_tileMap.is_new_level = false
 	var name = $TileMap.name
 	$Trigger_end.add_sibling(new_tileMap) # add before $Avatar
 	$TileMap.free()
 	new_tileMap.set_name(name)
 	
 	$GUI/%win.hide()
-	await get_tree().create_timer(1).timeout
+	#await get_tree().create_timer(1).timeout
 	
 	# restart Avatar
 	print($Avatar.position)
 	$Avatar.life()
+
+func next_level():
+	$Avatar.set_process(false)
+	$Avatar.set_physics_process(false)
+	$Camera2D.auto_cam = false
+	$Camera2D.zoom_to_out()
+	$GUI.prepare_text_transition(true)
+	$TileMap.prepare_transition(true)
+
+	while ($GUI.is_text_transition or $TileMap.is_level_transition):
+		$Avatar.position = $Avatar.position.move_toward($Trigger_end.position + $Trigger_end/CollisionShape2D.get_shape().extents, 0.5)
+		await get_tree().create_timer(0.05).timeout
+	
+	$Camera2D.auto_cam = true
+	Global.next_save()
 
 func clean_death_marks():
 	for mark in death_marks:

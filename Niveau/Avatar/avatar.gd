@@ -223,6 +223,8 @@ func death(collision=false):
 		get_parent().death_marks.append(death_mark)
 		get_parent().add_child(death_mark)
 	
+	await get_tree().create_timer(1).timeout
+
 	get_parent().restart_level()
 
 func life():
