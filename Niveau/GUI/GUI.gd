@@ -5,6 +5,8 @@ var avatar
 var color
 const action_scene = preload("res://Niveau/GUI/GUI_actions.tscn")
 const action_scene_touch = preload("res://Niveau/GUI/GUI_actions_touch.tscn")
+const GUIActionsClass = preload("res://Niveau/GUI/GUI_actions.gd")
+
 var base_size = Vector2(384,384)
 
 var width_out_game_interface = base_size.x
@@ -92,11 +94,11 @@ func init():
 		#print(item)
 		var gui_action = action_scene.instantiate()
 		#print(gui_action)
-		gui_action.init(item)
+		gui_action.init_item(item)
 		$"%ActionsContainer".add_child(gui_action)
 		
 		var gui_action_touch = action_scene_touch.instantiate()
-		gui_action_touch.init(item)
+		gui_action_touch.init_item(item)
 
 		if index_action < 5:
 			actions_touch_container.add_child(gui_action_touch)
@@ -104,15 +106,15 @@ func init():
 		else:
 			actions_touch_container_overflow.add_child(gui_action_touch)
 		index_action += 1
-	
-	if Engine.is_editor_hint():
-		var tool_node = get_parent().get_parent()
-		update_interface(tool_node.has_touch_screen)
-	else: 
-		update_interface(Global.has_touch_screen)
+
+	for child in find_children("*","", true,true):
+		if child is GUIActionsClass:
+			print(child)
+			if child.no_item_action != null:
+				child.init_no_item()
 
 	if get_parent().get_parent().has_node("Menu"):
-		$"%retourMenu".visible = true
+		$"%Gui_actions_menu".visible = true
 		
 	$"%meta_label".visible = true
 	var date =  get_parent().date
@@ -121,29 +123,54 @@ func init():
 		$"%meta_label".text += str(date.hour) + "h "
 	$"%meta_label".text += get_parent().groupe_name
 	
-	var regex = RegEx.new()
-	regex.compile("(?i)(xbox|x-box|microsoft)")
-	if regex.search(Input.get_joy_name(0)):
-		$"%TextureStart".show()
-		$"%TextureEsc".hide()
-		$"%GuiActionZoom".find_child("ActionButton").hide()
-		$"%GuiActionZoom".find_child("ActionKey").show()
-	else:
-		$"%TextureEsc".show()
-		$"%TextureStart".hide()
-		$"%GuiActionZoom".find_child("ActionButton").show()
-		$"%GuiActionZoom".find_child("ActionKey").hide()
 	await get_tree().process_frame
 	
+	if Engine.is_editor_hint():
+		var tool_node = get_parent().get_parent()
+		update_interface(tool_node.has_touch_screen)
+	else:
+		update_interface(Global.has_touch_screen)
+		prepare_text_transition()
+
 	adapt_interface()
 
 func _input(event):
-	if (event is InputEventKey and event.pressed) or (event is InputEventJoypadButton):
+	if event is InputEventKey:
+		if Global.has_touch_screen:
+			update_interface(false)
 		Global.has_touch_screen = false
-		update_interface(false)
+		if Global.input_type != "keyboard":
+			Global.input_type = "keyboard"
+			update_GUI_actions()
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		if Global.has_touch_screen:
+			update_interface(false)
+		var regex = RegEx.new()
+		regex.compile("(?i)(xbox|x-box|microsoft)")
+		if regex.search(Input.get_joy_name(0)):
+			if Global.input_type != "xbox":
+				Global.input_type = "xbox"
+				update_GUI_actions()
+		else:
+			Global.input_type = "?"
+		Global.has_touch_screen = false
 	elif event is InputEventScreenTouch:
+		if not Global.has_touch_screen:
+			update_interface(true)
+		Global.input_type = "touch"
 		Global.has_touch_screen = true
-		update_interface(true)
+	elif event is InputEventMouseButton or event is InputEventMouseMotion:
+		pass
+	elif event is InputEventAction:
+		pass
+	else:
+		print("Unknown input type")
+		print(event)
+
+func update_GUI_actions():
+	for child in find_children("*","", true,false):
+		if child is GUIActionsClass:
+			child.update()
 
 func update_interface(has_touch_screen):
 	#print("update interface")
@@ -153,27 +180,23 @@ func update_interface(has_touch_screen):
 		$"%ActionsContainerTouch".show()
 		$"%ActionsContainerTouch2".show()
 		$touch_controls.show()
-		$"%GuiActionZoom".hide()
 		$"%bas_droit/MarginContainer".show()
-		$"%TextureStart".show()
-		$"%TextureEsc".hide()
 	else:
 		$"%ActionsContainerTouch".hide()
 		$"%ActionsContainerTouch2".hide()
 		$touch_controls.hide()
 		$"%ActionsContainer".show()
-		$"%GuiActionZoom".show()
 		$"%bas_droit/MarginContainer".hide()
 		
 func adapt_interface():
 	if not Engine.is_editor_hint():
 		var resize_ratio = float(get_viewport().size.x )/ float(get_viewport().size.y)
-		width_out_game_interface = max(base_size.x * ((resize_ratio - 0.8)),180)
+		width_out_game_interface = max(base_size.x * ((resize_ratio - 0.6)),180)
 		$outGameGUI/HBoxContainer_droit.size.x = width_out_game_interface
 		$outGameGUI/HBoxContainer_gauche.size.x = width_out_game_interface
 		$outGameGUI/HBoxContainer_gauche.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
 		$outGameGUI/meta.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
-		$"%bas_droit".size.x = $outGameGUI/HBoxContainer_droit.size.x + 50
+		$"%bas_droit".size.x = $outGameGUI/HBoxContainer_droit.size.x
 
 func on_resize_window():
 	if not Engine.is_editor_hint():

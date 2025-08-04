@@ -28,6 +28,7 @@ var color_picker = {
 var avatar
 
 var has_touch_screen = false
+var input_type = "keyboard"
 
 var has_server_saves = false
 var save_folder_path = "res://save/"

@@ -1,16 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=12 format=3 uid="uid://co3afijj5piwx"]
 
-[ext_resource type="PackedScene" uid="uid://uqsy5yydpvo3" path="res://Niveau/GUI/GUI_actions.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" uid="uid://b4wmjanppg50d" path="res://Niveau/GUI/GUI.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cck4nwh5ow7j" path="res://Niveau/GUI/GUI_actions_touch.tscn" id="4_2oh6y"]
-[ext_resource type="Texture2D" uid="uid://deoimpdvhsvy7" path="res://assets/xbox_start_21x21.png" id="4_3auof"]
-[ext_resource type="Texture2D" uid="uid://b2csid1xpmpoy" path="res://assets/Tab_21x21.png" id="4_xvex8"]
-[ext_resource type="Texture2D" uid="uid://wyh884psiqaa" path="res://assets/xbox_select_21x21.png" id="5_hhcff"]
-[ext_resource type="Texture2D" uid="uid://ckcudn6aw58vj" path="res://assets/ÉCH_21x21.png" id="5_huiai"]
-
 [ext_resource type="FontFile" uid="uid://xqhll8ho4tus" path="res://assets/FT88-Italic.otf" id="6_v0hot"]
+[ext_resource type="PackedScene" uid="uid://ldfc7f3h1ymm" path="res://Niveau/GUI/GUI_actions.tscn" id="7_ltwpa"]
 
 [sub_resource type="FontVariation" id="FontVariation_v0hot"]
 base_font = ExtResource("6_v0hot")
@@ -115,7 +110,7 @@ text = "il·elle peut :"
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" instance=ExtResource("2")]
+[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" instance=ExtResource("7_ltwpa")]
 material = SubResource("14")
 layout_mode = 2
 theme = ExtResource("2_aqglx")
@@ -164,30 +159,17 @@ size_flags_vertical = 0
 [node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer"]
 layout_mode = 2
 
-[node name="GuiActionZoom" type="HBoxContainer" parent="outGameGUI/bas_droit"]
-unique_name_in_owner = true
+[node name="Gui_actions_zoom" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
 layout_mode = 2
+no_item_description = "zoom/dézoom"
+no_item_action = &"zoom_toggle"
 
-[node name="ActionDescription" type="Label" parent="outGameGUI/bas_droit/GuiActionZoom"]
+[node name="Gui_actions_reset" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
 layout_mode = 2
-text = "zoom/dézoom"
+no_item_description = "recommencer"
+no_item_action = &"reset"
 
-[node name="ActionButton" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
-layout_mode = 0
-offset_left = -26.0
-offset_right = -5.0
-offset_bottom = 21.0
-texture = ExtResource("4_xvex8")
-
-[node name="ActionKey" type="TextureRect" parent="outGameGUI/bas_droit/GuiActionZoom/ActionDescription"]
-visible = false
-layout_mode = 0
-offset_left = -26.0
-offset_right = -5.0
-offset_bottom = 21.0
-texture = ExtResource("5_hhcff")
-
-[node name="TextDroite2" type="RichTextLabel" parent="outGameGUI/bas_droit"]
+[node name="TextDroite2" type="Label" parent="outGameGUI/bas_droit"]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 10
@@ -201,27 +183,12 @@ layout_mode = 2
 [node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer2"]
 layout_mode = 2
 
-[node name="retourMenu" type="HBoxContainer" parent="outGameGUI/bas_droit"]
+[node name="Gui_actions_menu" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 alignment = 2
-
-[node name="TextureStart" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-texture = ExtResource("4_3auof")
-
-[node name="TextureEsc" type="TextureRect" parent="outGameGUI/bas_droit/retourMenu"]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("5_huiai")
-
-[node name="retourMenu_label" type="Label" parent="outGameGUI/bas_droit/retourMenu"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "ESC pour revenir au menu"
+no_item_description = "revenir au menu"
+no_item_action = &"menu"
 
 [node name="ActionsContainerTouchOverflow" type="Node2D" parent="outGameGUI"]
 clip_children = 1
@@ -232,7 +199,7 @@ unique_name_in_owner = true
 light_mask = 2
 z_index = 10
 material = SubResource("CanvasItemMaterial_mkutc")
-anchors_preset = 11
+anchors_preset = -1
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

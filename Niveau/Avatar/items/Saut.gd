@@ -9,7 +9,7 @@ var prev_jump_pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _init():
-	keyboard_key_name = "space"
+	keyboard_key_name = "Space"
 	keyboard_key_scancode = KEY_SPACE
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
