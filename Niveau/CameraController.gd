@@ -12,7 +12,12 @@ var min_zoom = Vector2(0.5, 0.5)
 var max_zoom = Vector2(2,2)
 var mid_zoom = Vector2(1, 1)
 var zoom_dest = zoom
-var edge_from_center
+var zooming = false
+
+var horizontal_edge_from_center
+var vertical_edge_from_center
+var clip_top_position_dest
+var clip_top_height_dest
 var clip_left_position_dest
 var clip_left_width_dest
 var clip_right_position_dest
@@ -20,10 +25,16 @@ var clip_right_width_dest
 var clip_speed = 0.1
 var clip_open_left = false
 var clip_open_right = true
-var zooming = false
+
+var shake_strength = 0.0
+var rng_shake = RandomNumberGenerator.new()
+var shake_random_strength = 10.0
+var shake_fade = 10.0
 
 func _ready():
 	avatar = get_parent().get_node("Avatar")
+	clip_top_position_dest = $ClipHaut.position.y
+	clip_top_height_dest = $ClipHaut.size.y
 	clip_left_position_dest = $ClipGauche.position.x
 	clip_left_width_dest = $ClipGauche.size.x
 	clip_right_position_dest = $ClipDroite.position.x
@@ -78,7 +89,6 @@ func _input(event):
 		adapt_clips()
 
 func _process(delta):
-	
 	if zoom_val < 0.5: 
 		target_pos = lerp(avatar.position, middle_pos, zoom_val) 
 	else: 
@@ -93,12 +103,18 @@ func _process(delta):
 	if zoom.distance_to(zoom_dest) > 0.005:
 		zooming = true
 		position = lerp(position, target_pos, 0.1)
+		zoom = lerp(zoom,zoom_dest,0.05)
+
 	else: 
 		zooming = false
 		position = target_pos
+		zoom = zoom_dest
 	
-	zoom = lerp(zoom,zoom_dest,0.05)
 	update_clip()
+	
+	if shake_strength > 0:
+		shake_strength = lerpf(shake_strength, 0, shake_fade * delta)
+		offset = Vector2(rng_shake.randf_range(-shake_strength, shake_strength), rng_shake.randf_range(-shake_strength, shake_strength))
 
 func zoom_in(zoom_speed_changer=1):
 	zoom_val = max(zoom_val - zoom_speed/zoom_speed_changer, 0)
@@ -157,22 +173,35 @@ func adapt_clips():
 	var resize_ratio = float(get_viewport().size.x) / float(get_viewport().size.y)
 	if resize_ratio > 1 : # horizontal screen
 		var resize_factor = float(get_viewport().size.y) / 384
-		var resized_edge_from_center = float(get_viewport().size.x)/2
-		edge_from_center = (resized_edge_from_center / resize_factor)
+		var resized_horizontal_edge_from_center = float(get_viewport().size.y)/2
+		horizontal_edge_from_center = (resized_horizontal_edge_from_center / resize_factor)
+		var resized_vertical_edge_from_center = float(get_viewport().size.x)/2
+		vertical_edge_from_center = (resized_vertical_edge_from_center / resize_factor)
 		var zoom_factor = 1/zoom_dest.x
-		clip_left_position_dest = (edge_from_center * -1 * zoom_factor) - 5		
+		
+		clip_top_position_dest = (horizontal_edge_from_center * -1 * zoom_factor) - 5
 		if clip_open_left == false:
-			clip_left_width_dest =  (edge_from_center * zoom_factor - 192) + 20
+			clip_top_height_dest = (horizontal_edge_from_center * zoom_factor - 192) + 30
+		else:
+			clip_top_height_dest = 0
+		
+		clip_left_position_dest = (vertical_edge_from_center * -1 * zoom_factor) - 5
+		if clip_open_left == false:
+			clip_left_width_dest =  (vertical_edge_from_center * zoom_factor - 192) + 20
 		else:
 			clip_left_width_dest = 0
 		
-		clip_right_width_dest = edge_from_center * zoom_factor - 192 + 5
+		clip_right_width_dest = vertical_edge_from_center * zoom_factor - 192 + 5
 		if clip_open_right == false:
 			clip_right_position_dest = 192 - 5
 		else:
 			clip_right_position_dest = 192 + clip_right_width_dest
 
 func update_clip():
+	if(abs($ClipHaut.size.y - clip_top_height_dest) > 0.5):
+		$ClipHaut.size.y = lerpf($ClipHaut.size.y, clip_top_height_dest, 0.05)
+	if(abs($ClipHaut.position.y - clip_top_position_dest) > 0.5):
+		$ClipHaut.position.y = lerpf($ClipHaut.position.y, clip_top_position_dest, 0.05)
 	if(abs($ClipGauche.size.x - clip_left_width_dest) > 0.5):
 		$ClipGauche.size.x = lerpf($ClipGauche.size.x, clip_left_width_dest, 0.05)
 		$"%Reveal_actions_touch_overflow".scale.x = lerpf($ClipGauche.size.x, clip_left_width_dest + 100, 0.05)
@@ -185,6 +214,8 @@ func update_clip():
 		$ClipDroite.size.x = lerpf($ClipDroite.size.x, clip_right_width_dest, 0.05)
 
 func force_update_clip():
+	$ClipHaut.position.y = clip_top_position_dest
+	$ClipHaut.size.y = clip_top_height_dest
 	$ClipGauche.position.x = clip_left_position_dest
 	$ClipGauche.size.x = clip_left_width_dest
 	$ClipDroite.position.x = clip_right_position_dest
@@ -198,3 +229,6 @@ func open_clips():
 func open_clip_controls():
 	clip_open_right = true
 	adapt_clips()
+
+func shake():
+	shake_strength = shake_random_strength

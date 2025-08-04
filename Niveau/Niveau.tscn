@@ -28,10 +28,25 @@ position = Vector2(192, 192)
 script = ExtResource("12")
 auto_cam = true
 
+[node name="ClipHaut" type="ColorRect" parent="Camera2D"]
+z_index = 10
+z_as_relative = false
+material = SubResource("10")
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = -500.0
+offset_top = -192.0
+offset_right = 500.0
+offset_bottom = -192.0
+grow_horizontal = 2
+size_flags_vertical = 0
+color = Color(0, 0, 0, 1)
+
 [node name="ClipGauche" type="ColorRect" parent="Camera2D"]
 z_index = 10
 z_as_relative = false
 material = SubResource("10")
+anchors_preset = -1
 offset_left = -192.0
 offset_top = -500.0
 offset_right = -192.0
@@ -40,7 +55,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="ClipDroite" type="ColorRect" parent="Camera2D"]
 material = SubResource("10")
-anchors_preset = 10
+anchors_preset = -1
 anchor_right = 1.0
 offset_left = 192.0
 offset_top = -500.0

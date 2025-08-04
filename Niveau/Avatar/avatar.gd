@@ -208,6 +208,7 @@ func bounce(collision):
 		velocity.x = last_velocity.x * -1
 
 func death(collision=false):
+	get_parent().get_node("Camera2D").shake()
 	print("death")
 	set_process(false)
 	set_physics_process(false)

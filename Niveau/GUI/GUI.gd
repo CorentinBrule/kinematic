@@ -15,6 +15,16 @@ func _ready():
 		$outGameGUI/cache_GUI_actions_input.hide()
 	get_tree().get_root().connect("size_changed",Callable(self,"on_resize_window"))
 	adapt_interface()
+	update_interface(Global.has_touch_screen)
+
+func _process(delta):
+	if not Engine.is_editor_hint():
+		if get_parent().get_node("Camera2D").zoom.x >= get_parent().get_node("Camera2D").mid_zoom.x:
+			$outGameGUI/HBoxContainer_gauche.hide()
+			$outGameGUI/meta.hide()
+		else: 
+			$outGameGUI/HBoxContainer_gauche.show()
+			$outGameGUI/meta.show()
 
 func init():
 	avatar = get_parent().get_node("Avatar")
