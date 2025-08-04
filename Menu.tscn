@@ -3,17 +3,17 @@
 [ext_resource type="Script" uid="uid://ovdl3go1icrs" path="res://menu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://dy5dqajbxmjti" path="res://Menu.tres" id="3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d517x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlcjc"]
+bg_color = Color(1, 1, 1, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqa5b"]
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlcjc"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d517x"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1")
@@ -46,26 +46,29 @@ theme = ExtResource("3")
 theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="exitMenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("3")
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
-theme_override_styles/focus = SubResource("StyleBoxFlat_rqa5b")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wlcjc")
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxFlat_d517x")
-text = "  X  "
+theme_override_styles/hover = SubResource("StyleBoxFlat_wlcjc")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rqa5b")
+text = " X "
 
 [node name="toggleFullScreen" type="CheckButton" parent="Control/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 theme = ExtResource("3")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 11
 text = "Plein écran "
 
 [node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/HBoxContainer"]
@@ -73,7 +76,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "       "
+text = "    "
 
 [node name="save_files_list" type="ItemList" parent="Control/VBoxContainer"]
 unique_name_in_owner = true

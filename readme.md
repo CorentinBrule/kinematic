@@ -50,7 +50,8 @@ Merci à Marine Bourlet-Simon pour son apport à la dimension pédagogique du pr
 
 [Licence Art Libre 1.3](https://artlibre.org/) + [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
-* [FT88 Regular font](https://velvetyne.fr/fonts/degheest/) by Ange Degheest + Oriane Charvieux + Mandy Elbé : [SIL Open Font License 1.1](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
+* [Departure_Mono](https://departuremono.com/) by Helena Zhang : [SIL Open Font License](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
+* [FT88](https://velvetyne.fr/fonts/degheest/) by Ange Degheest + Oriane Charvieux + Mandy Elbé : [SIL Open Font License](http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL)
 
 * Code et assets de [Godot](https://github.com/godotengine/godot/blob/master/LICENSE.txt) et de [2D Kinematic Character Demo](https://github.com/godotengine/godot-demo-projects/blob/master/LICENSE.md) : MIT Licence.
 

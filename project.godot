@@ -53,7 +53,7 @@ singletons=[]
 
 [gui]
 
-theme/custom_font="res://assets/FT88-regular.tres"
+theme/custom_font="uid://blgdofojrs8aa"
 
 [input]
 

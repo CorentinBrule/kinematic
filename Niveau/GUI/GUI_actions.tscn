@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://uqsy5yydpvo3"]
 
-[ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_wc5cg"]
+[ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_0refe"]
 [ext_resource type="Script" uid="uid://ddknol110gq84" path="res://Niveau/GUI/GUI_actions.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://dj185ogqpcy2c" path="res://assets/cache_diamand_texture_21x21.png" id="3_jph0k"]
 [ext_resource type="Texture2D" uid="uid://dacuwt6oyirpp" path="res://assets/carre_texture_21x21.png" id="3_xkx16"]
 [ext_resource type="Texture2D" uid="uid://dr8tv00h4lmdt" path="res://assets/ring-texture.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://dh1i5igqf4jec" path="res://assets/spacebar_texture_21x21.png" id="4_4ti5v"]
-
+[ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="4_0refe"]
 [sub_resource type="Image" id="Image_cowib"]
 data = {
 "data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -32,120 +32,113 @@ data = {
 image = SubResource("Image_55u5d")
 
 [node name="Gui_actions" type="HBoxContainer"]
-offset_right = 84.0
-offset_bottom = 23.0
-script = ExtResource("3")
-metadata/_edit_horizontal_guides_ = [16.0, 13.0]
+anchors_preset = -1
+anchor_left = -0.083000004
+anchor_bottom = 0.055000003
+offset_left = 31.872002
+offset_right = 98.0
+offset_bottom = 6.879999
+theme_override_constants/separation = 0
+script = ExtResource("1_55u5d")
+no_item_action = false
+metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
+metadata/_edit_vertical_guides_ = [-32.0, -27.0, -5.0, -16.0]
 
-[node name="ActionDescription" type="Label" parent="."]
+[node name="input_display" type="Control" parent="."]
+layout_direction = 2
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_wc5cg")
-text = "sauter"
+size_flags_horizontal = 8
+size_flags_vertical = 0
 
-[node name="ActionKey" type="Label" parent="ActionDescription"]
+[node name="input_label" type="Label" parent="input_display"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+layout_direction = 3
 layout_mode = 0
-offset_left = -32.0
-offset_top = 4.0
-offset_bottom = 17.0
+offset_right = 32.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("4_0refe")
 theme_override_font_sizes/font_size = 10
 text = "A"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/avoid_transition = true
 
-[node name="cacheCooldown" type="TextureProgressBar" parent="ActionDescription/ActionKey"]
+[node name="key_frame" type="TextureRect" parent="input_display/input_label"]
+z_index = 1
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.5
-offset_right = 10.0
-offset_bottom = 9.5
+offset_left = -9.5
+offset_top = -10.5
+offset_right = 11.5
+offset_bottom = 10.5
 grow_horizontal = 2
 grow_vertical = 2
-fill_mode = 4
-nine_patch_stretch = true
-texture_progress = ExtResource("3_jph0k")
-tint_progress = Color(0, 0, 0, 1)
+texture = ExtResource("4_q5dqy")
 
-[node name="cadreDiamant" type="TextureProgressBar" parent="ActionDescription/ActionKey"]
+[node name="input_actions" type="Control" parent="input_display"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.5
-offset_right = 10.0
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_bottom = 21.0
+grow_horizontal = 0
+
+[node name="inaction_progress" type="TextureProgressBar" parent="input_display/input_actions"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -27.0
+offset_right = -6.0
+offset_bottom = 21.0
+grow_horizontal = 0
 value = 100.0
 fill_mode = 4
 nine_patch_stretch = true
-texture_under = SubResource("ImageTexture_hi7t5")
 texture_progress = SubResource("ImageTexture_p238u")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.133333, 1, 0.0823529, 1)
 
-[node name="cadreCarré" type="TextureProgressBar" parent="ActionDescription/ActionKey"]
-visible = false
+[node name="cooldown_cache" type="TextureProgressBar" parent="input_display/input_actions"]
+unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.5
-offset_right = 10.0
-offset_bottom = 9.5
+offset_left = -11.5
+offset_top = -10.5
+offset_right = 9.5
+offset_bottom = 10.5
 grow_horizontal = 2
 grow_vertical = 2
 value = 100.0
 fill_mode = 4
 nine_patch_stretch = true
-texture_under = ExtResource("3_xkx16")
-texture_progress = ExtResource("3_xkx16")
-tint_under = Color(0, 0, 0, 1)
+texture_progress = ExtResource("3_vrfwb")
+tint_progress = Color(0, 0, 0, 1)
 
-[node name="cadreSpacebar" type="TextureProgressBar" parent="ActionDescription/ActionKey"]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -11.0
-offset_top = -11.5
-offset_right = 10.0
-offset_bottom = 9.5
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
-fill_mode = 4
-nine_patch_stretch = true
-texture_under = ExtResource("4_4ti5v")
-texture_progress = ExtResource("4_4ti5v")
-tint_under = Color(0, 0, 0, 1)
-
-[node name="TextureProgress_cercle" type="TextureProgressBar" parent="ActionDescription/ActionKey"]
-visible = false
+[node name="input_texture" type="TextureRect" parent="input_display"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 7.5
-offset_top = -3.0
-offset_right = 327.5
-offset_bottom = 337.0
-scale = Vector2(0.05, 0.05)
-value = 100.0
-fill_mode = 4
-texture_under = ExtResource("4")
-texture_progress = ExtResource("4")
-tint_under = Color(1, 1, 1, 0)
-tint_progress = Color(0.133333, 1, 0.0823529, 1)
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.5
+offset_right = -5.5
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_g5kro")
+
+[node name="action_description" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("2_0refe")
+text = "sauter"

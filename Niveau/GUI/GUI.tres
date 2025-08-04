@@ -1,7 +1,24 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://4m8as5n6pjj2"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://4m8as5n6pjj2"]
 
-[ext_resource type="FontFile" uid="uid://ddlveqhdpfnly" path="res://assets/FT88-Regular.ttf" id="1_sygof"]
+[ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="1_qywwt"]
+
+[sub_resource type="FontVariation" id="FontVariation_qywwt"]
+base_font = ExtResource("1_qywwt")
+spacing_glyph = 2
+spacing_space = 2
+baseline_offset = -0.2
 
 [resource]
-default_font = ExtResource("1_sygof")
 default_font_size = 20
+Label/constants/line_spacing = 4
+Label/constants/paragraph_spacing = 16
+Label/font_sizes/font_size = 22
+Label/fonts/font = SubResource("FontVariation_qywwt")
+RichTextLabel/constants/line_separation = 4
+RichTextLabel/constants/paragraph_separation = 16
+RichTextLabel/font_sizes/bold_font_size = 22
+RichTextLabel/font_sizes/bold_italics_font_size = 22
+RichTextLabel/font_sizes/italics_font_size = 22
+RichTextLabel/font_sizes/mono_font_size = 22
+RichTextLabel/font_sizes/normal_font_size = 22
+VBoxContainer/constants/separation = 4
