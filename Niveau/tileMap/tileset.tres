@@ -7,19 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://cv8x4oeqf4txp" path="res://Niveau/tileMap/checkpoint.png" id="5_moamn"]
 [ext_resource type="Texture2D" uid="uid://2d0pts1mq8y8" path="res://Niveau/tileMap/empty.png" id="6_m8i4v"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_n8pa2"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_m8i4v"]
 tile_data = PackedInt32Array(0, 0, 0)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_m8i4v"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_df3hq"]
 tile_data = PackedInt32Array(0, 1, 0)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_df3hq"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_0omiy"]
 tile_data = PackedInt32Array(0, 2, 0)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_0omiy"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_2n75g"]
 tile_data = PackedInt32Array(0, 3, 0)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_2n75g"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_delag"]
 tile_data = PackedInt32Array(0, 4, 0)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n8pa2"]
@@ -204,8 +204,8 @@ sources/2 = SubResource("TileSetAtlasSource_67tfe")
 sources/3 = SubResource("TileSetAtlasSource_5trew")
 sources/4 = SubResource("TileSetAtlasSource_2odqj")
 sources/5 = SubResource("TileSetAtlasSource_df3hq")
-pattern_0 = SubResource("TileMapPattern_n8pa2")
-pattern_1 = SubResource("TileMapPattern_m8i4v")
-pattern_2 = SubResource("TileMapPattern_df3hq")
-pattern_3 = SubResource("TileMapPattern_0omiy")
-pattern_4 = SubResource("TileMapPattern_2n75g")
+pattern_0 = SubResource("TileMapPattern_m8i4v")
+pattern_1 = SubResource("TileMapPattern_df3hq")
+pattern_2 = SubResource("TileMapPattern_0omiy")
+pattern_3 = SubResource("TileMapPattern_2n75g")
+pattern_4 = SubResource("TileMapPattern_delag")
