@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://onp88ojcqavi" path="res://assets/touch_circle_200x200_active.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://bmgpvyudpvkoy" path="res://assets/touch_void_200x200.png" id="6"]
 
-[sub_resource type="FontVariation" id="FontVariation_pegf0"]
+[sub_resource type="FontVariation" id="FontVariation_gyvvm"]
 base_font = ExtResource("3_gyvvm")
 spacing_glyph = 2
 spacing_space = 2
-spacing_top = 8
+spacing_top = 12
 baseline_offset = -0.2
 
 [sub_resource type="Animation" id="2"]
@@ -109,30 +109,30 @@ _data = {
 use_parent_material = true
 anchors_preset = -1
 offset_right = 170.0
-offset_bottom = 50.0
+offset_bottom = 48.0
 size_flags_horizontal = 8
 size_flags_vertical = 3
 theme = ExtResource("1_bepl8")
 script = ExtResource("1")
 metadata/_edit_vertical_guides_ = [158.0]
-metadata/_edit_horizontal_guides_ = [16.0]
+metadata/_edit_horizontal_guides_ = [16.0, 32.0, 48.0, 64.0, -16.0]
 
 [node name="ActionDescription" type="Label" parent="."]
 use_parent_material = true
-custom_minimum_size = Vector2(170, 50)
+custom_minimum_size = Vector2(170, 48)
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1
-theme_override_fonts/font = SubResource("FontVariation_pegf0")
+theme_override_fonts/font = SubResource("FontVariation_gyvvm")
 text = "Sauter"
 vertical_alignment = 1
 
 [node name="TouchButton" type="TouchScreenButton" parent="ActionDescription"]
 z_index = -1
 use_parent_material = true
-position = Vector2(70, -19)
-scale = Vector2(-0.29, 0.29)
+position = Vector2(62.397205, -15.070847)
+scale = Vector2(-0.268, 0.268)
 texture_normal = ExtResource("6")
 passby_press = true
 

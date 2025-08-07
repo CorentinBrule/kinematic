@@ -26,7 +26,7 @@ offset_bottom = 28.0
 theme_override_constants/separation = 0
 script = ExtResource("1_55u5d")
 no_item_action = false
-metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
+metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0, 32.0]
 metadata/_edit_vertical_guides_ = [-32.0, -27.0, -5.0, -16.0]
 
 [node name="input_display" type="Control" parent="."]

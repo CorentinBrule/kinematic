@@ -1,15 +1,24 @@
-[gd_scene load_steps=12 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=15 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" uid="uid://b4wmjanppg50d" path="res://Niveau/GUI/GUI.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cck4nwh5ow7j" path="res://Niveau/GUI/GUI_actions_touch.tscn" id="4_2oh6y"]
+[ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="4_dnjic"]
 [ext_resource type="FontFile" uid="uid://xqhll8ho4tus" path="res://assets/FT88-Italic.otf" id="6_v0hot"]
+[ext_resource type="Texture2D" uid="uid://b4rryk4y7dcbt" path="res://assets/tile_16x16_debug_grid.png" id="7_51k5t"]
 [ext_resource type="PackedScene" uid="uid://ldfc7f3h1ymm" path="res://Niveau/GUI/GUI_actions.tscn" id="7_ltwpa"]
+
+[sub_resource type="FontVariation" id="FontVariation_0x5pt"]
+base_font = ExtResource("4_dnjic")
+spacing_glyph = 2
+spacing_space = 2
+spacing_bottom = 4
+baseline_offset = -0.2
 
 [sub_resource type="FontVariation" id="FontVariation_v0hot"]
 base_font = ExtResource("6_v0hot")
-spacing_bottom = 8
+spacing_bottom = 12
 
 [sub_resource type="GDScript" id="13"]
 
@@ -26,8 +35,8 @@ light_mode = 2
 [node name="GUI" type="Node2D"]
 z_index = 10
 script = ExtResource("3")
-metadata/_edit_horizontal_guides_ = [16.0, 368.0]
-metadata/_edit_vertical_guides_ = [359.0]
+metadata/_edit_horizontal_guides_ = [16.0, 368.0, 32.0, 48.0, 64.0, 80.0]
+metadata/_edit_vertical_guides_ = [359.0, -16.0, -32.0]
 
 [node name="touch_controls" parent="." instance=ExtResource("2_2t8on")]
 unique_name_in_owner = true
@@ -59,6 +68,7 @@ anchors_preset = -1
 anchor_left = -1.0
 anchor_bottom = 1.0
 offset_left = -12.0
+theme_override_constants/separation = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_gauche"]
 layout_mode = 2
@@ -72,9 +82,12 @@ horizontal_alignment = 2
 
 [node name="narrative" type="RichTextLabel" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
 unique_name_in_owner = true
+clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "bla bla"
+theme_override_fonts/normal_font = SubResource("FontVariation_0x5pt")
+text = "bla bla bla bla î bla bla bla
+oui î"
 fit_content = true
 autowrap_mode = 2
 horizontal_alignment = 2
@@ -102,6 +115,7 @@ size_flags_vertical = 3
 [node name="TextDroite" type="Label" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/paragraph_spacing = 16
 theme_override_fonts/font = SubResource("FontVariation_v0hot")
 theme_override_font_sizes/font_size = 20
 text = "il·elle peut :"
@@ -125,8 +139,10 @@ size_flags_vertical = 10
 [node name="GUI_actions_touch" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch" instance=ExtResource("4_2oh6y")]
 layout_direction = 3
 layout_mode = 2
+metadata/_edit_horizontal_guides_ = [16.0]
 
-[node name="Label" type="Label" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+[node name="Label" type="MarginContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("2_aqglx")
 
@@ -134,9 +150,8 @@ theme = ExtResource("2_aqglx")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.167
-offset_top = -50.0
-offset_right = 1.87199
-offset_bottom = -34.0
+offset_top = -48.0
+offset_bottom = -16.0
 
 [node name="meta_label" type="Label" parent="outGameGUI/meta"]
 unique_name_in_owner = true
@@ -163,11 +178,13 @@ layout_mode = 2
 layout_mode = 2
 no_item_description = "zoom/dézoom"
 no_item_action = &"zoom_toggle"
+metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
 [node name="Gui_actions_reset" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
 layout_mode = 2
 no_item_description = "recommencer"
 no_item_action = &"reset"
+metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
 [node name="TextDroite2" type="Label" parent="outGameGUI/bas_droit"]
 layout_mode = 2
@@ -189,6 +206,7 @@ layout_mode = 2
 alignment = 2
 no_item_description = "revenir au menu"
 no_item_action = &"menu"
+metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
 [node name="ActionsContainerTouchOverflow" type="Node2D" parent="outGameGUI"]
 clip_children = 1
@@ -213,6 +231,7 @@ size_flags_vertical = 10
 
 [node name="GUI_actions_touch" parent="outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2" instance=ExtResource("4_2oh6y")]
 layout_mode = 2
+metadata/_edit_horizontal_guides_ = [16.0]
 
 [node name="cache_GUI_actions_input" type="ColorRect" parent="outGameGUI"]
 unique_name_in_owner = true
@@ -223,3 +242,13 @@ layout_mode = 0
 offset_left = 355.0
 offset_right = 384.0
 offset_bottom = 384.0
+
+[node name="debug_grid" type="TextureRect" parent="."]
+visible = false
+anchors_preset = -1
+offset_left = -368.0
+offset_top = -160.0
+offset_right = 704.0
+offset_bottom = 576.0
+texture = ExtResource("7_51k5t")
+stretch_mode = 1

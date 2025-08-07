@@ -1,0 +1,10 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://b0o2wbos836xt"]
+
+[ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="1_3315c"]
+
+[resource]
+base_font = ExtResource("1_3315c")
+spacing_glyph = 2
+spacing_space = 2
+spacing_bottom = 4
+baseline_offset = -0.2

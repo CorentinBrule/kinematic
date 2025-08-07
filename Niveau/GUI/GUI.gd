@@ -96,6 +96,9 @@ func init():
 		#print(gui_action)
 		gui_action.init_item(item)
 		$"%ActionsContainer".add_child(gui_action)
+		## hide before transition
+		if not Engine.is_editor_hint():
+			gui_action.get_node("action_description").visible_ratio = 0.0
 		
 		var gui_action_touch = action_scene_touch.instantiate()
 		gui_action_touch.init_item(item)
@@ -109,9 +112,10 @@ func init():
 
 	for child in find_children("*","", true,true):
 		if child is GUIActionsClass:
-			print(child)
 			if child.no_item_action != null:
 				child.init_no_item()
+				if not Engine.is_editor_hint():
+					child.get_node("action_description").visible_ratio = 0.0
 
 	if get_parent().get_parent().has_node("Menu"):
 		$"%Gui_actions_menu".visible = true
