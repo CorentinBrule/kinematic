@@ -35,7 +35,7 @@ func _process(delta):
 		player.pushing = false
 	
 	if cooldownSave.is_actionning():
-		player.get_node("Effet").color = player.colors_val[player.my_color-1]
+		player.get_node("Light_effect").color = player.colors_val[player.my_color-1]
 		animation.play("action",-1,1/effect_time,false)
 		player.safe = true
 	else:

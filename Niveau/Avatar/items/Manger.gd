@@ -28,7 +28,7 @@ func _physics_process(delta):
 		cooldown.action()
 	if cooldown.is_actionning():
 		player.eat = true
-		player.get_node("Effet").color = player.colors_val[player.my_color]
+		player.get_node("Light_effect").color = player.colors_val[player.my_color]
 		animation.play("action",-1,1/effect_time,false)
 	else:
 		player.eat = false

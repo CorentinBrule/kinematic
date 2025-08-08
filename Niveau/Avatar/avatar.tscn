@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://q7tm1hjo843x"]
+[gd_scene load_steps=12 format=3 uid="uid://q7tm1hjo843x"]
 
 [ext_resource type="Script" uid="uid://bduq1de2gr7q6" path="res://Niveau/Avatar/avatar.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ct16v2ba4h3wx" path="res://Niveau/tileMap/fond2.png" id="3_q3pcm"]
@@ -7,12 +7,51 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(15.6, 15.6)
 
+[sub_resource type="Animation" id="Animation_q3pcm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Light_effect:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light_effect:blend_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light_effect:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
 [sub_resource type="Animation" id="2"]
 resource_name = "action"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Effet:texture_scale")
+tracks/0/path = NodePath("Light_effect:texture_scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -20,6 +59,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.01, 0.03, 0.03, 0.01, 0.03]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Light_effect:blend_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.96666664),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Light_effect:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.96666664, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
 }
 
 [sub_resource type="Animation" id="3"]
@@ -80,6 +143,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5044a"]
 _data = {
+&"RESET": SubResource("Animation_q3pcm"),
 &"action": SubResource("2"),
 &"téléportation_droite": SubResource("3"),
 &"téléportation_gauche": SubResource("4")
@@ -121,7 +185,7 @@ visibility_layer = 2
 anchors_preset = -1
 offset_left = -8.0
 offset_top = -8.0
-offset_right = 7.99999
+offset_right = 7.9999905
 offset_bottom = 8.0
 color = Color(1, 0, 0, 1)
 
@@ -135,29 +199,27 @@ libraries = {
 &"": SubResource("AnimationLibrary_ct40x")
 }
 
-[node name="Effet" type="PointLight2D" parent="."]
-scale = Vector2(2, 2)
-energy = 2.0
+[node name="Light_effect" type="PointLight2D" parent="."]
+position = Vector2(-1.1920929e-07, 1.1920929e-07)
+scale = Vector2(1.5625001, 1.5625001)
 blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("5")
 texture_scale = 0.01
 
-[node name="Effet2" type="PointLight2D" parent="Effet"]
-scale = Vector2(3.125, 3.125)
+[node name="Light_main" type="PointLight2D" parent="."]
+scale = Vector2(6.25, 6.25)
 color = Color(1, 1, 1, 0.19607843)
 shadow_enabled = true
+shadow_filter = 1
 texture = ExtResource("5")
 texture_scale = 0.02
 
-[node name="Effet3" type="PointLight2D" parent="Effet"]
-light_mask = 4
-visibility_layer = 4
-scale = Vector2(3.125, 3.125)
-color = Color(1, 1, 1, 0.19607843)
-range_item_cull_mask = 7
+[node name="Light_lighting_tilemap" type="PointLight2D" parent="."]
+scale = Vector2(6.25, 6.25)
+range_item_cull_mask = 6
 shadow_enabled = true
-shadow_item_cull_mask = 4
+shadow_item_cull_mask = 6
 texture = ExtResource("5")
 texture_scale = 0.02
 

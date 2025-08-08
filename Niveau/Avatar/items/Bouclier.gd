@@ -24,7 +24,7 @@ func ready():
 
 func process(delta):
 	cooldown_percent = cooldown.time_left / cooldown.wait_time * 100
-	progress_percent = effect.time_left / effect.wait_time * 100	
+	progress_percent = effect.time_left / effect.wait_time * 100
 
 func physics_process(delta):
 	if action and cooldown.is_stopped() and effect.is_stopped() :
@@ -34,15 +34,13 @@ func physics_process(delta):
 		
 	if effect.time_left > 0:
 		action = true
-		avatar.get_node("Effet").color = avatar.colors_val[avatar.color_malus]
+		avatar.get_node("Light_effect").color = avatar.colors_val[avatar.color_malus]
 		avatar.bouncing = true
 
 
 func _on_Cooldown_timeout():
-	avatar.get_node("Effet").color = Color(1,1,1,1)
+	pass
 
 func _on_Effect_timeout():
 	avatar.bouncing = false
 	cooldown.start()
-	avatar.get_node("Effet").color = Color(1,1,1,1)
-	

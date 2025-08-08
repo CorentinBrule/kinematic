@@ -16,20 +16,17 @@ signal var_changed
 @export_multiline var narrative: String = "" : set = _change_narrative # (String, MULTILINE)
 
 # variables persistantes entre les morts de l'Avatar
-var start_position
 var death_marks = []
 # var persistant_active_triggers = []
 
 func _ready():
 	if not Engine.is_editor_hint():
-		if Global.bool_start:
-			print("before start")
-			start()
-			print("after start")
-
-func start():
-	start_position = $Avatar.start_position
-	print("start")
+		if get_parent().has_node("Menu") == false:
+			$Avatar.set_process(false)
+			$Avatar.set_process_input(false)
+			$Avatar.set_physics_process(false)    
+			await get_tree().create_timer(1).timeout
+			$Avatar.life()
 
 func _input(event):
 	if event.is_action_pressed("reset"):

@@ -34,12 +34,11 @@ func physics_process(delta):
 	if effect.time_left > 0:
 		action = true
 		avatar.attacking = true
-		avatar.get_node("Effet").color = avatar.colors_val[avatar.color_bonus]
+		avatar.get_node("Light_effect").color = avatar.colors_val[avatar.color_bonus]
 
 func _on_Cooldown_timeout():
-	avatar.get_node("Effet").color = Color(1,1,1,1)
+	pass
 
 func _on_Effect_timeout():
 	avatar.attacking = false
 	cooldown.start()
-	avatar.get_node("Effet").color = Color(1,1,1,1)

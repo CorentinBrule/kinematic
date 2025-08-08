@@ -38,6 +38,7 @@ func _process(delta):
 					set_cell(cell,0,Vector2i(0,0))
 				transition_step += 1
 			else:
+				$TileMap_lights.show()
 				is_level_transition = false
 
 
@@ -45,13 +46,12 @@ func prepare_transition(reverse:bool = false):
 	is_level_transition = true
 	is_reverse_transition = reverse
 	transition_step = 0
+	$TileMap_lights.hide()
 	
 	all_cells = get_used_cells()
 	if not reverse:
 		for cell in all_cells:
 			set_cell(cell,5,Vector2i(0,0))
-	else:
-		$TileMap_lights.hide()
 		
 	all_objs.clear()
 	for square in find_children("*","StaticBody2D",false,false):
