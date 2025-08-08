@@ -43,8 +43,10 @@ func main(_edited_scene, default_path="save/"):
 
 
 func _on_fileDialog_file_selected(file_path : String):
+	print("oui ?")
 	print(file_path)
 	if (fileDialog != null):
+		print("queue_free")
 		fileDialog.queue_free() # Dialog has to be freed in order for the script to be called again.
 	var tilemap = edited_scene.get_node(TileMap_path)
 	#tilemap.clear()

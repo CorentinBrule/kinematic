@@ -4,7 +4,7 @@ extends EditorPlugin
 #var eds = get_editor_interface().get_selection()
 var eds := EditorInterface.get_selection()
 
-const MainPanel = preload("res://addons/main_screen/main_panel.tscn")
+const MainPanel = preload("res://addons/kinematic_addon/main_panel.tscn")
 
 var main_panel_instance
 

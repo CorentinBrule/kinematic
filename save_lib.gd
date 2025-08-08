@@ -133,7 +133,7 @@ static func get_tilemap_data(tilemap):
 	var tilemap_data = []
 
 	#print(tilemap)
-	var used_cells = tilemap.get_used_cells(0)
+	var used_cells = tilemap.get_used_cells()
 	for cell in used_cells:
 		var cell_id = tilemap.get_cell_source_id(Vector2i(cell.x,cell.y))
 		tilemap_data.append({
@@ -181,6 +181,6 @@ static func get_exported_properties(object):
 	var properties = object.get_property_list()
 	var exported_properties = []
 	for p in properties:
-		if p.usage == 8199: # the way to know if a property is exported
+		if p.usage == 4102: # the way to know if a property is exported (old hint was 8199)
 			exported_properties.append(p)
 	return exported_properties

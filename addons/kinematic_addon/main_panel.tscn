@@ -1,0 +1,100 @@
+[gd_scene load_steps=4 format=3 uid="uid://7lapm7fkeeuj"]
+
+[ext_resource type="Texture2D" uid="uid://gsd687odgv86" path="res://addons/kinematic_addon/error_arrow.png" id="2_pgxup"]
+[ext_resource type="Script" uid="uid://8dehq5ojeq3p" path="res://addons/kinematic_addon/main_panel.gd" id="3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jd8y2"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 192.0
+offset_top = 192.0
+offset_right = -192.0
+offset_bottom = -192.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="MenuSave" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ButtonSave" type="Button" parent="CenterContainer/MenuSave"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "sauvegarder le niveau"
+
+[node name="ButtonLoad" type="Button" parent="CenterContainer/MenuSave"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "importer un niveau"
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/MenuSave"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="Error" type="Label" parent="CenterContainer/MenuSave"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+
+[node name="Error_arrow" type="TextureRect" parent="CenterContainer/MenuSave/Error"]
+visible = false
+layout_mode = 0
+offset_left = -256.0
+offset_top = -245.0
+offset_bottom = 11.0
+texture = ExtResource("2_pgxup")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MenuSave"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="ExternalSave" type="VBoxContainer" parent="CenterContainer/MenuSave"]
+layout_mode = 2
+
+[node name="ExternalSave_CheckBox" type="CheckBox" parent="CenterContainer/MenuSave/ExternalSave"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Activer le dossier de sauvegarde custom pour stocker les sauvegardes de niveau ailleurs sur le disque dur"
+text = "dossier de sauvegarde personnalisé : "
+
+[node name="VBoxContainer" type="HBoxContainer" parent="CenterContainer/MenuSave/ExternalSave"]
+layout_mode = 2
+
+[node name="ExternalSave_InputPath" type="LineEdit" parent="CenterContainer/MenuSave/ExternalSave/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "res://save/"
+placeholder_text = "res://save/"
+editable = false
+
+[node name="LoadPath" type="Button" parent="CenterContainer/MenuSave/ExternalSave/VBoxContainer"]
+layout_mode = 2
+text = "…"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/MenuSave/ExternalSave"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jd8y2")
+text = "Utiliser cette option permet de gérer les saves en dehors du dossier de ce projet Godot. Très utile pour gérer plusieurs fenètres et projets en même temps et centraliser les saves."
+fit_content = true
+
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonSave" to="." method="_on_ButtonSave_pressed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ButtonLoad" to="." method="_on_ButtonLoad_pressed"]
+[connection signal="toggled" from="CenterContainer/MenuSave/ExternalSave/ExternalSave_CheckBox" to="." method="_on_ExternalSave_check_box_toggled"]
+[connection signal="text_changed" from="CenterContainer/MenuSave/ExternalSave/VBoxContainer/ExternalSave_InputPath" to="." method="_on_ExternalSave_InputPath_text_changed"]
+[connection signal="pressed" from="CenterContainer/MenuSave/ExternalSave/VBoxContainer/LoadPath" to="." method="_on_ExternalSave_LoadPath_pressed"]
