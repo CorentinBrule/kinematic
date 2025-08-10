@@ -11,7 +11,8 @@ var plane_time = 0
 func _init():
 	keyboard_key_name = "A"
 	keyboard_key_scancode = OS.find_keycode_from_string("a")
-	has_effect = true
+	if not infinite:
+		has_effect = true
 	# noms de variables et leur valeur par défaut au reset
 	initial_state = {
 		"plane_time" : plane_time

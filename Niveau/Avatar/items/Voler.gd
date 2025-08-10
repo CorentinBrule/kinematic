@@ -2,7 +2,7 @@
 extends Item
 
 @export var infinite = true
-@export var energy_max = 100
+@export var energy_max = 100.0
 var energy = energy_max
 @export var energy_use = 1.5
 @export var energy_regen = 5
@@ -16,7 +16,8 @@ func _init():
 	keyboard_key_name = "F"
 	keyboard_key_scancode = OS.find_keycode_from_string("f")
 	progress_percent = 0
-	has_effect = true
+	if not infinite:
+		has_effect = true
 	initial_state = {
 		"regen_time" : regen_time,
 		"energy" : energy

@@ -90,7 +90,7 @@ position = Vector2(8, 8)
 scale = Vector2(0.015625, 0.015625)
 texture = ExtResource("2")
 
-[node name="Effet2" type="PointLight2D" parent="Trigger_end"]
+[node name="PointLight2D_main" type="PointLight2D" parent="Trigger_end"]
 position = Vector2(8, 8)
 scale = Vector2(3.125, 3.125)
 energy = 0.1

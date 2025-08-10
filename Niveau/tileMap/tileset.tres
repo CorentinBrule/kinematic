@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=19 format=3 uid="uid://csy16r6x73njx"]
+[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://csy16r6x73njx"]
 
 [ext_resource type="Texture2D" uid="uid://c8ubb1knkxwsb" path="res://Niveau/tileMap/obstacle.png" id="1_ooi21"]
 [ext_resource type="Texture2D" uid="uid://dh4t08uspnab6" path="res://Niveau/tileMap/rouge.png" id="2_neg3o"]
@@ -33,23 +33,35 @@ use_texture_padding = false
 0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_n8pa2")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_m8i4v"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xya3c"]
 texture = ExtResource("2_neg3o")
 use_texture_padding = false
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_m8i4v")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_df3hq"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_67tfe"]
 texture = ExtResource("3_0dufe")
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_df3hq")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_0omiy"]
+polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5trew"]
 texture = ExtResource("4_f2k58")
 0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_0omiy")
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2odqj"]

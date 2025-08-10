@@ -41,7 +41,8 @@ func _ready():
 	if not Engine.is_editor_hint():
 		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
 	input_xbox_mapped = input_lib.input_xbox_map[xbox_button]
-	init()
+	if Engine.is_editor_hint():
+		init()
 	ready()
 
 func ready():
@@ -52,29 +53,30 @@ func init():
 		if Global.has_touch_screen:
 			if toggleable:
 				toggle = true
+
+		if visible == false:
+			set_process(false)
+			set_physics_process(false)
+			set_process_input(false)
+		else:
+			set_process(true)
+			set_physics_process(true)
+			set_process_input(true)
+		
+		if has_cooldown:
+			cooldown = Timer.new()
+			add_child(cooldown)
+			cooldown.wait_time = cooldown_time
+			cooldown.one_shot = true
+			cooldown.connect("timeout",Callable(self,"_on_Cooldown_timeout"))
+		
+		if has_effect:
+			effect = Timer.new()
+			add_child(effect)
+			effect.wait_time = effect_time
+			effect.one_shot = true
+			effect.connect("timeout",Callable(self,"_on_Effect_timeout"))
 	init_input()
-	if visible == false:
-		set_process(false)
-		set_physics_process(false)
-		set_process_input(false)
-	else:
-		set_process(true)
-		set_physics_process(true)
-		set_process_input(true)
-	
-	if has_cooldown:
-		cooldown = Timer.new()
-		add_child(cooldown)
-		cooldown.wait_time = cooldown_time
-		cooldown.one_shot = true
-		cooldown.connect("timeout",Callable(self,"_on_Cooldown_timeout"))
-	
-	if has_effect:
-		effect = Timer.new()
-		add_child(effect)
-		effect.wait_time = effect_time
-		effect.one_shot = true
-		effect.connect("timeout",Callable(self,"_on_Effect_timeout"))
 
 func init_input():
 	if not InputMap.has_action(action_name):

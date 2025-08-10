@@ -16,6 +16,9 @@ func _init():
 		"recall" : recall
 	}
 
+func ready():
+	cooldown_time = tp_cooldown * 1.0/60.0
+
 func process(delta):
 	cooldown_percent = (tp_cooldown - recall) / tp_cooldown * 100
 

@@ -160,9 +160,9 @@ func update_mid_zoom(width_out_game_interface):
 
 	if(resize_ratio < 2):
 		# valeurs arbitraires mais fonctionne pour la plus part des ratios
-		var zoom = 1/(0.7+(1/width_ratio))
+		var zoom_m = 1/(0.7+(1/width_ratio))
 		#var zoom = (384/width_out_game_interface)
-		mid_zoom = Vector2(zoom, zoom)  
+		mid_zoom = Vector2(zoom_m, zoom_m)  
 	else:
 		mid_zoom = Vector2(1.0,1.0)
 		

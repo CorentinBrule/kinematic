@@ -43,10 +43,10 @@ func restart_level():
 	var tileMap_scene = load("user://save_tileMap.tscn")
 	var new_tileMap = tileMap_scene.instantiate()
 	new_tileMap.is_new_level = false
-	var name = $TileMap.name
+	var node_name = $TileMap.name
 	$Trigger_end.add_sibling(new_tileMap) # add before $Avatar
 	$TileMap.free()
-	new_tileMap.set_name(name)
+	new_tileMap.set_name(node_name)
 	
 	$GUI/%win.hide()
 	#await get_tree().create_timer(1).timeout
