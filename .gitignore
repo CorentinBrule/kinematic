@@ -1,11 +1,9 @@
-.import/
+## godot specific
 *.translation
-export_presets.cfg
 .mono/
 .godot/
-.godot/imported/
-.godot/editor/
-.godot/editor/*
+
+## this project specific 
 export/*
 !export/www/
 export/www/*
@@ -13,4 +11,5 @@ export/www/*
 addons/godot-git-plugin
 save/*
 !save/save-0-0-0-0h-Tuto.json
+
 .vscode/
