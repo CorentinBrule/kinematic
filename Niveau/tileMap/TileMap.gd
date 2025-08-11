@@ -3,10 +3,15 @@ extends TileMapLayer
 var is_new_level = true
 var is_level_transition = false
 var is_reverse_transition
+
+var transition_range := 0.0
 var transition_step = 0
+var transition_duration := 2.0
+var transition_direction := 1
+
 var all_cells = []
 var all_objs = []
-var transition_speed = 1
+var all_transition_steps:int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,36 +28,39 @@ func init():
 
 func _process(delta):
 	if is_level_transition and not Engine.is_editor_hint():
-		for i in range(transition_speed):
-			if transition_step < all_objs.size() :
-				if is_reverse_transition: # end level, hide the current tilemap
-					all_objs[transition_step].hide()
-				else: # start level, reveal tilemap
-					all_objs[transition_step].show()
-				transition_step += 1
-			elif transition_step > all_objs.size() -1 and transition_step < (all_objs.size() + all_cells.size()):
-				var cell = all_cells[transition_step - all_objs.size()]
+		## strange for loop to process all transition elements (cells and objs) 
+		## in both directions (appear or reverse) and time based
+		var transition_speed = all_transition_steps / transition_duration * delta
+		transition_range = transition_range + transition_speed * transition_direction
+		
+		for i in range(int(transition_step), int(transition_step+transition_range), transition_direction):
+			if i >= 0 and i < all_cells.size():
+				var cell = all_cells[i]
 				if is_reverse_transition: # end level, hide the current tilemap
 					set_cell(cell,5,Vector2i(0,0))
 				else: # start level, reveal tilemap
 					set_cell(cell,0,Vector2i(0,0))
-				transition_step += 1
+				transition_step += transition_direction
+				
+			elif i >= all_cells.size() and i < all_transition_steps :
+				if is_reverse_transition: # end level, hide the current tilemap
+					all_objs[i - all_cells.size()].hide()
+				else: # start level, reveal tilemap
+					all_objs[i - all_cells.size()].show()
+				transition_step += transition_direction
+				
 			else:
 				$TileMap_lights.show()
 				is_level_transition = false
+			transition_range -= transition_direction
 
 
 func prepare_transition(reverse:bool = false):
 	is_level_transition = true
 	is_reverse_transition = reverse
-	transition_step = 0
+	transition_range = 0
 	$TileMap_lights.hide()
 	
-	all_cells = get_used_cells()
-	if not reverse:
-		for cell in all_cells:
-			set_cell(cell,5,Vector2i(0,0))
-		
 	all_objs.clear()
 	for square in find_children("*","StaticBody2D",false,false):
 		if reverse:
@@ -67,8 +75,18 @@ func prepare_transition(reverse:bool = false):
 			checkpoint.hide()
 			all_objs.append(checkpoint)
 	
-	transition_speed = int((all_cells.size() + all_objs.size()) / 100.0) + 1
+	all_cells = get_used_cells()
+	all_transition_steps = all_cells.size() + all_objs.size()
 
+	if not reverse:
+		transition_step = 0
+		transition_direction = 1
+		for cell in all_cells:
+			set_cell(cell,5,Vector2i(0,0))
+	else:
+		transition_direction = -1
+		transition_step = all_transition_steps - 1 
+	
 ## init lights TileMap terrain
 func init_lights():
 	$TileMap_lights.show()

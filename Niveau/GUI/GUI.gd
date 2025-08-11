@@ -15,6 +15,7 @@ var all_labels = []
 var all_transitions_check = []
 var is_text_transition = false
 var is_reverse_transition = false
+var transition_duration = 2.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,7 +35,7 @@ func _process(delta):
 			$outGameGUI/meta.show()
 			
 	if is_text_transition and not Engine.is_editor_hint():
-		text_transition(is_reverse_transition)
+		text_transition(is_reverse_transition, delta/transition_duration)
 		
 func prepare_text_transition(reverse:bool = false):
 	is_text_transition = true
@@ -48,20 +49,20 @@ func prepare_text_transition(reverse:bool = false):
 			if not reverse:
 				child.visible_ratio = 0.0
 
-func text_transition(reverse:bool = false):
+func text_transition(reverse:bool = false, speed:float = 0.01):
 	for i in all_labels.size():
 		if all_transitions_check[i] == false:
 			if is_instance_valid(all_labels[i]):
 				if reverse:
 					if all_labels[i].visible_ratio > 0.0:
 						#all_labels[i].visible_ratio -= 1.0/ all_labels[i].text.length()/2
-						all_labels[i].visible_ratio -= 0.01
+						all_labels[i].visible_ratio -= speed
 					else:
 						all_transitions_check[i] = true
 				else:
 					if all_labels[i].visible_ratio < 1.0:
 						#all_labels[i].visible_ratio += 1.0/ all_labels[i].text.length()/2
-						all_labels[i].visible_ratio += 0.01
+						all_labels[i].visible_ratio += speed
 					else:
 						all_transitions_check[i] = true
 			else:
@@ -134,7 +135,7 @@ func init():
 		update_interface(tool_node.has_touch_screen)
 	else:
 		update_interface(Global.has_touch_screen)
-		prepare_text_transition()
+		prepare_text_transition(false)
 
 	adapt_interface()
 
