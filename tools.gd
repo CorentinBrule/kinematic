@@ -40,22 +40,19 @@ func _process(delta):
 		pass
 
 func _on_Avatar_color_change():
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() and tool_is_ready:
 		avatar = get_node("Niveau/Avatar")
 		avatar.get_node("Color").color = avatar.colors_val[avatar.my_color]
-		GUI = get_node("Niveau/GUI")
-		GUI.init()
+		$Niveau/GUI.init()
 
 func _on_Avatar_item_change():
-	if Engine.is_editor_hint():
-		GUI = get_node("Niveau/GUI")
-		GUI.init()
+	if Engine.is_editor_hint() and tool_is_ready:
+		$Niveau/GUI.init()
+
 
 func _on_Niveau_var_changed():
-	if Engine.is_editor_hint():
-		print("event checked change")
-		GUI = get_node("Niveau/GUI")
-		GUI.init()
+	if Engine.is_editor_hint() and tool_is_ready:
+		$Niveau/GUI.init()
 
 func change_mobile_emulation(val):
 	mobile_emulation = val
@@ -68,7 +65,6 @@ func change_mobile_emulation(val):
 func change_menu_for_export(val):
 	menu_for_export = val
 	var menu = get_node_or_null("Menu")
-	print(menu)
 	if Engine.is_editor_hint() and tool_is_ready:
 		if menu_for_export == true:
 			if menu == null:

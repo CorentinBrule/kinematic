@@ -23,10 +23,13 @@ static func load_file(scene, path: String):
 		set_data(scene, data_dict)
 
 static func set_data(scene, data):
+	scene.tool_is_ready = false # pause editor signals
 	set_meta_data(scene, data.get("meta"))
 	set_story_data(scene, data.get("story"))
 	set_tilemap_data(scene, data.get("level_tilemap"))
 	set_character_data(scene, data.get("character"))
+	scene.tool_is_ready = true
+	scene.get_node("Niveau/GUI").init()
 
 
 static func set_meta_data(scene, meta_data):
