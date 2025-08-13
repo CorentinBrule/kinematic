@@ -185,12 +185,18 @@ func update_interface(has_touch_screen):
 		$"%ActionsContainerTouch".show()
 		$"%ActionsContainerTouch2".show()
 		$touch_controls.show()
+		$"%Gui_actions_zoom".hide()
+		$"%Gui_actions_reset".hide()
+		$"%Gui_actions_menu".hide()
 		$"%bas_droit/MarginContainer".show()
 	else:
 		$"%ActionsContainerTouch".hide()
 		$"%ActionsContainerTouch2".hide()
 		$touch_controls.hide()
 		$"%ActionsContainer".show()
+		$"%Gui_actions_zoom".show()
+		$"%Gui_actions_reset".show()
+		$"%Gui_actions_menu".show()
 		$"%bas_droit/MarginContainer".hide()
 		
 func adapt_interface():

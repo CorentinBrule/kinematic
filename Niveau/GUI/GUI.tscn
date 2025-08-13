@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene load_steps=13 format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
 [ext_resource type="Script" uid="uid://b4wmjanppg50d" path="res://Niveau/GUI/GUI.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://cck4nwh5ow7j" path="res://Niveau/GUI/GUI_actions_touch.tscn" id="4_2oh6y"]
 [ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="4_dnjic"]
-[ext_resource type="FontFile" uid="uid://xqhll8ho4tus" path="res://assets/FT88-Italic.otf" id="6_v0hot"]
+[ext_resource type="FontVariation" uid="uid://b6qs461mfqut4" path="res://assets/FT88-italic.tres" id="5_0x5pt"]
 [ext_resource type="Texture2D" uid="uid://b4rryk4y7dcbt" path="res://assets/tile_16x16_debug_grid.png" id="7_51k5t"]
 [ext_resource type="PackedScene" uid="uid://ldfc7f3h1ymm" path="res://Niveau/GUI/GUI_actions.tscn" id="7_ltwpa"]
 
@@ -16,18 +16,10 @@ spacing_space = 2
 spacing_bottom = 4
 baseline_offset = -0.2
 
-[sub_resource type="FontVariation" id="FontVariation_v0hot"]
-base_font = ExtResource("6_v0hot")
-spacing_bottom = 12
-
 [sub_resource type="GDScript" id="13"]
 
 [sub_resource type="ShaderMaterial" id="14"]
 script = SubResource("13")
-
-[sub_resource type="FontVariation" id="FontVariation_51k5t"]
-base_font = ExtResource("6_v0hot")
-spacing_bottom = 8
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mkutc"]
 light_mode = 2
@@ -86,7 +78,8 @@ clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/normal_font = SubResource("FontVariation_0x5pt")
-text = "bla bla bla bla î bla bla bla
+bbcode_enabled = true
+text = "[color=blue]bla[/color] [i]bla[/i] bla bla î bla bla bla
 oui î"
 fit_content = true
 autowrap_mode = 2
@@ -116,9 +109,9 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/paragraph_spacing = 16
-theme_override_fonts/font = SubResource("FontVariation_v0hot")
+theme_override_fonts/font = ExtResource("5_0x5pt")
 theme_override_font_sizes/font_size = 20
-text = "il·elle peut :"
+text = "il·elle peut:"
 
 [node name="ActionsContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
 unique_name_in_owner = true
@@ -175,12 +168,14 @@ size_flags_vertical = 0
 layout_mode = 2
 
 [node name="Gui_actions_zoom" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
+unique_name_in_owner = true
 layout_mode = 2
 no_item_description = "zoom/dézoom"
 no_item_action = &"zoom_toggle"
 metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
 [node name="Gui_actions_reset" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
+unique_name_in_owner = true
 layout_mode = 2
 no_item_description = "recommencer"
 no_item_action = &"reset"
@@ -190,9 +185,9 @@ metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 10
-theme_override_fonts/font = SubResource("FontVariation_51k5t")
+theme_override_fonts/font = ExtResource("5_0x5pt")
 theme_override_font_sizes/font_size = 20
-text = "c'est parti !"
+text = "c'est parti!"
 
 [node name="MarginContainer2" type="MarginContainer" parent="outGameGUI/bas_droit"]
 layout_mode = 2
