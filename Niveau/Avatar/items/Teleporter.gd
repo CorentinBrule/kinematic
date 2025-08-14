@@ -30,12 +30,12 @@ func physics_process(delta):
 		elif Input.is_action_pressed("move_right"):
 			avatar.get_node("AnimationDéplacement").play("téléportation_droit",-1,2,false)
 			teleportation(1)
-		elif avatar.input_direction == 1:
+		elif avatar.input_direction.x == 1:
 			avatar.get_node("AnimationDéplacement").play("téléportation_droit",-1,2,false)
-			teleportation(avatar.input_direction)
-		elif avatar.input_direction == -1:
+			teleportation(avatar.input_direction.x)
+		elif avatar.input_direction.x == -1:
 			avatar.get_node("AnimationDéplacement").play("téléportation_gauche",-1,2,false)
-			teleportation(avatar.input_direction)
+			teleportation(avatar.input_direction.x)
 		recall = 0
 	recall+=1
 

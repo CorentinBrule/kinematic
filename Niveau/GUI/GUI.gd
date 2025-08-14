@@ -11,6 +11,9 @@ var base_size = Vector2(384,384)
 
 var width_out_game_interface = base_size.x
 
+var all_gui_item_actions = []
+var all_gui_no_item_actions = []
+
 var all_labels = []
 var all_transitions_check = []
 var is_text_transition = false
@@ -77,47 +80,21 @@ func init():
 	$"%char_name".set("theme_override_colors/font_color", avatar.colors_val[avatar.my_color])
 	$"%narrative".text = get_parent().narrative
 	
-	## init action containers
-	var actions_touch_container = $"%ActionsContainerTouch"
-	var actions_touch_container_overflow = $"%ActionsContainerTouch2"
-
-	#clean actions containers
-	for action in $"%ActionsContainer".get_children():
-		action.free()
-	for action in actions_touch_container.get_children():
-		action.free()
-	for action in actions_touch_container_overflow.get_children():
-		action.free()
+	init_items_actions()
 	
-	var max_height_touch = actions_touch_container.size.y
-	var index_action = 0
-	for item in avatar.get_active_items():
-		#print(item)
-		var gui_action = action_scene.instantiate()
-		#print(gui_action)
-		gui_action.init_item(item)
-		$"%ActionsContainer".add_child(gui_action)
-		## hide before transition
-		if not Engine.is_editor_hint():
-			gui_action.get_node("action_description").visible_ratio = 0.0
-		
-		var gui_action_touch = action_scene_touch.instantiate()
-		gui_action_touch.init_item(item)
-
-		if index_action < 5:
-			actions_touch_container.add_child(gui_action_touch)
-			actions_touch_container.move_child(gui_action_touch, 0)
-		else:
-			actions_touch_container_overflow.add_child(gui_action_touch)
-		index_action += 1
-
+	## init non item actions
 	for child in find_children("*","", true,true):
 		if child is GUIActionsClass:
 			if child.no_item_action != null:
 				child.init_no_item()
 				if not Engine.is_editor_hint():
 					child.get_node("action_description").visible_ratio = 0.0
-
+	
+	## hide before transition
+	if not Engine.is_editor_hint():
+		for gui_item_action in all_gui_item_actions:
+			gui_item_action.get_node("action_description").visible_ratio = 0.0
+	
 	if get_parent().get_parent().has_node("Menu"):
 		$"%Gui_actions_menu".visible = true
 		
@@ -139,38 +116,41 @@ func init():
 
 	adapt_interface()
 
-func _input(event):
-	if event is InputEventKey:
-		if Global.has_touch_screen:
-			update_interface(false)
-		Global.has_touch_screen = false
-		if Global.input_type != "keyboard":
-			Global.input_type = "keyboard"
-			update_GUI_actions()
-	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
-		if Global.has_touch_screen:
-			update_interface(false)
-		var regex = RegEx.new()
-		regex.compile("(?i)(xbox|x-box|microsoft)")
-		if regex.search(Input.get_joy_name(0)):
-			if Global.input_type != "xbox":
-				Global.input_type = "xbox"
-				update_GUI_actions()
+func init_items_actions():
+	print("ini_items_actions")
+	all_gui_item_actions.clear()
+	## init action containers
+	var actions_touch_container = $"%ActionsContainerTouch"
+	var actions_touch_container_overflow = $"%ActionsContainerTouch2"
+
+	#clean actions containers
+	for action in $"%ActionsContainer".get_children():
+		action.free()
+	for action in actions_touch_container.get_children():
+		action.free()
+	for action in actions_touch_container_overflow.get_children():
+		action.free()
+	
+	var max_height_touch = actions_touch_container.size.y
+	var index_action = 0
+	for item in avatar.get_active_items():
+		
+		#print(item)
+		var gui_action = action_scene.instantiate()
+		#print(gui_action)
+		gui_action.init_item(item)
+		$"%ActionsContainer".add_child(gui_action)
+		all_gui_item_actions.append(gui_action)
+		
+		var gui_action_touch = action_scene_touch.instantiate()
+		gui_action_touch.init_item(item)
+
+		if index_action < 5:
+			actions_touch_container.add_child(gui_action_touch)
+			actions_touch_container.move_child(gui_action_touch, 0)
 		else:
-			Global.input_type = "?"
-		Global.has_touch_screen = false
-	elif event is InputEventScreenTouch:
-		if not Global.has_touch_screen:
-			update_interface(true)
-		Global.input_type = "touch"
-		Global.has_touch_screen = true
-	elif event is InputEventMouseButton or event is InputEventMouseMotion:
-		pass
-	elif event is InputEventAction:
-		pass
-	else:
-		print("Unknown input type")
-		print(event)
+			actions_touch_container_overflow.add_child(gui_action_touch)
+		index_action += 1
 
 func update_GUI_actions():
 	for child in find_children("*","", true,false):
@@ -208,6 +188,39 @@ func adapt_interface():
 		$outGameGUI/HBoxContainer_gauche.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
 		$outGameGUI/meta.position.x = ($outGameGUI/HBoxContainer_gauche.size.x*-1)
 		$"%bas_droit".size.x = $outGameGUI/HBoxContainer_droit.size.x
+
+func _input(event):
+	if event is InputEventKey:
+		if Global.has_touch_screen:
+			update_interface(false)
+		Global.has_touch_screen = false
+		if Global.input_type != "keyboard":
+			Global.input_type = "keyboard"
+			update_GUI_actions()
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+		if Global.has_touch_screen:
+			update_interface(false)
+		var regex = RegEx.new()
+		regex.compile("(?i)(xbox|x-box|microsoft)")
+		if regex.search(Input.get_joy_name(0)):
+			if Global.input_type != "xbox":
+				Global.input_type = "xbox"
+				update_GUI_actions()
+		else:
+			Global.input_type = "?"
+		Global.has_touch_screen = false
+	elif event is InputEventScreenTouch:
+		if not Global.has_touch_screen:
+			update_interface(true)
+		Global.input_type = "touch"
+		Global.has_touch_screen = true
+	elif event is InputEventMouseButton or event is InputEventMouseMotion:
+		pass
+	elif event is InputEventAction:
+		pass
+	else:
+		print("Unknown input type")
+		print(event)
 
 func on_resize_window():
 	if not Engine.is_editor_hint():

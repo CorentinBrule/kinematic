@@ -39,8 +39,8 @@ var on_air_time = 100
 var colle = false
 var eat = false
 var physic_direction = 0
-var input_direction = 0
-var old_pos = Vector2()
+var input_direction: = Vector2()
+var old_pos := Vector2()
 
 @export var start_position = Vector2(344,344) : set = change_start_position
 var original_start_position
@@ -128,12 +128,12 @@ func _physics_process(delta):
 		stop = true
 		
 		if walk_left:
-			input_direction = -1
+			input_direction.x = -1
 			if velocity.x <= WALK_MIN_SPEED and velocity.x > -WALK_MAX_SPEED: # and colle == false
 				force.x -= WALK_FORCE
 				stop = false
 		elif walk_right:
-			input_direction = 1
+			input_direction.x = 1
 			if velocity.x >= -WALK_MIN_SPEED and velocity.x < WALK_MAX_SPEED: #  and colle == false
 				force.x += WALK_FORCE
 				stop = false
@@ -286,15 +286,33 @@ func get_active_items():
 ## changement live dans l'éditeur
 func change_color(new_color):
 	my_color = new_color
-	emit_signal("color_change")
+	if Engine.is_editor_hint():
+		emit_signal("color_change")
 
 func _on_item_visibility_changed():
-	emit_signal("item_change")
+	if Engine.is_editor_hint():
+		emit_signal("item_change")
 
 func _on_item_input_changed():
-	emit_signal("item_change")
+	if Engine.is_editor_hint():
+		emit_signal("item_change")
 
 func change_start_position(value):
 	start_position = value
 	if Engine.is_editor_hint():
 		position = start_position
+
+
+func _on_child_entered_tree(node: Node) -> void:
+	if node is ItemClass:
+		if node.initialized: # just an onready boolean to prevent child_entred_tree first triggerd
+			emit_signal("item_change")
+
+
+func _on_child_exiting_tree(node: Node) -> void:
+	if node is ItemClass:
+		emit_signal("item_change")
+
+
+#func _on_child_order_changed() -> void: # crash 
+	#emit_signal("item_change")

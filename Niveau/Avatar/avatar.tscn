@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://q7tm1hjo843x"]
+[gd_scene load_steps=14 format=3 uid="uid://q7tm1hjo843x"]
 
 [ext_resource type="Script" uid="uid://bduq1de2gr7q6" path="res://Niveau/Avatar/avatar.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ct16v2ba4h3wx" path="res://Niveau/tileMap/fond2.png" id="3_q3pcm"]
@@ -85,32 +85,53 @@ tracks/2/keys = {
 "values": [1.0, 1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="3"]
-resource_name = "téléportation_gauche"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5044a"]
+_data = {
+&"RESET": SubResource("Animation_q3pcm"),
+&"action": SubResource("2")
+}
+
+[sub_resource type="Animation" id="5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Color:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_88mok"]
+resource_name = "téléportation_bas"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Color:scale")
+tracks/0/path = NodePath("Color:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(3, 1), Vector2(1, 1)]
+"values": [Vector2(-8, -40), Vector2(-8, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Color:position")
+tracks/1/path = NodePath("Color:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-8, -8), Vector2(-8, -8)]
+"values": [Vector2(1, 3), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="4"]
@@ -141,34 +162,69 @@ tracks/1/keys = {
 "values": [Vector2(3, 1), Vector2(1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5044a"]
-_data = {
-&"RESET": SubResource("Animation_q3pcm"),
-&"action": SubResource("2"),
-&"téléportation_droite": SubResource("3"),
-&"téléportation_gauche": SubResource("4")
-}
-
-[sub_resource type="Animation" id="5"]
-length = 0.001
+[sub_resource type="Animation" id="3"]
+resource_name = "téléportation_gauche"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Color:position")
+tracks/0/path = NodePath("Color:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-8, -8)]
+"values": [Vector2(3, 1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Color:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -8), Vector2(-8, -8)]
+}
+
+[sub_resource type="Animation" id="Animation_cw1c4"]
+resource_name = "téléportation_haut"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Color:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Color:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-8, -8), Vector2(-8, -8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ct40x"]
 _data = {
 &"RESET": SubResource("5"),
+&"téléportation_bas": SubResource("Animation_88mok"),
 &"téléportation_droit": SubResource("4"),
-&"téléportation_gauche": SubResource("3")
+&"téléportation_gauche": SubResource("3"),
+&"téléportation_haut": SubResource("Animation_cw1c4")
 }
 
 [node name="Avatar" type="CharacterBody2D"]

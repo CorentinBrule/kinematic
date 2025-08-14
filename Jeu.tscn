@@ -71,6 +71,10 @@ xbox_button = "RT"
 metadata/_edit_lock_ = true
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
+[connection signal="child_entered_tree" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_exiting_tree"]
+[connection signal="child_order_changed" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_order_changed"]
 [connection signal="color_change" from="Niveau/Avatar" to="." method="_on_Avatar_color_change"]
 [connection signal="item_change" from="Niveau/Avatar" to="." method="_on_Avatar_item_change"]
+[connection signal="item_change" from="Niveau/Avatar" to="Niveau" method="_on_avatar_item_change"]
 [connection signal="ready" from="Niveau/Avatar" to="Niveau" method="_on_Avatar_ready"]

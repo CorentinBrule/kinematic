@@ -109,3 +109,8 @@ func _change_narrative(new_value):
 	print(new_value)
 	narrative = new_value
 	emit_signal("var_changed")
+
+
+func _on_avatar_item_change() -> void:
+	if not Engine.is_editor_hint(): 
+		$GUI.init_items_actions()

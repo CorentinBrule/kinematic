@@ -10,7 +10,10 @@ signal input_changed
 
 @onready var avatar = get_parent()
 @onready var action_name = get_name()
+var initialized = false
+
 @export_enum("A", "B", "X", "Y", "LB", "RB", "LT", "RT") var xbox_button:String: set = change_input
+
 var input_xbox_mapped
 var keyboard_key_name
 var keyboard_key_scancode
@@ -39,10 +42,17 @@ func _ready():
 	connect("input_changed",Callable(get_parent(),"_on_item_input_changed"))
 	connect("tree_entered",Callable(get_parent(),"_on_item_input_changed"))
 	if not Engine.is_editor_hint():
-		assert(avatar is CharacterBody2D) #,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
+		if get_parent() is CharacterBody2D:
+			avatar = get_parent()
+		else:
+			set_physics_process(false)
+			avatar = null
+		 	#,"L'objet '" + name + "' n'est pas l'enfant de l'avatar !")
+	print(xbox_button)
 	input_xbox_mapped = input_lib.input_xbox_map[xbox_button]
 	if Engine.is_editor_hint():
 		init()
+	initialized = true
 	ready()
 
 func ready():
@@ -113,10 +123,17 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed(action_name) :
 				action = !action
 		
+		#$Area2D/CollisionShape2D
 		physics_process(delta)
 
 func physics_process(delta):
 	pass
+
+
+func looted():
+	reparent(avatar)
+	init()
+	set_physics_process(true)
 
 func change_input(new_value):
 	xbox_button = new_value
@@ -138,3 +155,10 @@ func _get_property_list():
 				"usage": PROPERTY_USAGE_DEFAULT
 			})
 		return ret
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if visible:
+		if body.name == "Avatar":
+			avatar = body
+			looted.call_deferred()
