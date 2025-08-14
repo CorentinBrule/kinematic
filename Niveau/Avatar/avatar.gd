@@ -12,6 +12,7 @@ var color_bonus
 var color_malus
 # Member variables
 @export var GRAVITY = 500.0 # pixels/second/second
+var gravity = 0.0
 
 # Angle in degrees towards either side that the player can consider "floor"
 const FLOOR_ANGLE_TOLERANCE = 40
@@ -32,6 +33,8 @@ var bouncing = false
 var attacking = false
 var pushing = false
 var safe = false
+
+var touching_bonus = false
 
 var jumping = false
 var stop = false
@@ -62,6 +65,9 @@ func init():
 
 func _physics_process(delta):
 	if not Engine.is_editor_hint():
+		gravity = GRAVITY
+		touching_bonus = false
+		
 		if Input.is_action_just_pressed("autokill"):
 			death()
 		
@@ -120,7 +126,7 @@ func _physics_process(delta):
 		last_velocity = velocity
 		
 		# Create forces
-		var force = Vector2(0, GRAVITY)
+		var force = Vector2(0, gravity)
 		
 		var walk_left = Input.is_action_pressed("move_left")
 		var walk_right = Input.is_action_pressed("move_right")
@@ -178,6 +184,20 @@ func touch_same(collision):
 	
 func touch_bonus(collision):
 	#print("bonus")
+	touching_bonus = true
+	on_air_time = 0
+	
+	gravity = 0
+	if is_on_wall():
+		if Input.is_action_pressed("move_up"):
+			velocity.y = -20
+		if Input.is_action_pressed("move_bottom"):
+			velocity.y = 20
+		else:
+			velocity.y /= 1.1
+	if is_on_ceiling() and Input.is_action_pressed("move_bottom"):
+		velocity.y = 1
+	
 	if eat:
 		var col = collision.get_collider()
 		attack(col)

@@ -30,7 +30,7 @@ func physics_process(delta):
 		# Makes controls more snappy.
 		avatar.velocity.y -= jump_power
 		
-		if avatar.colle:
+		if avatar.colle or (avatar.touching_bonus and avatar.is_on_wall()):
 			avatar.colle = false
 			avatar.velocity.x += -avatar.physic_direction*100
 
