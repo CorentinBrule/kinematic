@@ -1,23 +1,24 @@
 # Kinématique
 
-*testé avec Godot 4.4*
+*testé avec Godot 4.5*
 
-Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D dans l’interface du moteur de jeu-vidéo [Godot](https://godotengine.org/download/).
+Boite à outils pour prototyper un jeu-vidéo de plateforme en 2D avec le moteur et dans l’interface de [Godot](https://godotengine.org/download/).
 
 ![Capture d’écran du logiciel Godot avec le projet Kinématique importé et prêt à l’usage](documents/Capture_écran.png)
 
-Il se concentre sur des notions de *game design* et surtout de *level design* en éloignant — peut-être dans un premier temps — le code pour cell·eux qui souhaitent l’utiliser ou encadrer des ateliers et cours.
-Comme tout se passe dans l’interface d’un véritable éditeur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
+Ce projet propose de se concentrer sur des notions de *game design* et surtout de *level design* en éloignant — peut-être dans un premier temps — le code pour cell·eux qui souhaitent prototyper ou encadrer des ateliers et cours.
+
+Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder.
+
+Mais comme tout se passe dans l’interface d’un véritable moteur de jeu-vidéo, tout est augmentable, paramétrable et reprogrammable.
 
 Testez [ici](https://brulé.net/kinématique/) les niveaux créés dans des ateliers (groupes d'environ 5 enfants de 6 à 12 ans) !
-
-Beaucoup de choix qui structurent le projet sont fait pour faciliter la manipulation lors d’un atelier par une personne qui ne connaît pas forcément Godot et ne sait pas coder. La structuration de l’arborescence des nœuds du projet permet de rendre visible dans la scène principale `Jeu.tscn` seulement les nœuds intéressants et faciles à modifier pour se concentrer sur le level design et les bases du game design.
 
 Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/kinematic/wiki/1.-Installation) et [la prise en main](https://github.com/CorentinBrule/kinematic/wiki/2.-Prise-en-main) ; les [ressources pédagogiques (déroulement d’ateliers)](https://github.com/CorentinBrule/kinematic/wiki/Ressources-p%C3%A9dagogiques) et les [aspects techniques pour adapter l’outil en mettant les mains dans le cambouis](https://github.com/CorentinBrule/kinematic/wiki/Aller-plus-loin-(dev)).
 
 ## Principes généraux du jeu
 
-*Kinématique* permet de prototyper un niveau de jeu de plateforme en 2D. Il met en place donc un certain nombre de principes de base de *gameplay*:
+*Kinématique* permet de prototyper un niveau de jeu de plateforme en 2D. Il met donc en place un certain nombre de principes de base de *gameplay* :
 
 - on contrôle un **carré / personnage / avatar**
 - l’**avatar** est soumis à des règles qui ressemblent à la gravité (attiré par le bas, retenu par d’autres objets physiques)
@@ -33,16 +34,16 @@ Un wiki permet d’explorer [l’installation](https://github.com/CorentinBrule/
     - le **bleu** bat le **rouge** mais est battu par le **vert**
     - le **vert** bat le **bleu** mais est battu par le **rouge**
   
-> pour l’expliquer autrement : ces couleurs viennent de la dynamique des trois éléments principaux des jeu Pokémon **feu / eau / plante** : Salamèche, Carapuce, Bulbizar.... tmtc.
+> ou sinon les trois types principaux des jeux Pokémon avec leurs forces et faiblesses **feu / eau / plante**... Salamèche, Carapuce, Bulbizar.... tmtc.
 
 **Ainsi, la couleur de l’avatar détermine ce qui est négatif pour lui (ennemies, malus, pièges...) et ce qui est positif (alliés, bonus, nourriture...)**
 
-- sans interaction particulière ou modification des règles du jeu, l’avatar qui touche un carré de la couleur malus, disparaît et réapparaît au point de départ ("perds"/"meurs"), laissant une petite croix pour que l’on se rappelle là où l’on a raté.
+- sans interaction particulière ou modification des règles du jeu, l’avatar qui touche un carré de la couleur malus, disparaît et réapparaît au point de départ (**perds/meurs**), laissant une petite croix pour que l’on se rappelle là où le⋅a joueur⋅euse a raté.
 
-- les éléments de couleur **noir** sont neutres (**plateforme**)
+- les éléments de couleur **noire** sont neutres (**plateformes**)
 - les carrés aux **contours blancs** sont des checkpoints
 
-Certaines de ces règles peuvent être ignorées/désactivées ou pourront être adaptées selon les besoins de l’atelier.
+Certaines de ces règles peuvent être ignorées/désactivées ou peuvent être adaptées selon les besoins.
 
 ## Crédits
 

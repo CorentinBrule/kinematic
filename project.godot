@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Kinematic Character"
+config/version="0.3"
 run/main_scene="res://Jeu.tscn"
-config/features=PackedStringArray("4.4")
-config/icon="res://assets/icon.png"
+config/features=PackedStringArray("4.5")
+
 
 [autoload]
 
@@ -40,8 +41,6 @@ stretch/aspect="keep"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
-version_control_autoload_on_startup=true
-version_control_plugin_name="GitAPI"
 
 [editor_plugins]
 
@@ -206,6 +205,7 @@ multithread/thread_rid_pool_prealloc=60
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true

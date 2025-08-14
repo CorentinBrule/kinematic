@@ -1,198 +1,226 @@
 {
-	"meta": {
-		"date": "2023-01-12-12h",
-		"groupe_name": "Tuto"
-	},
-	"story": {
-		"char_name": "Avatar",
-		"narrative": "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés Bleus, Rouge et Verts dépend de sa propre couleur."
-	},
 	"character": {
 		"properties": {
+			"GRAVITY": 500.0,
 			"my_color": 2,
-			"GRAVITY": 500,
-			"start_position": "(344, 344)"
+			"start_position": "(344.0, 344.0)"
 		},
 		"stuff": [
 			{
 				"name": "Sauter",
 				"properties": {
-					"xbox_button": "A",
-					"jump_power": 200
+					"jump_power": 200.0,
+					"xbox_button": "A"
 				}
 			},
 			{
 				"name": "Escalader",
 				"properties": {
-					"xbox_button": "RB",
-					"glue_time_max": 10,
-					"glue_effect": 1000,
-					"glue_delay": 1
+					"glue_delay": 1.0,
+					"glue_effect": 1000.0,
+					"glue_time_max": 10.0,
+					"xbox_button": "RB"
 				}
 			},
 			{
 				"name": "Détruire",
 				"properties": {
-					"xbox_button": "B",
-					"effect_time": 0.5,
-					"cooldown_time": 0.2
+					"_cooldown_time": 0.2,
+					"_effect_time": 0.5,
+					"xbox_button": "B"
 				}
 			},
 			{
 				"name": "Planer",
 				"properties": {
-					"xbox_button": "LT",
 					"infinite": true,
-					"plane_time_max": 100,
-					"plane_effect": 2
+					"plane_effect": 2.0,
+					"plane_time_max": 100.0,
+					"xbox_button": "LT"
 				}
 			},
 			{
 				"name": "Se protéger",
 				"properties": {
-					"xbox_button": "X",
-					"effect_time": 0.5,
-					"cooldown_time": 0.2
+					"_cooldown_time": 0.2,
+					"_effect_time": 0.5,
+					"xbox_button": "X"
 				}
 			},
 			{
 				"name": "Se téléporter",
 				"properties": {
-					"xbox_button": "Y",
-					"tp_distance": 31,
-					"tp_cooldown": 50
+					"tp_cooldown": 50.0,
+					"tp_distance": 31.0,
+					"xbox_button": "Y"
 				}
 			},
 			{
 				"name": "Se propulser",
 				"properties": {
-					"xbox_button": "RT",
-					"infinite": true,
-					"energy_max": 100,
+					"energy_max": 100.0,
+					"energy_regen": 5.0,
 					"energy_use": 1.5,
-					"energy_regen": 5,
-					"jetpack_power": 10,
-					"time_to_regen": 10,
-					"maximum_vertical_speed": -110
+					"infinite": true,
+					"jetpack_power": 10.0,
+					"maximum_vertical_speed": -110.0,
+					"time_to_regen": 10.0,
+					"xbox_button": "RT"
+				}
+			},
+			{
+				"name": "Double sauter",
+				"properties": {
+					"tp_cooldown": 50.0,
+					"tp_distance": 31.0,
+					"xbox_button": "LB"
 				}
 			}
 		]
 	},
 	"level_tilemap": [
 		{
-			"x": 2,
-			"y": 3,
-			"id": 0
-		},
-		{
-			"x": 2,
-			"y": 4,
-			"id": 0
-		},
-		{
-			"x": 3,
-			"y": 5,
-			"id": 0
-		},
-		{
-			"x": 3,
-			"y": 6,
-			"id": 0
-		},
-		{
-			"x": 4,
-			"y": 7,
-			"id": 0
-		},
-		{
-			"x": 4,
-			"y": 8,
-			"id": 0
-		},
-		{
-			"x": 5,
-			"y": 9,
-			"id": 0
-		},
-		{
-			"x": 5,
-			"y": 10,
-			"id": 0
-		},
-		{
-			"x": 6,
-			"y": 11,
-			"id": 0
-		},
-		{
-			"x": 6,
-			"y": 12,
-			"id": 0
-		},
-		{
+			"id": 0,
 			"x": 7,
-			"y": 13,
-			"id": 0
+			"y": 14
 		},
 		{
+			"id": 0,
 			"x": 7,
-			"y": 14,
-			"id": 0
+			"y": 13
 		},
 		{
+			"id": 0,
 			"x": 8,
-			"y": 15,
-			"id": 0
+			"y": 15
 		},
 		{
+			"id": 0,
 			"x": 8,
-			"y": 16,
-			"id": 0
+			"y": 16
 		},
 		{
+			"id": 0,
 			"x": 9,
-			"y": 17,
-			"id": 0
+			"y": 17
 		},
 		{
+			"id": 0,
 			"x": 9,
-			"y": 18,
-			"id": 0
+			"y": 18
 		},
 		{
+			"id": 0,
 			"x": 10,
-			"y": 19,
-			"id": 0
+			"y": 19
 		},
 		{
+			"id": 0,
 			"x": 10,
-			"y": 20,
-			"id": 0
+			"y": 20
 		},
 		{
+			"id": 0,
 			"x": 11,
-			"y": 21,
-			"id": 0
+			"y": 21
 		},
 		{
-			"x": 13,
-			"y": 21,
-			"id": 4
-		},
-		{
-			"x": 15,
-			"y": 21,
-			"id": 2
-		},
-		{
+			"id": 1,
 			"x": 17,
-			"y": 21,
-			"id": 1
+			"y": 21
 		},
 		{
+			"id": 2,
+			"x": 15,
+			"y": 21
+		},
+		{
+			"id": 3,
 			"x": 19,
-			"y": 21,
-			"id": 3
+			"y": 21
+		},
+		{
+			"id": 4,
+			"x": 13,
+			"y": 21
+		},
+		{
+			"id": 0,
+			"x": 3,
+			"y": 6
+		},
+		{
+			"id": 4,
+			"x": 3,
+			"y": 5
+		},
+		{
+			"id": 0,
+			"x": 6,
+			"y": 12
+		},
+		{
+			"id": 0,
+			"x": 6,
+			"y": 11
+		},
+		{
+			"id": 0,
+			"x": 5,
+			"y": 9
+		},
+		{
+			"id": 2,
+			"x": 12,
+			"y": 10
+		},
+		{
+			"id": 1,
+			"x": 15,
+			"y": 10
+		},
+		{
+			"id": 3,
+			"x": 18,
+			"y": 10
+		},
+		{
+			"id": 0,
+			"x": 4,
+			"y": 9
+		},
+		{
+			"id": 0,
+			"x": 4,
+			"y": 10
+		},
+		{
+			"id": 0,
+			"x": 4,
+			"y": 11
+		},
+		{
+			"id": 0,
+			"x": 4,
+			"y": 12
+		},
+		{
+			"id": 0,
+			"x": 6,
+			"y": 9
+		},
+		{
+			"id": 0,
+			"x": 7,
+			"y": 9
 		}
-	]
+	],
+	"meta": {
+		"date": "2023-01-12-12h",
+		"groupe_name": "Tuto"
+	},
+	"story": {
+		"char_name": "Avatar",
+		"narrative": "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés [color=blue]Bleus[/color], [color=red]Rouges[/color] et [color=green]Verts[/color] dépend de sa propre couleur."
+	}
 }
