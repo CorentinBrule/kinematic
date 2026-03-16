@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy1elclwmc42l"]
+[gd_scene format=3 uid="uid://dy1elclwmc42l"]
 
 [ext_resource type="OccluderPolygon2D" path="res://Niveau/tileMap/tile_collider.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://m6nflkbshgfi" path="res://Niveau/tileMap/vert.png" id="2"]
@@ -6,15 +6,15 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(15.9983, 16.003)
 
-[node name="Vert" type="StaticBody2D"]
+[node name="Vert" type="StaticBody2D" unique_id=1416765697]
 collision_layer = 2
 collision_mask = 15
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=699013709]
 occluder = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=465987591]
 shape = SubResource("1")
 
-[node name="vert" type="Sprite2D" parent="."]
+[node name="vert" type="Sprite2D" parent="." unique_id=1802923877]
 texture = ExtResource("2")

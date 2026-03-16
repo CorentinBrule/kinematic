@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://4m8as5n6pjj2"]
+[gd_resource type="Theme" format=3 uid="uid://4m8as5n6pjj2"]
 
 [ext_resource type="FontVariation" uid="uid://b0o2wbos836xt" path="res://Niveau/GUI/Departure_GUI.tres" id="1_vdcjt"]
 

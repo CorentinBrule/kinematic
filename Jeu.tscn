@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://px75yra5py1n"]
+[gd_scene format=4 uid="uid://px75yra5py1n"]
 
 [ext_resource type="PackedScene" uid="uid://cf70pclr4d3fq" path="res://Niveau/Niveau.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://q7tm1hjo843x" path="res://Niveau/Avatar/avatar.tscn" id="2"]
@@ -11,15 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://bxqsk0qayxjno" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
 [ext_resource type="Script" uid="uid://d3vy7wxnq3en3" path="res://tools.gd" id="12"]
-[ext_resource type="PackedScene" uid="uid://k67td8mpee00" path="res://Niveau/Avatar/items/DoubleSaut.tscn" id="12_ygcwj"]
 
-[node name="Jeu" type="Node"]
+[node name="Jeu" type="Node" unique_id=623389258]
 process_mode = 3
 script = ExtResource("12")
 auto_cam = true
 click_to_move = true
 
-[node name="Niveau" parent="." instance=ExtResource("1")]
+[node name="Niveau" parent="." unique_id=731395993 instance=ExtResource("1")]
 process_mode = 3
 groupe_name = "Tuto"
 date = {
@@ -32,10 +31,10 @@ char_name = "Avatar"
 narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'intéraction avec les carrés [color=blue]Bleus[/color], [color=red]Rouges[/color] et [color=green]Verts[/color] dépend de sa propre couleur."
 metadata/_edit_lock_ = true
 
-[node name="TileMap" parent="Niveau" instance=ExtResource("10")]
-tile_map_data = PackedByteArray("AAAHAA4AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAJABEAAAAAAAAAAAAJABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAALABUAAAAAAAAAAAARABUAAQAAAAAAAAAPABUAAgAAAAAAAAATABUAAwAAAAAAAAANABUABAAAAAAAAAADAAYAAAAAAAAAAAADAAUABAAAAAAAAAAGAAwAAAAAAAAAAAAGAAsAAAAAAAAAAAAFAAkAAAAAAAAAAAAMAAoAAgAAAAAAAAAPAAoAAQAAAAAAAAASAAoAAwAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAA=")
+[node name="TileMap" parent="Niveau" unique_id=682005071 instance=ExtResource("10")]
+tile_map_data = PackedByteArray("AAAHAA4AAAAAAAAAAAADAAUABAAAAAAAAAADAAYAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAJABEAAAAAAAAAAAAJABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAALABUAAAAAAAAAAAARABUAAQAAAAAAAAAGAAsAAAAAAAAAAAAPABUAAgAAAAAAAAATABUAAwAAAAAAAAANABUABAAAAAAAAAAMAAoAAgAAAAAAAAAPAAoAAQAAAAAAAAASAAoAAwAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAA=")
 
-[node name="Avatar" parent="Niveau" instance=ExtResource("2")]
+[node name="Avatar" parent="Niveau" unique_id=783970487 instance=ExtResource("2")]
 process_mode = 1
 position = Vector2(344, 344)
 collision_layer = 3
@@ -43,12 +42,12 @@ collision_mask = 3
 my_color = 2
 start_position = Vector2(344, 344)
 
-[node name="Sauter" parent="Niveau/Avatar" instance=ExtResource("5")]
+[node name="Sauter" parent="Niveau/Avatar" unique_id=275641146 instance=ExtResource("5")]
 jump_power = 200.0
 xbox_button = "A"
 metadata/_edit_lock_ = true
 
-[node name="Escalader" parent="Niveau/Avatar" instance=ExtResource("8")]
+[node name="Escalader" parent="Niveau/Avatar" unique_id=988874499 instance=ExtResource("8")]
 glue_time_max = 10.0
 glue_effect = 1000.0
 glue_delay = 1.0
@@ -56,39 +55,33 @@ xbox_button = "RB"
 toggle = false
 metadata/_edit_lock_ = true
 
-[node name="Détruire" parent="Niveau/Avatar" instance=ExtResource("6")]
+[node name="Détruire" parent="Niveau/Avatar" unique_id=475182210 instance=ExtResource("6")]
 xbox_button = "B"
 metadata/_edit_lock_ = true
 
-[node name="Planer" parent="Niveau/Avatar" instance=ExtResource("9")]
+[node name="Planer" parent="Niveau/Avatar" unique_id=2077654964 instance=ExtResource("9")]
 plane_time_max = 100.0
 plane_effect = 2.0
 xbox_button = "LT"
 metadata/_edit_lock_ = true
 
-[node name="Se protéger" parent="Niveau/Avatar" instance=ExtResource("3")]
+[node name="Se protéger" parent="Niveau/Avatar" unique_id=291134350 instance=ExtResource("3")]
 xbox_button = "X"
 metadata/_edit_lock_ = true
 
-[node name="Se téléporter" parent="Niveau/Avatar" instance=ExtResource("4")]
+[node name="Se téléporter" parent="Niveau/Avatar" unique_id=1355889284 instance=ExtResource("4")]
 tp_distance = 31.0
 tp_cooldown = 50.0
 xbox_button = "Y"
 metadata/_edit_lock_ = true
 
-[node name="Se propulser" parent="Niveau/Avatar" instance=ExtResource("7")]
+[node name="Se propulser" parent="Niveau/Avatar" unique_id=1990406210 instance=ExtResource("7")]
 position = Vector2(0, 6)
 energy_regen = 5.0
 jetpack_power = 10.0
 time_to_regen = 10.0
 maximum_vertical_speed = -110.0
 xbox_button = "RT"
-metadata/_edit_lock_ = true
-
-[node name="Double sauter" parent="Niveau/Avatar" instance=ExtResource("12_ygcwj")]
-tp_distance = 31.0
-tp_cooldown = 50.0
-xbox_button = "LB"
 metadata/_edit_lock_ = true
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]

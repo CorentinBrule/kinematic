@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://co3afijj5piwx"]
+[gd_scene format=3 uid="uid://co3afijj5piwx"]
 
 [ext_resource type="PackedScene" uid="uid://c3hvhqxrsv5ca" path="res://Niveau/GUI/touch_controls.tscn" id="2_2t8on"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_aqglx"]
@@ -24,16 +24,16 @@ script = SubResource("13")
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mkutc"]
 light_mode = 2
 
-[node name="GUI" type="Node2D"]
+[node name="GUI" type="Node2D" unique_id=238122895]
 z_index = 10
 script = ExtResource("3")
 metadata/_edit_horizontal_guides_ = [16.0, 368.0, 32.0, 48.0, 64.0, 80.0]
 metadata/_edit_vertical_guides_ = [359.0, -16.0, -32.0]
 
-[node name="touch_controls" parent="." instance=ExtResource("2_2t8on")]
+[node name="touch_controls" parent="." unique_id=746931284 instance=ExtResource("2_2t8on")]
 unique_name_in_owner = true
 
-[node name="outGameGUI" type="Control" parent="."]
+[node name="outGameGUI" type="Control" parent="." unique_id=990560904]
 layout_mode = 3
 anchor_right = 0.219
 offset_right = 384.0
@@ -42,7 +42,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_aqglx")
 
-[node name="win" type="Label" parent="outGameGUI"]
+[node name="win" type="Label" parent="outGameGUI" unique_id=1666788186]
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
@@ -54,7 +54,7 @@ size_flags_horizontal = 2
 size_flags_vertical = 0
 text = "BRAVO !"
 
-[node name="HBoxContainer_gauche" type="HBoxContainer" parent="outGameGUI"]
+[node name="HBoxContainer_gauche" type="HBoxContainer" parent="outGameGUI" unique_id=2115190809]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -1.0
@@ -62,17 +62,17 @@ anchor_bottom = 1.0
 offset_left = -12.0
 theme_override_constants/separation = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_gauche"]
+[node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_gauche" unique_id=391706917]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="char_name" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
+[node name="char_name" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer" unique_id=882951289]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Personnage"
 horizontal_alignment = 2
 
-[node name="narrative" type="RichTextLabel" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
+[node name="narrative" type="RichTextLabel" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer" unique_id=452636281]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
@@ -86,13 +86,13 @@ autowrap_mode = 2
 horizontal_alignment = 2
 visible_characters_behavior = 1
 
-[node name="nom_ennemi" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer"]
+[node name="nom_ennemi" type="Label" parent="outGameGUI/HBoxContainer_gauche/VBoxContainer" unique_id=238353180]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Méchants !"
 
-[node name="HBoxContainer_droit" type="HBoxContainer" parent="outGameGUI"]
+[node name="HBoxContainer_droit" type="HBoxContainer" parent="outGameGUI" unique_id=788735290]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
@@ -100,12 +100,12 @@ anchor_right = 1.5
 anchor_bottom = 1.0
 offset_right = 204.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit" unique_id=1098385849]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextDroite" type="Label" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+[node name="TextDroite" type="Label" parent="outGameGUI/HBoxContainer_droit/VBoxContainer" unique_id=1655896122]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/paragraph_spacing = 16
@@ -113,45 +113,45 @@ theme_override_fonts/font = ExtResource("5_0x5pt")
 theme_override_font_sizes/font_size = 20
 text = "il·elle peut:"
 
-[node name="ActionsContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+[node name="ActionsContainer" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer" unique_id=587118342]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" instance=ExtResource("7_ltwpa")]
+[node name="GUI_action" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainer" unique_id=1079273563 instance=ExtResource("7_ltwpa")]
 material = SubResource("14")
 layout_mode = 2
 theme = ExtResource("2_aqglx")
 metadata/_edit_horizontal_guides_ = [16.0, 13.0]
 
-[node name="ActionsContainerTouch" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+[node name="ActionsContainerTouch" type="VBoxContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer" unique_id=938585532]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 
-[node name="GUI_actions_touch" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch" instance=ExtResource("4_2oh6y")]
+[node name="GUI_actions_touch" parent="outGameGUI/HBoxContainer_droit/VBoxContainer/ActionsContainerTouch" unique_id=1317151985 instance=ExtResource("4_2oh6y")]
 layout_direction = 3
 layout_mode = 2
 metadata/_edit_horizontal_guides_ = [16.0]
 
-[node name="Label" type="MarginContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer"]
+[node name="Label" type="MarginContainer" parent="outGameGUI/HBoxContainer_droit/VBoxContainer" unique_id=2055011912]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("2_aqglx")
 
-[node name="meta" type="VBoxContainer" parent="outGameGUI"]
+[node name="meta" type="VBoxContainer" parent="outGameGUI" unique_id=92984785]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.167
 offset_top = -48.0
 offset_bottom = -16.0
 
-[node name="meta_label" type="Label" parent="outGameGUI/meta"]
+[node name="meta_label" type="Label" parent="outGameGUI/meta" unique_id=486215664]
 unique_name_in_owner = true
 layout_mode = 2
 text = "test"
 
-[node name="bas_droit" type="VBoxContainer" parent="outGameGUI"]
+[node name="bas_droit" type="VBoxContainer" parent="outGameGUI" unique_id=832209012]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 384.0
@@ -159,29 +159,29 @@ offset_top = 352.0
 offset_right = 559.0
 offset_bottom = 451.0
 
-[node name="MarginContainer" type="MarginContainer" parent="outGameGUI/bas_droit"]
+[node name="MarginContainer" type="MarginContainer" parent="outGameGUI/bas_droit" unique_id=1565659877]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer"]
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer" unique_id=1382520474]
 layout_mode = 2
 
-[node name="Gui_actions_zoom" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
+[node name="Gui_actions_zoom" parent="outGameGUI/bas_droit" unique_id=447395883 instance=ExtResource("7_ltwpa")]
 unique_name_in_owner = true
 layout_mode = 2
 no_item_description = "zoom/dézoom"
 no_item_action = &"zoom_toggle"
 metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
-[node name="Gui_actions_reset" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
+[node name="Gui_actions_reset" parent="outGameGUI/bas_droit" unique_id=555682526 instance=ExtResource("7_ltwpa")]
 unique_name_in_owner = true
 layout_mode = 2
 no_item_description = "recommencer"
 no_item_action = &"reset"
 metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
-[node name="TextDroite2" type="Label" parent="outGameGUI/bas_droit"]
+[node name="TextDroite2" type="Label" parent="outGameGUI/bas_droit" unique_id=528533656]
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 10
@@ -189,13 +189,13 @@ theme_override_fonts/font = ExtResource("5_0x5pt")
 theme_override_font_sizes/font_size = 20
 text = "c'est parti!"
 
-[node name="MarginContainer2" type="MarginContainer" parent="outGameGUI/bas_droit"]
+[node name="MarginContainer2" type="MarginContainer" parent="outGameGUI/bas_droit" unique_id=520338715]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer2"]
+[node name="Label" type="Label" parent="outGameGUI/bas_droit/MarginContainer2" unique_id=1081574737]
 layout_mode = 2
 
-[node name="Gui_actions_menu" parent="outGameGUI/bas_droit" instance=ExtResource("7_ltwpa")]
+[node name="Gui_actions_menu" parent="outGameGUI/bas_droit" unique_id=68800723 instance=ExtResource("7_ltwpa")]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 2
@@ -203,16 +203,16 @@ no_item_description = "revenir au menu"
 no_item_action = &"menu"
 metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0]
 
-[node name="ActionsContainerTouchOverflow" type="Node2D" parent="outGameGUI"]
+[node name="ActionsContainerTouchOverflow" type="Node2D" parent="outGameGUI" unique_id=1994155472]
 clip_children = 1
 position = Vector2(0, 220)
 
-[node name="ActionsContainerTouch2" type="VBoxContainer" parent="outGameGUI/ActionsContainerTouchOverflow"]
+[node name="ActionsContainerTouch2" type="VBoxContainer" parent="outGameGUI/ActionsContainerTouchOverflow" unique_id=2035272992]
 unique_name_in_owner = true
 light_mask = 2
 z_index = 10
 material = SubResource("CanvasItemMaterial_mkutc")
-anchors_preset = -1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -224,11 +224,11 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 
-[node name="GUI_actions_touch" parent="outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2" instance=ExtResource("4_2oh6y")]
+[node name="GUI_actions_touch" parent="outGameGUI/ActionsContainerTouchOverflow/ActionsContainerTouch2" unique_id=268110098 instance=ExtResource("4_2oh6y")]
 layout_mode = 2
 metadata/_edit_horizontal_guides_ = [16.0]
 
-[node name="cache_GUI_actions_input" type="ColorRect" parent="outGameGUI"]
+[node name="cache_GUI_actions_input" type="ColorRect" parent="outGameGUI" unique_id=1489882758]
 unique_name_in_owner = true
 visible = false
 modulate = Color(0, 0, 0, 1)
@@ -238,9 +238,8 @@ offset_left = 355.0
 offset_right = 384.0
 offset_bottom = 384.0
 
-[node name="debug_grid" type="TextureRect" parent="."]
+[node name="debug_grid" type="TextureRect" parent="." unique_id=1671530672]
 visible = false
-anchors_preset = -1
 offset_left = -368.0
 offset_top = -160.0
 offset_right = 704.0

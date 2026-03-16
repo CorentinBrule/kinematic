@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://nrly2ssvrkro"]
+[gd_scene format=3 uid="uid://nrly2ssvrkro"]
 
 [sub_resource type="Image" id="Image_u11ig"]
 data = {
@@ -12,7 +12,7 @@ data = {
 [sub_resource type="ImageTexture" id="1"]
 image = SubResource("Image_u11ig")
 
-[node name="Sprite2D" type="Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" unique_id=712718612]
 z_index = 8
 position = Vector2(288, 320)
 texture = SubResource("1")

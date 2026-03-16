@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ldfc7f3h1ymm"]
+[gd_scene format=3 uid="uid://ldfc7f3h1ymm"]
 
 [ext_resource type="Script" uid="uid://dcknn5yrqxvuu" path="res://Niveau/GUI/GUI_actions.gd" id="1_55u5d"]
 [ext_resource type="Theme" uid="uid://4m8as5n6pjj2" path="res://Niveau/GUI/GUI.tres" id="2_0refe"]
@@ -19,8 +19,7 @@ data = {
 [sub_resource type="ImageTexture" id="ImageTexture_p238u"]
 image = SubResource("Image_cowib")
 
-[node name="Gui_actions" type="HBoxContainer"]
-anchors_preset = -1
+[node name="Gui_actions" type="HBoxContainer" unique_id=1235312157]
 offset_right = 94.0
 offset_bottom = 28.0
 theme_override_constants/separation = 0
@@ -29,13 +28,13 @@ no_item_action = false
 metadata/_edit_horizontal_guides_ = [16.0, 13.0, 4.0, 21.0, 32.0]
 metadata/_edit_vertical_guides_ = [-32.0, -27.0, -5.0, -16.0]
 
-[node name="input_display" type="Control" parent="."]
+[node name="input_display" type="Control" parent="." unique_id=1011148929]
 layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="input_label" type="Label" parent="input_display"]
+[node name="input_label" type="Label" parent="input_display" unique_id=714933013]
 unique_name_in_owner = true
 z_index = 1
 layout_direction = 3
@@ -50,7 +49,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/avoid_transition = true
 
-[node name="key_frame" type="TextureRect" parent="input_display/input_label"]
+[node name="key_frame" type="TextureRect" parent="input_display/input_label" unique_id=388328081]
 z_index = 1
 layout_mode = 0
 offset_left = 6.0
@@ -58,7 +57,7 @@ offset_right = 27.0
 offset_bottom = 21.0
 texture = ExtResource("4_q5dqy")
 
-[node name="input_texture" type="TextureRect" parent="input_display"]
+[node name="input_texture" type="TextureRect" parent="input_display" unique_id=747938520]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -70,8 +69,9 @@ offset_right = -6.0
 offset_bottom = 20.0
 texture = ExtResource("5_g5kro")
 
-[node name="input_actions" type="Control" parent="input_display"]
+[node name="input_actions" type="Control" parent="input_display" unique_id=1052739815]
 layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -32.0
@@ -79,7 +79,7 @@ offset_top = -1.0
 offset_bottom = 20.0
 grow_horizontal = 0
 
-[node name="inaction_progress" type="TextureProgressBar" parent="input_display/input_actions"]
+[node name="inaction_progress" type="TextureProgressBar" parent="input_display/input_actions" unique_id=259814672]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 5.0
@@ -92,7 +92,7 @@ texture_progress = SubResource("ImageTexture_p238u")
 tint_under = Color(0, 0, 0, 1)
 tint_progress = Color(0.133333, 1, 0.0823529, 1)
 
-[node name="cooldown_cache" type="TextureProgressBar" parent="input_display/input_actions"]
+[node name="cooldown_cache" type="TextureProgressBar" parent="input_display/input_actions" unique_id=42559538]
 unique_name_in_owner = true
 z_index = 1
 layout_mode = 0
@@ -104,7 +104,7 @@ nine_patch_stretch = true
 texture_progress = ExtResource("3_vrfwb")
 tint_progress = Color(0, 0, 0, 1)
 
-[node name="action_description" type="Label" parent="."]
+[node name="action_description" type="Label" parent="." unique_id=2029262162]
 layout_mode = 2
 theme = ExtResource("2_0refe")
 text = "sauter"

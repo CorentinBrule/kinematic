@@ -13,8 +13,9 @@ config_version=5
 config/name="Kinematic Character"
 config/version="0.3"
 run/main_scene="res://Jeu.tscn"
-config/features=PackedStringArray("4.5")
-
+config/features=PackedStringArray("4.6")
+run/max_fps=60
+config/icon="res://assets/icon.png"
 
 [autoload]
 
@@ -49,6 +50,10 @@ enabled=PackedStringArray("res://addons/kinematic_addon/plugin.cfg")
 [gdnative]
 
 singletons=[]
+
+[global_group]
+
+editor_non_selectable=""
 
 [gui]
 
@@ -210,5 +215,4 @@ environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 quality/driver/driver_name="GLES2"
 2d/snapping/use_gpu_pixel_snap=true
 quality/shading/use_physical_light_attenuation=true
-environment/default_clear_color=Color(0, 0, 0, 1)
 quality/dynamic_fonts/use_oversampling=false

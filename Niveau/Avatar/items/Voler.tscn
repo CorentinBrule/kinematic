@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dpviexh1kj4dg"]
+[gd_scene format=3 uid="uid://dpviexh1kj4dg"]
 
 [ext_resource type="Script" uid="uid://bqib266m6ekvp" path="res://Niveau/Avatar/items/Voler.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://brx2nlg6h1ws3" path="res://Niveau/Avatar/items/voler.png" id="2"]
 
-[node name="Voler" type="Node2D"]
+[node name="Voler" type="Node2D" unique_id=796231418]
 script = ExtResource("1")
 
-[node name="voler" type="Sprite2D" parent="."]
+[node name="voler" type="Sprite2D" parent="." unique_id=1090846271]
 position = Vector2(0.013508, -0.828877)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("2")

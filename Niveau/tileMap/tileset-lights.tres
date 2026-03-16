@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=51 format=3 uid="uid://dewv7opotbkhd"]
+[gd_resource type="TileSet" format=3 uid="uid://dewv7opotbkhd"]
 
 [ext_resource type="Texture2D" uid="uid://c1bd6ewt7t2ou" path="res://Niveau/tileMap/tilemap-light.png" id="1_yv8py"]
 
@@ -532,5 +532,5 @@ texture = ExtResource("1_yv8py")
 occlusion_layer_0/light_mask = 4
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
-terrain_set_0/terrain_0/color = Color(0.99999994, 0.92459345, 0.2574883, 1)
+terrain_set_0/terrain_0/color = Color(1, 0.924593, 0.257488, 1)
 sources/0 = SubResource("TileSetAtlasSource_yv8py")

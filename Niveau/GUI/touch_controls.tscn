@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3hvhqxrsv5ca"]
+[gd_scene format=3 uid="uid://c3hvhqxrsv5ca"]
 
 [ext_resource type="Texture2D" uid="uid://cwq2m6p8c242g" path="res://assets/touch_arrow_200x200.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://btcsv70o75is1" path="res://assets/touch_circle_200x200.png" id="2"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ctnnlry63uejn" path="res://assets/touch_fullscreen_200x200.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://onp88ojcqavi" path="res://assets/touch_circle_200x200_active.png" id="5"]
 
-[node name="touch_controls" type="CanvasLayer"]
+[node name="touch_controls" type="CanvasLayer" unique_id=1579727611]
 
-[node name="right" type="TouchScreenButton" parent="."]
+[node name="right" type="TouchScreenButton" parent="." unique_id=688283574]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
 position = Vector2(112, 293)
@@ -18,7 +18,7 @@ texture_pressed = ExtResource("5")
 passby_press = true
 action = "move_right"
 
-[node name="TextureRect" type="TextureRect" parent="right"]
+[node name="TextureRect" type="TextureRect" parent="right" unique_id=1772654040]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -36,7 +36,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("1")
 metadata/_edit_use_anchors_ = true
 
-[node name="left" type="TouchScreenButton" parent="."]
+[node name="left" type="TouchScreenButton" parent="." unique_id=1396259744]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
 position = Vector2(1, 293)
@@ -46,7 +46,7 @@ texture_pressed = ExtResource("5")
 passby_press = true
 action = "move_left"
 
-[node name="TextureRect2" type="TextureRect" parent="left"]
+[node name="TextureRect2" type="TextureRect" parent="left" unique_id=60910335]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -60,7 +60,7 @@ rotation = -1.5708
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("1")
 
-[node name="menu" type="TouchScreenButton" parent="."]
+[node name="menu" type="TouchScreenButton" parent="." unique_id=625176034]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
 position = Vector2(0, 1)
@@ -69,7 +69,7 @@ texture_normal = ExtResource("2")
 texture_pressed = ExtResource("5")
 action = "menu"
 
-[node name="TextureRect" type="TextureRect" parent="menu"]
+[node name="TextureRect" type="TextureRect" parent="menu" unique_id=1750379788]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -81,7 +81,7 @@ offset_right = 100.0
 offset_bottom = 100.0
 texture = ExtResource("3")
 
-[node name="zoom" type="TouchScreenButton" parent="."]
+[node name="zoom" type="TouchScreenButton" parent="." unique_id=1311220783]
 modulate = Color(1, 1, 1, 0.54902)
 texture_filter = 1
 position = Vector2(324, 0)
@@ -90,7 +90,7 @@ texture_normal = ExtResource("2")
 texture_pressed = ExtResource("5")
 action = "zoom_toggle"
 
-[node name="TextureRect" type="TextureRect" parent="zoom"]
+[node name="TextureRect" type="TextureRect" parent="zoom" unique_id=1488795280]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5

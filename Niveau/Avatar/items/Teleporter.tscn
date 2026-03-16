@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpy4mgx0ccvxx"]
+[gd_scene format=3 uid="uid://cpy4mgx0ccvxx"]
 
 [ext_resource type="Script" uid="uid://bt6qh3b2ufbfo" path="res://Niveau/Avatar/items/Teleporter.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://ch0s7fitmnvvn" path="res://Niveau/Avatar/items/teleporter.png" id="2"]
 
-[node name="Teleporter" type="Node2D"]
+[node name="Teleporter" type="Node2D" unique_id=1332452615]
 script = ExtResource("1")
 
-[node name="teleporter" type="Sprite2D" parent="."]
+[node name="teleporter" type="Sprite2D" parent="." unique_id=1048022994]
 position = Vector2(0.0162587, 0.109893)
 scale = Vector2(0.09, 0.09)
 texture = ExtResource("2")

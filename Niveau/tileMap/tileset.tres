@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=22 format=3 uid="uid://csy16r6x73njx"]
+[gd_resource type="TileSet" format=3 uid="uid://csy16r6x73njx"]
 
 [ext_resource type="Texture2D" uid="uid://c8ubb1knkxwsb" path="res://Niveau/tileMap/obstacle.png" id="1_ooi21"]
 [ext_resource type="Texture2D" uid="uid://dh4t08uspnab6" path="res://Niveau/tileMap/rouge.png" id="2_neg3o"]
