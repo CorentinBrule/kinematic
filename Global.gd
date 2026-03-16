@@ -22,7 +22,7 @@ var colors = ["Rouge","Vert","Bleu"]
 var color_picker = {
 	"Rouge": Color(1,0,0,1),
 	"Vert": Color(0,1,0,1),
-	"Bleu":	Color(0,0,1,1)
+	"Bleu": Color(0,0,1,1)
 }
 
 var avatar
@@ -47,6 +47,7 @@ func _ready():
 	
 	save_folder_path = current_scene.save_folder_path
 	
+	avatar = current_scene.get_node(Avatar_path)
 	if DisplayServer.is_touchscreen_available():
 		has_touch_screen = true
 	
@@ -162,12 +163,15 @@ func init_level():
 	tilemap.is_new_level = true
 	tilemap.init()
 	
-	var avatar = current_scene.get_node(Avatar_path)
-	avatar.init()
-	avatar.life()
-	
 	var GUI = current_scene.get_node(GUI_path)
 	GUI.init()
+	
+	avatar.init()
+
+	while (GUI.is_text_transition or tilemap.is_level_transition):
+		await get_tree().create_timer(0.05).timeout
+	
+	avatar.life()
 	
 	var camera = current_scene.get_node(Camera_path)
 	camera.init()
