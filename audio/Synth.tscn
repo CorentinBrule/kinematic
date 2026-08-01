@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://hcragac50yoq"]
+
+[ext_resource type="Script" uid="uid://dcn5jyws1rryo" path="res://audio/audio_stream_generator.gd" id="1_j8qo7"]
+
+[sub_resource type="AudioStreamGenerator" id="AudioStreamGenerator_a6blm"]
+buffer_length = 0.05
+
+[node name="Synth" type="AudioStreamPlayer" unique_id=1144279430]
+physics_interpolation_mode = 2
+stream = SubResource("AudioStreamGenerator_a6blm")
+volume_db = -20.0
+bus = &"Main"
+script = ExtResource("1_j8qo7")
+wave_form = "triangle"
+gain_type = "normal"
+gain = 1.5
+
+[node name="Line2D" type="Line2D" parent="." unique_id=344193597]
+z_index = 10
+z_as_relative = false
+position = Vector2(32, 32)
+points = PackedVector2Array(0, -32)
+width = 1.0
+default_color = Color(1, 1, 0, 1)
+antialiased = true

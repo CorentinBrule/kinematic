@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bxqsk0qayxjno" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
 [ext_resource type="Script" uid="uid://d3vy7wxnq3en3" path="res://tools.gd" id="12"]
+[ext_resource type="PackedScene" uid="uid://bv8f3ug26dye0" path="res://audio/Sequencer.tscn" id="13_a6blm"]
 
 [node name="Jeu" type="Node" unique_id=623389258]
 process_mode = 3
@@ -83,6 +84,9 @@ time_to_regen = 10.0
 maximum_vertical_speed = -110.0
 xbox_button = "RT"
 metadata/_edit_lock_ = true
+
+[node name="Sequencer" parent="." unique_id=2035718394 instance=ExtResource("13_a6blm")]
+
 
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="child_entered_tree" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_entered_tree"]

@@ -47,6 +47,10 @@ func restart_level():
 	$Trigger_end.add_sibling(new_tileMap) # add before $Avatar
 	$TileMap.free()
 	new_tileMap.set_name(node_name)
+	if get_parent().has_node("Sequencer"):
+		# update tilemap for music sequencer
+		new_tileMap.update_all_objs(true)
+		get_parent().find_child("Sequencer").tilemap = new_tileMap
 	
 	$GUI/%win.hide()
 	#await get_tree().create_timer(1).timeout
@@ -62,13 +66,21 @@ func next_level():
 	$Camera2D.zoom_to_out()
 	$GUI.prepare_text_transition(true)
 	$TileMap.prepare_transition(true)
+	if find_child("Sequencer"):
+		$Sequencer.mute_all()
+		$Sequencer.paused = true 
+		$Sequencer.restart()
 
 	while ($GUI.is_text_transition or $TileMap.is_level_transition):
 		$Avatar.position = $Avatar.position.move_toward($Trigger_end.position + $Trigger_end/CollisionShape2D.get_shape().extents, 0.5)
 		await get_tree().create_timer(0.05).timeout
-	
+	 
 	$Camera2D.auto_cam = true
 	Global.next_save()
+	
+	if find_child("Sequencer"):
+		$Sequencer.unmute_all()
+		$Sequencer.paused = false
 
 func clean_death_marks():
 	for mark in death_marks:

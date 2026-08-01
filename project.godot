@@ -17,6 +17,12 @@ config/features=PackedStringArray("4.6")
 run/max_fps=60
 config/icon="res://assets/icon.png"
 
+[audio]
+
+buses/default_bus_layout="uid://c5cxucgixcta2"
+general/default_playback_type.web=0
+driver/output_latency=1
+
 [autoload]
 
 Global="*res://Global.gd"

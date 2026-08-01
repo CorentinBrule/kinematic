@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://bv8f3ug26dye0"]
+
+[ext_resource type="Script" uid="uid://dsort7ypeemdb" path="res://audio/sequencer.gd" id="1_mkxx8"]
+[ext_resource type="Script" uid="uid://op8u3xe344pw" path="res://audio/spectrum.gd" id="3_1yhx7"]
+[ext_resource type="PackedScene" uid="uid://hcragac50yoq" path="res://audio/Synth.tscn" id="6_1g223"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smpi0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a6blm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+shadow_color = Color(0, 0, 0, 0)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj6e1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ygcwj"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 0.34509805, 0.34117648)
+shadow_color = Color(1, 1, 0.34509805, 0.34117648)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3y47"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lk2s3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+corner_detail = 5
+
+[node name="Sequencer" type="ItemList" unique_id=2035718394]
+process_mode = 3
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 352.0
+offset_bottom = 352.0
+focus_mode = 0
+mouse_filter = 2
+theme_override_colors/guide_color = Color(0.69803923, 0.69803923, 0.69803923, 0)
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+theme_override_constants/line_separation = 0
+theme_override_constants/icon_margin = 0
+theme_override_font_sizes/font_size = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_smpi0")
+theme_override_styles/focus = SubResource("StyleBoxFlat_a6blm")
+theme_override_styles/hovered = SubResource("StyleBoxFlat_bj6e1")
+theme_override_styles/hovered_selected = SubResource("StyleBoxFlat_ygcwj")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxFlat_ygcwj")
+theme_override_styles/selected = SubResource("StyleBoxFlat_ygcwj")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_ygcwj")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxFlat_v3y47")
+theme_override_styles/cursor = SubResource("StyleBoxFlat_lk2s3")
+select_mode = 1
+allow_search = false
+text_overrun_behavior = 0
+wraparound_items = false
+max_columns = 20
+same_column_width = true
+fixed_column_width = 16
+fixed_icon_size = Vector2i(16, 16)
+script = ExtResource("1_mkxx8")
+metadata/_edit_lock_ = true
+
+[node name="Beat" type="Timer" parent="." unique_id=924136053]
+autostart = true
+
+[node name="Spectrum_bass" type="Node2D" parent="." unique_id=206261823]
+modulate = Color(1, 1, 1, 0.5529412)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 161)
+script = ExtResource("3_1yhx7")
+VU_COUNT = 100
+FREQ_MAX = 5525.0
+MIN_DB = 100
+color = Color(1, 1, 1, 1)
+audio_bus = 1
+
+[node name="Spectrum_main" type="Node2D" parent="." unique_id=672886845]
+position = Vector2(0, 322)
+script = ExtResource("3_1yhx7")
+VU_COUNT = 100
+FREQ_MAX = 5525.0
+MIN_DB = 100
+color = Color(1, 1, 0, 1)
+audio_bus = 2
+
+[node name="Bass" parent="." unique_id=1321195450 instance=ExtResource("6_1g223")]
+bus = &"Bass"
+wave_form = "sine"
+texture = 1.5
+gain_type = "by_voices"
+gain = 1.0
+
+[node name="Main" parent="." unique_id=2043206173 instance=ExtResource("6_1g223")]
+gain_type = "by_voices"
+gain = 1.0
+line_color = Color(1, 1, 0, 1)

@@ -56,6 +56,7 @@ func _ready():
 
 func init():
 	original_start_position = start_position
+	position = start_position
 	my_color = int(my_color)
 	color_bonus  = (my_color + 1)%3
 	color_malus = my_color - 1
@@ -266,6 +267,8 @@ func attack(collider):
 	tileMap.get_node("TileMap_lights").set_cells_terrain_connect([cell],0,-1)
 	#tileMap.get_node("TileMap_lights").erase_cell(cell)
 	collider.free()
+	# update for music sequencer
+	tileMap.update_all_objs(true)
 
 #
 #func push(collision):
