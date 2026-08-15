@@ -21,6 +21,7 @@ var tool_is_ready = false # required variable to avoid bugs in the editor tool w
 func _ready():
 	if Engine.is_editor_hint():
 		tool_is_ready = true
+	## get nodes in tree because Global script is not active on editor
 	avatar = get_node("Niveau/Avatar")
 	avatar.get_node("Color").color = avatar.colors_val[avatar.my_color]
 	GUI = get_node("Niveau/GUI")
@@ -34,10 +35,6 @@ func _ready():
 	else:
 		Global.has_touch_screen = mobile_emulation
 		has_touch_screen = mobile_emulation
-	
-func _process(delta):
-	if Engine.is_editor_hint():
-		pass
 
 func _on_Avatar_color_change():
 	if Engine.is_editor_hint() and tool_is_ready:
