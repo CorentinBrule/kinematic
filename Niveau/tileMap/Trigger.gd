@@ -16,7 +16,7 @@ func _on_Trigger_body_entered(body):
 
 func action():
 	var new_pos = Vector2(position.x , position.y)
-	get_parent().get_parent().get_node("Avatar").start_position = new_pos 
+	get_parent().get_parent().get_node("Avatar").start_position_ingame = new_pos 
 
 func activate(body):
 	active = true

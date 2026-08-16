@@ -45,17 +45,21 @@ var physic_direction = 0
 var input_direction: = Vector2()
 var old_pos := Vector2()
 
+var sequencer = false
+
 @export var start_position = Vector2(344,344) : set = change_start_position
-var original_start_position
+var start_position_ingame
 
 signal color_change
 signal item_change
 
 func _ready():
+	if get_parent().has_node("Sequencer"):
+		sequencer = get_parent().get_node("Sequencer")
 	init()
 
 func init():
-	original_start_position = start_position
+	start_position_ingame = start_position
 	position = start_position
 	my_color = int(my_color)
 	color_bonus  = (my_color + 1)%3
@@ -180,8 +184,16 @@ func touch_plat(collision):
 	
 
 func touch_same(collision):
-	#print("same")
+	print("same")
 	bounce(collision)
+	if sequencer:
+		print("allo")
+		var tile = sequencer.tilemap.local_to_map(collision.get_collider().position).y - sequencer.cell_offset
+		var note = sequencer.notes[tile]
+		#bon faut vraiment mettre en place un vrai synthé avec touche, vélocité...
+		sequencer.get_node("Sfx").note_on(note)
+		await get_tree().create_timer(0.1).timeout
+		sequencer.get_node("Sfx").note_off(note)
 	
 func touch_bonus(collision):
 	#print("bonus")
@@ -253,8 +265,8 @@ func life():
 		item.reset()
 	
 	velocity = Vector2(0,0)
-	position = start_position
-	old_pos = start_position
+	position = start_position_ingame
+	old_pos = start_position_ingame
 	set_process(true)
 	set_physics_process(true)
 	set_process_input(true)
@@ -321,6 +333,8 @@ func _on_item_input_changed():
 		emit_signal("item_change")
 
 func change_start_position(value):
+	if typeof(value) == TYPE_STRING:
+		value = str_to_var(value)
 	start_position = value
 	if Engine.is_editor_hint():
 		position = start_position

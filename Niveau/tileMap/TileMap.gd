@@ -16,14 +16,14 @@ var all_transition_steps:int
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"Repères".hide()
-	
 	if is_new_level:
 		init()
 
 func init():
+	save_tileMap("save_tileMap_editor")
 	init_lights()
 	fill_interactives()
-	save_tileMap()
+	save_tileMap("save_tileMap_interactive")
 	prepare_transition()
 
 func _process(delta):
@@ -54,13 +54,8 @@ func _process(delta):
 				is_level_transition = false
 			transition_range -= transition_direction
 
-
-func prepare_transition(reverse:bool = false):
-	is_level_transition = true
-	is_reverse_transition = reverse
-	transition_range = 0
-	$TileMap_lights.hide()
-	
+## update all obj list for easier external access
+func update_all_objs(reverse:bool = false):
 	all_objs.clear()
 	for square in find_children("*","StaticBody2D",false,false):
 		if reverse:
@@ -74,6 +69,14 @@ func prepare_transition(reverse:bool = false):
 		else:
 			checkpoint.hide()
 			all_objs.append(checkpoint)
+
+func prepare_transition(reverse:bool = false):
+	is_level_transition = true
+	is_reverse_transition = reverse
+	transition_range = 0
+	$TileMap_lights.hide()
+	
+	update_all_objs(reverse)
 	
 	all_cells = get_used_cells()
 	all_transition_steps = all_cells.size() + all_objs.size()
@@ -86,8 +89,8 @@ func prepare_transition(reverse:bool = false):
 	else:
 		transition_direction = -1
 		transition_step = all_transition_steps - 1 
-	
-## init lights TileMap terrain
+
+## init lights TileMap terrain
 func init_lights():
 	$TileMap_lights.show()
 	$TileMap_lights.clear()
@@ -125,14 +128,21 @@ func fill_interactives():
 			set_cell(t, -1) # remove cell from tilemap
 			node.set_owner(self)
 
-## save tilemap from editor as scene to reload when die
-func save_tileMap():
+## save tilemap as scene to reload when die
+func save_tileMap(file_name:String):
 	var packed_scene = PackedScene.new()
 	packed_scene.pack(self)
-	ResourceSaver.save(packed_scene, "user://save_tileMap.tscn")
+	ResourceSaver.save(packed_scene, "user://"+ file_name +".tscn")
 
 func clean_interactives():
 	var children = get_children()
 	for child in children:
 		if child is StaticBody2D or child is Area2D:
 			child.free()
+
+func apply_cells_from_tilemap(source):
+	clear()
+	var new_tiles = source.get_used_cells()
+	for t in new_tiles:
+		var color_num = source.get_cell_source_id(t)
+		set_cell(t, color_num, Vector2(0,0))

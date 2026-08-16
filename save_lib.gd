@@ -58,8 +58,7 @@ static func set_character_data(scene, character_data):
 	var properties = character_data.get("properties")
 	for property in properties.keys():
 		character[property] = properties[property]
-	character["start_position"] = str_to_var("Vector2" + properties["start_position"])
-	
+	character["start_position"] = str_to_var("Vector2" + str(properties["start_position"]))
 	# hide old stuff
 	for child in character.get_children():
 		if child is ItemClass:
@@ -77,13 +76,20 @@ static func set_stuff_data(scene, stuff_list):
 			item_node.set_visible(true)
 			var properties = obj.get("properties")
 			for property in properties.keys():
-				item_node[property] = properties[property]
+				item_node[property] = safe_type(properties[property])
 			#print(properties["xbox_button"])
 			item_node.set("xbox_button", properties.get("xbox_button"))
 
 # Get & Save #
 
 static func save_file(scene, path : String):
+	var data_dict = prepare_save(scene)
+	#print(data_dict)
+	var file = FileAccess.open(path, FileAccess.WRITE)
+
+	file.store_string(JSON.stringify(data_dict,"\t"))
+
+static func prepare_save(scene) -> Dictionary:
 	var data_dict = {
 		"meta":{
 			"date":"",
@@ -108,12 +114,7 @@ static func save_file(scene, path : String):
 	data_dict.character = get_character_data(character)
 	var tilemap = scene.get_node("Niveau/TileMap")
 	data_dict.level_tilemap = get_tilemap_data(tilemap)
-
-	#print(data_dict)
-	var file = FileAccess.open(path, FileAccess.WRITE)
-
-	file.store_string(JSON.stringify(data_dict,"\t"))
-
+	return data_dict
 
 static func get_meta_data(niveau):
 	# si pas de date ou jour ou mois = 0 : date de maintenant
@@ -124,7 +125,6 @@ static func get_meta_data(niveau):
 	var data_date = "%04d-%02d-%02d-%02dh" % [date.year, date.month, date.day, date.hour]	
 	# groupe_name
 	var data_groupe = niveau.groupe_name
-	
 	return {"date":data_date, "groupe_name":data_groupe}
 
 static func get_story_data(niveau):
@@ -150,9 +150,9 @@ static func get_character_data(character):
 	var character_data = {
 		"properties":{}
 	}
-
-	#print(character)
+	
 	for property in get_exported_properties(character):
+		#character_data.properties[property.name] = var_to_str(character[property.name])
 		character_data.properties[property.name] = character[property.name]
 	
 	var children = character.get_children()
@@ -164,8 +164,7 @@ static func get_character_data(character):
 			if child.is_visible_in_tree(): # if is visible/active
 				stuff.append(child)
 	
-	character_data.stuff = get_stuff_data(stuff)
-	
+	character_data["stuff"] = get_stuff_data(stuff)
 	return character_data  
 
 static func get_stuff_data(stuff):
@@ -173,10 +172,11 @@ static func get_stuff_data(stuff):
 	for obj in stuff:
 		var obj_properties = {}
 		for property in get_exported_properties(obj):
-			obj_properties[property.name] = obj[property.name]
+			obj_properties[property.name] = safe_type(obj[property.name])
+		var obj_name = str(obj.get_name()) # convert StringName to String
 		stuff_data.append({
-			"name":obj.get_name(),
-			"properties":obj_properties
+			"name": obj_name,
+			"properties": obj_properties
 		})
 	return stuff_data
 
@@ -187,3 +187,10 @@ static func get_exported_properties(object):
 		if p.usage == 4102: # the way to know if a property is exported (old hint was 8199)
 			exported_properties.append(p)
 	return exported_properties
+
+## list of unsafe type for json
+static func safe_type(value):
+	match typeof(value):
+		TYPE_VECTOR2:
+			return var_to_str(value)
+	return value

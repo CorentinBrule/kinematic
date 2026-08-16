@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://8bbwb71saqd" path="res://assets/toggle_on_32x18.png" id="1_4vjhu"]
 [ext_resource type="Texture2D" uid="uid://cx3ktw4gnp3k5" path="res://assets/toggle_off_32x18.png" id="2_5a2y1"]
+[ext_resource type="Texture2D" uid="uid://bq0h8ekypvjku" path="res://assets/slider_btn_18x18.png" id="3_d4ois"]
 [ext_resource type="FontFile" uid="uid://blgdofojrs8aa" path="res://assets/DepartureMono-Regular.otf" id="3_gnl3n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhvta"]
@@ -11,6 +12,30 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2ln7"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4ois"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpput"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.2, 0.2, 0.2, 0.6)
+corner_detail = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5xx3"]
 bg_color = Color(0.8, 0.8, 0.8, 1)
@@ -82,6 +107,12 @@ default_font_size = 11
 CheckButton/icons/checked = ExtResource("1_4vjhu")
 CheckButton/icons/unchecked = ExtResource("2_5a2y1")
 CheckButton/styles/focus = SubResource("StyleBoxFlat_lhvta")
+HSlider/icons/grabber = ExtResource("3_d4ois")
+HSlider/icons/grabber_disabled = ExtResource("3_d4ois")
+HSlider/icons/grabber_highlight = ExtResource("3_d4ois")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_v2ln7")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_d4ois")
+HSlider/styles/slider = SubResource("StyleBoxFlat_dpput")
 ItemList/colors/font_color = Color(0, 0, 0, 1)
 ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
 ItemList/colors/font_selected_color = Color(0, 0, 0, 1)

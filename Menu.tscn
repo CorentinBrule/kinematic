@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ovdl3go1icrs" path="res://menu.gd" id="1"]
 [ext_resource type="Theme" uid="uid://dy5dqajbxmjti" path="res://Menu.tres" id="3"]
+[ext_resource type="PackedScene" uid="uid://dxx4uqo8rgqul" path="res://Edit_tilemap.tscn" id="3_ylpcl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d517x"]
 
@@ -17,6 +18,7 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="Menu" type="CanvasLayer" unique_id=35266146]
 script = ExtResource("1")
+metadata/_edit_vertical_guides_ = [352.0]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=841484919]
 anchors_preset = 15
@@ -49,6 +51,7 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_constants/separation = 0
 
 [node name="exitMenuButton" type="Button" parent="Control/VBoxContainer/HBoxContainer" unique_id=2116604589]
 unique_name_in_owner = true
@@ -63,30 +66,99 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_wlcjc")
 theme_override_styles/focus = SubResource("StyleBoxFlat_rqa5b")
 text = " X "
 
-[node name="toggleFullScreen" type="CheckButton" parent="Control/VBoxContainer/HBoxContainer" unique_id=449320013]
+[node name="TabBar" type="TabBar" parent="Control/VBoxContainer/HBoxContainer" unique_id=628686339]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 3
+current_tab = 0
+clip_tabs = false
+close_with_middle_mouse = false
+tab_count = 3
+tab_0/title = "settings"
+tab_1/title = "save list"
+tab_2/title = "edit tilemap"
+
+[node name="TabContainer" type="TabContainer" parent="Control/VBoxContainer" unique_id=1631953506]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+tabs_visible = false
+tab_1/title = "Save list"
+tab_2/title = "Edit tilemap"
+
+[node name="Settings" type="VBoxContainer" parent="Control/VBoxContainer/TabContainer" unique_id=1263480761]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+metadata/_tab_index = 0
+
+[node name="toggleFullScreen" type="CheckButton" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=449320013]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
 theme = ExtResource("3")
 theme_override_font_sizes/font_size = 11
 text = "Plein écran "
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/HBoxContainer" unique_id=2041714507]
+[node name="HSeparator" type="HSeparator" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=161200194]
+custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Control/VBoxContainer/HBoxContainer/MarginContainer" unique_id=2123453936]
-layout_mode = 2
-text = "    "
-
-[node name="save_files_list" type="ItemList" parent="Control/VBoxContainer" unique_id=833346694]
+[node name="toggleAudio" type="CheckButton" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=141770775]
 unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("3")
+theme_override_font_sizes/font_size = 11
+button_pressed = true
+text = "Audio"
+
+[node name="sliderAudio" type="HSlider" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=1629324024]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3")
+max_value = 1.0
+step = 0.001
+value = 0.5
+
+[node name="HSeparator2" type="HSeparator" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=432652553]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="toggleEffect" type="CheckButton" parent="Control/VBoxContainer/TabContainer/Settings" unique_id=861574352]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3")
+button_pressed = true
+text = "Effets visuels"
+
+[node name="Save_files_list" type="ItemList" parent="Control/VBoxContainer/TabContainer" unique_id=833346694]
+unique_name_in_owner = true
+visible = false
 clip_contents = false
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("3")
 theme_override_font_sizes/font_size = 10
+metadata/_tab_index = 1
+metadata/_tab_name = "Save list"
+
+[node name="Edit_tilemap" parent="Control/VBoxContainer/TabContainer" unique_id=1903541817 instance=ExtResource("3_ylpcl")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 
 [connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/exitMenuButton" to="." method="_on_exitMenuButton_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/HBoxContainer/toggleFullScreen" to="." method="_on_toggleFullScreen_pressed"]
-[connection signal="item_activated" from="Control/VBoxContainer/save_files_list" to="." method="_on_save_files_list_item_activated"]
-[connection signal="item_selected" from="Control/VBoxContainer/save_files_list" to="." method="_on_save_files_list_item_selected"]
+[connection signal="tab_changed" from="Control/VBoxContainer/HBoxContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="pressed" from="Control/VBoxContainer/TabContainer/Settings/toggleFullScreen" to="." method="_on_toggleFullScreen_pressed"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/Settings/toggleAudio" to="." method="_on_toggle_audio_toggled"]
+[connection signal="drag_started" from="Control/VBoxContainer/TabContainer/Settings/sliderAudio" to="." method="_on_slider_audio_drag_started"]
+[connection signal="value_changed" from="Control/VBoxContainer/TabContainer/Settings/sliderAudio" to="." method="_on_slider_audio_value_changed"]
+[connection signal="toggled" from="Control/VBoxContainer/TabContainer/Settings/toggleEffect" to="." method="_on_toggle_effect_toggled"]
+[connection signal="item_activated" from="Control/VBoxContainer/TabContainer/Save_files_list" to="." method="_on_save_files_list_item_activated"]
+[connection signal="item_selected" from="Control/VBoxContainer/TabContainer/Save_files_list" to="." method="_on_save_files_list_item_selected"]

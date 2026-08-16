@@ -145,16 +145,15 @@ func reset():
 
 # conditional variable export
 func _get_property_list():
+	var ret: Array[Dictionary] = [Dictionary()]
 	if Engine.is_editor_hint(): 
-		var ret = []
-
 		if toggleable:
 			ret.append({
 				"name": &"toggle",
 				"type": TYPE_BOOL,
 				"usage": PROPERTY_USAGE_DEFAULT
 			})
-		return ret
+	return ret
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dpviexh1kj4dg" path="res://Niveau/Avatar/items/Voler.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://btlau1cvdt5ao" path="res://Niveau/Avatar/items/Escalader.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bxqsk0qayxjno" path="res://Niveau/Avatar/items/Plane.tscn" id="9"]
-[ext_resource type="PackedScene" uid="uid://dkhkk4ctl7svu" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
+[ext_resource type="PackedScene" uid="uid://dvvji6wke8kuh" path="res://Niveau/tileMap/TileMap.tscn" id="10"]
 [ext_resource type="Script" uid="uid://d3vy7wxnq3en3" path="res://tools.gd" id="12"]
+[ext_resource type="PackedScene" uid="uid://ctib5rstfc51r" path="res://Menu.tscn" id="12_a6blm"]
 [ext_resource type="PackedScene" uid="uid://bv8f3ug26dye0" path="res://audio/Sequencer.tscn" id="13_a6blm"]
 
 [node name="Jeu" type="Node" unique_id=623389258]
@@ -33,7 +34,7 @@ narrative = "est un personnage qui doit aller dans le coin en haut à gauche. L'
 metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="Niveau" unique_id=682005071 instance=ExtResource("10")]
-tile_map_data = PackedByteArray("AAAHAA4AAAAAAAAAAAADAAUABAAAAAAAAAADAAYAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAJABEAAAAAAAAAAAAJABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAALABUAAAAAAAAAAAARABUAAQAAAAAAAAAGAAsAAAAAAAAAAAAPABUAAgAAAAAAAAATABUAAwAAAAAAAAANABUABAAAAAAAAAAMAAoAAgAAAAAAAAAPAAoAAQAAAAAAAAASAAoAAwAAAAAAAAAEAAkAAAAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAHAA4AAAAAAAAAAAADAAUABAAAAAAAAAADAAYAAAAAAAAAAAAFAAkAAAAAAAAAAAAGAAwAAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA8AAAAAAAAAAAAIABAAAAAAAAAAAAAJABEAAAAAAAAAAAAJABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAALABUAAAAAAAAAAAARABUAAQAAAAAAAAAGAAsAAAAAAAAAAAAPABUAAgAAAAAAAAATABUAAwAAAAAAAAANABUABAAAAAAAAAAEAAkAAAAAAAAAAAAMAAoAAgAAAAAAAAAPAAoAAQAAAAAAAAASAAoAAwAAAAAAAAAEAAoAAAAAAAAAAAAEAAsAAAAAAAAAAAAEAAwAAAAAAAAAAAAGAAkAAAAAAAAAAAAHAAkAAAAAAAAAAAA=")
 
 [node name="Avatar" parent="Niveau" unique_id=783970487 instance=ExtResource("2")]
 process_mode = 1
@@ -53,7 +54,6 @@ glue_time_max = 10.0
 glue_effect = 1000.0
 glue_delay = 1.0
 xbox_button = "RB"
-toggle = false
 metadata/_edit_lock_ = true
 
 [node name="Détruire" parent="Niveau/Avatar" unique_id=475182210 instance=ExtResource("6")]
@@ -87,7 +87,10 @@ metadata/_edit_lock_ = true
 
 [node name="Sequencer" parent="." unique_id=2035718394 instance=ExtResource("13_a6blm")]
 
+[node name="Menu" parent="." unique_id=35266146 instance=ExtResource("12_a6blm")]
+visible = false
 
+[connection signal="level_changed" from="Niveau" to="Niveau" method="_on_level_changed"]
 [connection signal="var_changed" from="Niveau" to="." method="_on_Niveau_var_changed"]
 [connection signal="child_entered_tree" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Niveau/Avatar" to="Niveau/Avatar" method="_on_child_exiting_tree"]

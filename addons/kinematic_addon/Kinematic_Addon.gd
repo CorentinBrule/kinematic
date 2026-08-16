@@ -10,6 +10,8 @@ const ItemClass = preload("res://Niveau/Avatar/Item.gd")
 var main_panel_instance
 var main_scene
 
+var debugger_plugin = MyDebuggerPlugin.new()
+
 func _enter_tree():
 	main_panel_instance = MainPanel.instantiate()
 	# Add the main panel to the editor's main viewport.
@@ -18,9 +20,15 @@ func _enter_tree():
 	_make_visible(false)
 	eds.connect("selection_changed", Callable(self, "_on_selection_changed"))
 	scene_changed.connect(_on_scene_changed)
+	
+	debugger_plugin.main_plugin = self
+	add_debugger_plugin(debugger_plugin)
+	main_scene = get_tree().get_edited_scene_root()
+	
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
+	remove_debugger_plugin(debugger_plugin)
 
 
 func _has_main_screen():
@@ -58,3 +66,28 @@ func _on_scene_changed(node):
 	else: 
 		ProjectSettings.set_setting("rendering/environment/defaults/default_clear_color", Color(0.0, 0.0, 0.0, 1.0))
 	ProjectSettings.save()
+	if node.name == "Jeu":
+		main_scene = node
+	
+func on_ingame_saved(data_dict):
+	main_scene.load_tiles_in_editor(data_dict)
+	#EditorInterface.reload_scene_from_path("res://Jeu.tscn")
+	## changes are not saved : have to save scene manually in editor
+	EditorInterface.mark_scene_as_unsaved()
+	
+class MyDebuggerPlugin extends EditorDebuggerPlugin:
+	var main_plugin: EditorPlugin # Holds the reference to the main plugin
+	func _setup_session(session_id) -> void:
+		var session = get_session(session_id)
+	
+	func _has_capture(capture):
+		# Return true if you wish to handle messages with a prefix
+		return capture == "kinematic"
+	
+	func _capture(message: String, data: Array, session_id: int) -> bool:
+		if message == "kinematic:ingame_editor_save":
+			#print("Editor received game event! Data: ", data)
+			main_plugin.on_ingame_saved(data[0])
+			return true
+		else:
+			return false

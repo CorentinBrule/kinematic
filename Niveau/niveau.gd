@@ -1,6 +1,7 @@
 @tool
 extends Node2D
 
+signal level_changed
 signal var_changed
 # variables du niveau (meta et narrative)
 @export var groupe_name: String = "groupe" : set = _change_groupe_name
@@ -21,7 +22,7 @@ var death_marks = []
 
 func _ready():
 	if not Engine.is_editor_hint():
-		if get_parent().has_node("Menu") == false:
+		if Global.menu_external_saves == false:
 			$Avatar.set_process(false)
 			$Avatar.set_process_input(false)
 			$Avatar.set_physics_process(false)    
@@ -31,16 +32,18 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("reset"):
 		clean_death_marks()
-		$Avatar.start_position = $Avatar.original_start_position
+		$Avatar.start_position_ingame = $Avatar.start_position
 		$Avatar.death()
 	
+	# conditions are not consistent, accidents do happen
 	if not Global.is_menu and get_parent().click_to_move:
 		if event is InputEventMouseButton and event.pressed == false and event.button_index == 1:
-			$Avatar.position = get_local_mouse_position()
+			if !$GUI.is_text_transition and !$TileMap.is_level_transition:
+				$Avatar.position = get_local_mouse_position()
 
 func restart_level():
 	# reload tileMap
-	var tileMap_scene = load("user://save_tileMap.tscn")
+	var tileMap_scene = load("user://save_tileMap_interactive.tscn")
 	var new_tileMap = tileMap_scene.instantiate()
 	new_tileMap.is_new_level = false
 	var node_name = $TileMap.name

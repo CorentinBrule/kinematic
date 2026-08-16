@@ -4,13 +4,18 @@ extends Node
 # pas vraiment script de "Jeu" 
 # mais plutot script de centralisation des évenements de l'éditeur
 # et déclanchement des events de modification dans l'éditeur
-
+@export_group("GamePlay")
 @export var auto_cam:bool = false
 @export var joystick_zoom:bool = false
-@export var mobile_emulation:bool = false : set = change_mobile_emulation
 @export var click_to_move = false
-@export var menu_for_export = false : set = change_menu_for_export
+@export_group("Debbug")
+@export var mobile_emulation:bool = false : set = change_mobile_emulation
+@export_group("Save Features")
 @export var save_folder_path:String = "res://save/"
+@export var menu_external_saves := false : set = change_menu_external_saves
+@export var menu_level_editor := true : set = change_menu_level_editor
+
+const save_lib = preload("res://save_lib.gd")
 
 var avatar
 var GUI
@@ -51,6 +56,13 @@ func _on_Niveau_var_changed():
 	if Engine.is_editor_hint() and tool_is_ready:
 		$Niveau/GUI.init()
 
+## hack to save permanently tilemap cells from ingame editor
+func load_tiles_in_editor(data_dict):
+	save_lib.set_data(get_tree().get_edited_scene_root(),data_dict)
+	$Niveau/TileMap.set_owner(self)
+	## changes are not saved : have to save scene manually in editor
+
+
 func change_mobile_emulation(val):
 	mobile_emulation = val
 	print(val)
@@ -59,17 +71,10 @@ func change_mobile_emulation(val):
 		ProjectSettings.save()
 		GUI.update_interface(val)
 
-func change_menu_for_export(val):
-	menu_for_export = val
-	var menu = get_node_or_null("Menu")
-	if Engine.is_editor_hint() and tool_is_ready:
-		if menu_for_export == true:
-			if menu == null:
-				var scene = load("res://Menu.tscn")
-				var instance = scene.instantiate()
-				add_child(instance)
-				instance.set_owner(self)
-				instance.hide()
-		else:
-			if menu != null:
-				menu.free()
+func change_menu_external_saves(val):
+	menu_external_saves = val
+	Global.menu_external_saves = val
+	
+func change_menu_level_editor(val):
+	menu_level_editor = val
+	Global.menu_level_editor = val

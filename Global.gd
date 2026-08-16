@@ -38,6 +38,10 @@ var save_index = 0
 
 var is_menu = false
 
+var visual_effect := true
+var menu_external_saves := false
+var menu_level_editor := true
+
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	var root = get_tree().get_root()
@@ -54,7 +58,7 @@ func _ready():
 	if(has_touch_screen):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
-	if current_scene.has_node("Menu"):
+	if menu_external_saves:
 		# load save from local "res://" file or from "server" 
 		if OS.has_feature('web'):
 			print("OS has feature web")
@@ -105,24 +109,25 @@ func _process(delta):
 	if Input.is_action_just_pressed("toggle_full_screen"):
 		toggle_full_screen()
 
-	if current_scene.has_node("Menu"):
+	if menu_external_saves:
 		if Input.is_action_just_pressed("next_level"):
 			next_save()
 		
 		if Input.is_action_just_pressed("prev_level"):
 			prev_save()
 		
-		if Input.is_action_just_pressed("menu"):
-			if is_menu:
-				current_scene.get_node("Menu").visible = false
-				unpause_level()
-				is_menu = false
-			else:
-				is_menu = true
-				pause_level()
-				current_scene.get_node("Menu").get_node("%save_files_list").select(save_index)
-				current_scene.get_node("Menu").visible = true
-				current_scene.get_node("Menu").get_node("%save_files_list").grab_focus()
+	if Input.is_action_just_pressed("menu"):
+		if is_menu:
+			current_scene.get_node("Menu").visible = false
+			unpause_level()
+			is_menu = false
+		else:
+			current_scene.get_node("Menu").visible = true
+			pause_level()
+			is_menu = true
+			if menu_external_saves:
+				current_scene.get_node("Menu").get_node("%Save_files_list").select(save_index)
+				current_scene.get_node("Menu").get_node("%Save_files_list").grab_focus()
 
 func set_save(save_data):
 	stop_level()
@@ -162,6 +167,7 @@ func init_level():
 	var tilemap = current_scene.get_node(TileMap_path)
 	tilemap.is_new_level = true
 	tilemap.init()
+	current_scene.get_node(Niveau_path).emit_signal("level_changed")
 	
 	var GUI = current_scene.get_node(GUI_path)
 	GUI.init()

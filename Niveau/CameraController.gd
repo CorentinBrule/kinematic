@@ -231,4 +231,5 @@ func open_clip_controls():
 	adapt_clips()
 
 func shake():
-	shake_strength = shake_random_strength
+	if Global.visual_effect:
+		shake_strength = shake_random_strength
